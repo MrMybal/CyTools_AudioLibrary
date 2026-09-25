@@ -21,7 +21,7 @@ class Updates(unittest.TestCase):
         self.temp = Path(tempfile.mkdtemp(prefix='cy-audiolib-update-'))
         self.root = self.temp/'Tool'; app = self.root/'app'
         (app/'gui').mkdir(parents=True)
-        for name in ('CyTool.json', 'release.json', 'tool.py', 'worker.py', 'maintenance.py', 'engine.json'): shutil.copyfile(APP/name, app/name)
+        for name in ('CyTool.json', 'release.json', 'tool.py', 'worker.py', 'maintenance.py', 'engine.json', 'bootstrap.py'): shutil.copyfile(APP/name, app/name)
         shutil.copyfile(APP/'gui'/'main.py', app/'gui'/'main.py')
         (self.root/'data'/'libraries').mkdir(parents=True); (self.root/'data'/'libraries'/'keep.json').write_text('{"user": "data"}', 'utf-8')
         self.saved = {name: getattr(maintenance, name) for name in ('APP', 'ROOT', 'UPDATES', 'BACKUPS', 'SETTINGS')}
@@ -55,6 +55,8 @@ class Updates(unittest.TestCase):
         self.assertEqual(json.loads((maintenance.APP/'release.json').read_text('utf-8'))['version'], '0.1.0', 'staging must not touch the active application')
         self.assertEqual(maintenance.apply_pending(), '0.2.0')
         self.assertEqual(json.loads((maintenance.APP/'release.json').read_text('utf-8'))['version'], '0.2.0')
+        self.assertEqual((self.root/'runtime'/'bootstrap.py').read_bytes(), (maintenance.APP/'bootstrap.py').read_bytes(),
+                         'the start-up script outside app/ is installed from the activated release')
         self.assertEqual((self.root/'data'/'libraries'/'keep.json').read_text('utf-8'), '{"user": "data"}')
         backups = list((maintenance.BACKUPS/'app').iterdir()); self.assertEqual(len(backups), 1)
         self.assertIsNone(maintenance.apply_pending())

@@ -22,6 +22,8 @@ if (-not (Get-Command git -ErrorAction SilentlyContinue)) {
 }
 & $python -m pip --disable-pip-version-check install --keyring-provider disabled --timeout 60 --retries 3 -r (Join-Path $PSScriptRoot 'requirements.txt')
 if ($LASTEXITCODE -ne 0) { throw 'Base installation failed (CyToolsCore, ImGui, MCP, audio libraries)' }
+# The start-up script lives outside app/ (it is what swaps app/ during an update): install it from its source.
+Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'bootstrap.py') -Destination (Join-Path $root 'runtime\bootstrap.py') -Force
 if ($Engine) {
     $arguments = @((Join-Path $PSScriptRoot 'setup_backend.py'))
     if ($CpuOnly) { $arguments += '--cpu-only' }

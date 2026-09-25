@@ -7,4 +7,5 @@ python3 -c 'import sys; sys.exit(0 if sys.version_info >= (3, 11) else 1)' || { 
 command -v git >/dev/null 2>&1 || { echo "git is required to install CyToolsCore from https://github.com/MrMybal/CyToolsCore"; exit 1; }
 [ -x runtime/python/bin/python ] || python3 -m venv runtime/python
 runtime/python/bin/python -m pip --disable-pip-version-check install -r app/requirements.txt
+cp app/bootstrap.py runtime/bootstrap.py      # outside app/: it is what swaps app/ during an update
 echo "Done. Start ./CyTools_AudioLibrary.sh (PortAudio and a desktop OpenGL session are required)."

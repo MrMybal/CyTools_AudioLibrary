@@ -176,7 +176,15 @@ def apply_pending():
         backup.rename(APP); raise
     write_json(SETTINGS/'tool-previous.json', {'app': str(backup.relative_to(ROOT)).replace('\\', '/'), 'version': read_json(backup/'release.json').get('version', '')})
     (SETTINGS/'tool-pending.json').unlink()
+    refresh_bootstrap()
     return pending.get('version', '')
+
+
+def refresh_bootstrap():
+    """runtime/bootstrap.py is a copy of app/bootstrap.py: a release that changes the start-up brings its own."""
+    source, target = APP/'bootstrap.py', ROOT/'runtime'/'bootstrap.py'
+    if source.is_file() and (not target.is_file() or target.read_bytes() != source.read_bytes()):
+        target.parent.mkdir(parents=True, exist_ok=True); shutil.copyfile(source, target)
 
 
 def rollback_tool():
