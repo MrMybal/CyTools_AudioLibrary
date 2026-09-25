@@ -1,0 +1,9 @@
+{
+  "status": "Experimental",
+  "notes": "Only this configuration was executed. 'Experimental' is kept on purpose: one machine, one GPU, one small real library.",
+  "tested": [
+    {"osVersion": "Windows 10 x64, build 10.0.19044", "device": "NVIDIA GeForce RTX 3090 24 GB", "driver": "610.47",
+     "runtime": "CPython 3.12.0, PyTorch 2.8.0+cu126, transformers 4.57.6, imgui-bundle 1.92.900", "date": "2026-09-21",
+     "status": "Executed: launcher from another cwd, ImGui EN/FR, scan, waveform, real M2D-CLAP 2025 + LAION-CLAP + Omni-Embed-Audio Qwen3B-Cl + Qwen3-1.7B on CUDA, CLI, real MCP stdio, fixture updates/rollback. CPU path executed with the test adapter only."}
+  ]
+}

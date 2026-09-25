@@ -1,0 +1,603 @@
+{
+ "categories": [
+  {
+   "id": "weapons",
+   "name": "Weapons",
+   "prompts": [
+    "weapon sounds",
+    "gunfire and weapons"
+   ],
+   "children": [
+    {
+     "id": "weapons.firearms",
+     "name": "Firearms",
+     "prompts": [
+      "a gunshot",
+      "firearm shooting",
+      "rifle or pistol gunfire",
+      "gun reload and handling"
+     ]
+    },
+    {
+     "id": "weapons.explosions",
+     "name": "Explosions",
+     "prompts": [
+      "an explosion",
+      "a bomb blast",
+      "a large detonation"
+     ]
+    },
+    {
+     "id": "weapons.melee",
+     "name": "Melee",
+     "prompts": [
+      "sword clash",
+      "blade swing and metal weapon hit",
+      "punch and body hit"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "vehicles",
+   "name": "Vehicles",
+   "prompts": [
+    "a vehicle",
+    "engine of a vehicle"
+   ],
+   "children": [
+    {
+     "id": "vehicles.cars",
+     "name": "Cars",
+     "prompts": [
+      "a car engine",
+      "a car driving by",
+      "car door and car interior"
+     ]
+    },
+    {
+     "id": "vehicles.trucks",
+     "name": "Trucks",
+     "prompts": [
+      "a truck engine",
+      "a heavy diesel truck",
+      "a bus or lorry passing"
+     ]
+    },
+    {
+     "id": "vehicles.motorcycles",
+     "name": "Motorcycles",
+     "prompts": [
+      "a motorcycle engine",
+      "a motorbike revving"
+     ]
+    },
+    {
+     "id": "vehicles.aircraft",
+     "name": "Aircraft",
+     "prompts": [
+      "an airplane",
+      "a jet flying over",
+      "a helicopter"
+     ]
+    },
+    {
+     "id": "vehicles.trains",
+     "name": "Trains",
+     "prompts": [
+      "a train passing",
+      "railway and subway"
+     ]
+    },
+    {
+     "id": "vehicles.boats",
+     "name": "Boats",
+     "prompts": [
+      "a boat engine",
+      "a ship horn"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "doors",
+   "name": "Doors",
+   "prompts": [
+    "a door opening or closing",
+    "a door slamming",
+    "a creaking door",
+    "a metal gate or lock"
+   ]
+  },
+  {
+   "id": "impacts",
+   "name": "Impacts",
+   "prompts": [
+    "an impact",
+    "a heavy hit",
+    "a crash",
+    "a thud"
+   ],
+   "children": [
+    {
+     "id": "impacts.metal",
+     "name": "Metal impacts",
+     "prompts": [
+      "a metal impact",
+      "a metallic clang",
+      "metal hit with resonance"
+     ]
+    },
+    {
+     "id": "impacts.wood",
+     "name": "Wood impacts",
+     "prompts": [
+      "a wood impact",
+      "knocking on wood",
+      "a wooden crack"
+     ]
+    },
+    {
+     "id": "impacts.body",
+     "name": "Body falls",
+     "prompts": [
+      "a body fall",
+      "something heavy falling on the ground"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "glass",
+   "name": "Glass",
+   "prompts": [
+    "glass breaking",
+    "glass shattering",
+    "glass clinking"
+   ]
+  },
+  {
+   "id": "machines",
+   "name": "Machines",
+   "prompts": [
+    "a machine running",
+    "industrial machinery",
+    "a motor humming",
+    "a power tool"
+   ]
+  },
+  {
+   "id": "animals",
+   "name": "Animals",
+   "prompts": [
+    "an animal sound"
+   ],
+   "children": [
+    {
+     "id": "animals.dogs",
+     "name": "Dogs",
+     "prompts": [
+      "a dog barking",
+      "a dog growling"
+     ]
+    },
+    {
+     "id": "animals.cats",
+     "name": "Cats",
+     "prompts": [
+      "a cat meowing",
+      "a cat purring"
+     ]
+    },
+    {
+     "id": "animals.birds",
+     "name": "Birds",
+     "prompts": [
+      "birds singing",
+      "bird calls",
+      "a crow cawing"
+     ]
+    },
+    {
+     "id": "animals.insects",
+     "name": "Insects",
+     "prompts": [
+      "insects buzzing",
+      "crickets chirping"
+     ]
+    },
+    {
+     "id": "animals.farm",
+     "name": "Farm animals",
+     "prompts": [
+      "a cow mooing",
+      "a horse",
+      "sheep and chickens"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "nature",
+   "name": "Nature",
+   "prompts": [
+    "nature sounds"
+   ],
+   "children": [
+    {
+     "id": "nature.water",
+     "name": "Water",
+     "prompts": [
+      "water flowing",
+      "a stream or river",
+      "ocean waves",
+      "water splash",
+      "water dripping"
+     ]
+    },
+    {
+     "id": "nature.fire",
+     "name": "Fire",
+     "prompts": [
+      "a fire crackling",
+      "flames burning"
+     ]
+    },
+    {
+     "id": "nature.forest",
+     "name": "Forest",
+     "prompts": [
+      "forest ambience",
+      "leaves rustling"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "weather",
+   "name": "Weather",
+   "prompts": [
+    "weather sounds"
+   ],
+   "children": [
+    {
+     "id": "weather.rain",
+     "name": "Rain",
+     "prompts": [
+      "rain falling",
+      "heavy rain"
+     ]
+    },
+    {
+     "id": "weather.wind",
+     "name": "Wind",
+     "prompts": [
+      "wind blowing",
+      "howling wind"
+     ]
+    },
+    {
+     "id": "weather.thunder",
+     "name": "Thunder",
+     "prompts": [
+      "thunder",
+      "a thunderstorm"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "foley",
+   "name": "Foley",
+   "prompts": [
+    "foley sound effects"
+   ],
+   "children": [
+    {
+     "id": "foley.footsteps",
+     "name": "Footsteps",
+     "prompts": [
+      "footsteps",
+      "someone walking",
+      "running steps"
+     ]
+    },
+    {
+     "id": "foley.cloth",
+     "name": "Cloth",
+     "prompts": [
+      "cloth rustling",
+      "clothing movement",
+      "a zipper"
+     ]
+    },
+    {
+     "id": "foley.objects",
+     "name": "Objects",
+     "prompts": [
+      "handling a small object",
+      "object being picked up or put down",
+      "paper rustling",
+      "keys jingling"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "ui",
+   "name": "UI",
+   "prompts": [
+    "a user interface sound",
+    "a button click",
+    "a notification beep",
+    "a menu select blip"
+   ]
+  },
+  {
+   "id": "scifi",
+   "name": "Sci-Fi",
+   "prompts": [
+    "a science fiction sound effect",
+    "a laser blast",
+    "a spaceship hum",
+    "a futuristic synthetic whoosh"
+   ]
+  },
+  {
+   "id": "ambience",
+   "name": "Ambience",
+   "prompts": [
+    "background ambience",
+    "room tone"
+   ],
+   "children": [
+    {
+     "id": "ambience.urban",
+     "name": "Urban",
+     "prompts": [
+      "city street ambience",
+      "traffic noise"
+     ]
+    },
+    {
+     "id": "ambience.indoor",
+     "name": "Indoor",
+     "prompts": [
+      "indoor room tone",
+      "office ambience",
+      "restaurant or crowd indoors"
+     ]
+    },
+    {
+     "id": "ambience.industrial",
+     "name": "Industrial",
+     "prompts": [
+      "factory ambience",
+      "warehouse ambience"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "human",
+   "name": "Human",
+   "prompts": [
+    "a human sound"
+   ],
+   "children": [
+    {
+     "id": "human.voice",
+     "name": "Voice",
+     "prompts": [
+      "a person speaking",
+      "speech",
+      "a shout or scream"
+     ]
+    },
+    {
+     "id": "human.crowd",
+     "name": "Crowd",
+     "prompts": [
+      "a crowd",
+      "applause and cheering"
+     ]
+    },
+    {
+     "id": "human.body",
+     "name": "Body",
+     "prompts": [
+      "breathing",
+      "coughing",
+      "laughing",
+      "eating"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "music",
+   "name": "Music",
+   "prompts": [
+    "music",
+    "a musical instrument",
+    "a melody",
+    "a drum beat",
+    "a musical stinger"
+   ]
+  },
+  {
+   "id": "whoosh",
+   "name": "Whooshes",
+   "prompts": [
+    "a whoosh",
+    "a swoosh transition",
+    "a fast pass-by swish"
+   ]
+  },
+  {
+   "id": "electric",
+   "name": "Electricity",
+   "prompts": [
+    "electric buzz",
+    "electrical spark",
+    "static hum"
+   ]
+  },
+  {
+   "id": "alarms",
+   "name": "Alarms and signals",
+   "prompts": [
+    "an alarm",
+    "a siren",
+    "a bell ringing",
+    "a phone ringing",
+    "a horn"
+   ]
+  }
+ ],
+ "tags": [
+  "acceleration",
+  "airplane",
+  "alarm",
+  "ambience",
+  "applause",
+  "bang",
+  "bass",
+  "beep",
+  "bell",
+  "bird",
+  "boat",
+  "braking",
+  "break",
+  "breath",
+  "bright",
+  "bubbling",
+  "buzz",
+  "car",
+  "cat",
+  "city",
+  "clang",
+  "click",
+  "close",
+  "cloth",
+  "concrete",
+  "cow",
+  "crack",
+  "crash",
+  "creak",
+  "crowd",
+  "debris",
+  "deep",
+  "diesel",
+  "distant",
+  "dog",
+  "door",
+  "drawer",
+  "drip",
+  "drone",
+  "drum",
+  "dry",
+  "dull",
+  "echo",
+  "electric",
+  "engine",
+  "explosion",
+  "factory",
+  "fire",
+  "footsteps",
+  "forest",
+  "gate",
+  "glass",
+  "glitch",
+  "guitar",
+  "gunshot",
+  "heavy",
+  "helicopter",
+  "high-pitched",
+  "hiss",
+  "hit",
+  "horn",
+  "horse",
+  "hum",
+  "idle",
+  "impact",
+  "indoor",
+  "insect",
+  "key",
+  "laser",
+  "laugh",
+  "light",
+  "liquid",
+  "lock",
+  "long",
+  "loop",
+  "loud",
+  "low-pitched",
+  "melody",
+  "metal",
+  "motor",
+  "motorcycle",
+  "muffled",
+  "music",
+  "ocean",
+  "outdoor",
+  "paper",
+  "pass-by",
+  "phone",
+  "piano",
+  "plastic",
+  "pour",
+  "rain",
+  "rattle",
+  "reload",
+  "rev",
+  "reverberant",
+  "rhythm",
+  "riser",
+  "river",
+  "robotic",
+  "room",
+  "rumble",
+  "running",
+  "scrape",
+  "scream",
+  "sharp",
+  "shatter",
+  "short",
+  "siren",
+  "sizzle",
+  "skid",
+  "slam",
+  "slime",
+  "soft",
+  "spark",
+  "speech",
+  "splash",
+  "squeak",
+  "squelch",
+  "start",
+  "static",
+  "steam",
+  "stinger",
+  "stone",
+  "stop",
+  "stream",
+  "street",
+  "swish",
+  "synth",
+  "tear",
+  "texture",
+  "thud",
+  "thunder",
+  "tire",
+  "train",
+  "truck",
+  "voice",
+  "warehouse",
+  "water",
+  "whoosh",
+  "wind",
+  "wood",
+  "zipper"
+ ]
+}

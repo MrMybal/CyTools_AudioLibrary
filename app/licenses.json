@@ -1,0 +1,64 @@
+[
+  {
+    "kind": "Engine",
+    "name": "M2D portable runtime (nttcslab/m2d, pinned revision in app/engine.json)",
+    "license": "NTT Software License, see LICENSE.pdf of the repository",
+    "url": "https://github.com/nttcslab/m2d/blob/master/LICENSE.pdf",
+    "notes": "Fetched by setup_backend.py into runtime/sources/m2d; not redistributed with this Tool."
+  },
+  {
+    "kind": "Engine",
+    "name": "Omni-Embed-Audio source (JudeJiwoo/Omni-Embed-Audio, pinned revision)",
+    "license": "MIT",
+    "url": "https://github.com/JudeJiwoo/Omni-Embed-Audio/blob/main/LICENSE",
+    "notes": "Fetched into runtime/sources/Omni-Embed-Audio. Its bundled Clotho samples keep their own Freesound licences (CC0 1.0 / CC-BY 3.0)."
+  },
+  {
+    "kind": "Model",
+    "name": "Qwen2.5-Omni-3B backbone (used by Omni-Embed-Audio Qwen3B checkpoints)",
+    "license": "Qwen Research License (non-commercial)",
+    "url": "https://huggingface.co/Qwen/Qwen2.5-Omni-3B/blob/main/LICENSE",
+    "notes": "Accepted personally by each user in the Installation tab."
+  },
+  {
+    "kind": "Model",
+    "name": "google-bert/bert-base-uncased (configuration and tokenizer only, for the M2D-CLAP text tower)",
+    "license": "Apache-2.0",
+    "url": "https://huggingface.co/google-bert/bert-base-uncased"
+  },
+  {
+    "kind": "Model",
+    "name": "Audio Flamingo 3 (declared extension point, no adapter in this version)",
+    "license": "NVIDIA OneWay Noncommercial License",
+    "url": "https://huggingface.co/nvidia/audio-flamingo-3-hf",
+    "notes": "Not downloadable from this version."
+  },
+  {
+    "kind": "Dependency",
+    "name": "PortAudio (through sounddevice) and FFmpeg libraries (through PyAV)",
+    "license": "MIT (PortAudio); LGPL/GPL components depending on the PyAV wheel build",
+    "url": "https://pyav.basswood-io.com/docs/stable/",
+    "notes": "Check the licence files shipped inside the installed wheels; this Tool does not modify them."
+  },
+  {
+    "kind": "Dependency",
+    "name": "mutagen (tag writing, File Tools tab only)",
+    "license": "GPL-2.0-or-later",
+    "url": "https://github.com/quodlibet/mutagen/blob/main/COPYING",
+    "notes": "Installed in the private base runtime and imported only by audiolib/fileops.py. A copyleft licence: take it into account before redistributing this Tool under other terms."
+  },
+  {
+    "kind": "Dependency",
+    "name": "CyToolsCore SDK 0.9.0 (runtime, jobs, CLI, MCP, interface helpers)",
+    "license": "GPL-3.0-only",
+    "url": "https://github.com/MrMybal/CyToolsCore/blob/main/LICENSE",
+    "notes": "Imported by every part of this application and installed from the public repository at a pinned commit. This Tool is itself distributed under the same GPL-3.0-only."
+  },
+  {
+    "kind": "Tool",
+    "name": "CyTools_AudioLibrary application code",
+    "license": "GPL-3.0-only",
+    "url": "https://github.com/MrMybal/CyTools_AudioLibrary/blob/main/LICENSE",
+    "notes": "Copyright (C) 2026 Cyberalien. The full text is the LICENSE file at the root of this Tool. It covers the application code only: the engines and model weights listed here keep their own licences, and the non-commercial ones are downloaded by each user, never distributed with this Tool."
+  }
+]

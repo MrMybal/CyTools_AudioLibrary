@@ -1,0 +1,26 @@
+[
+  {
+    "query": "je cherche un gros impact metalik ds un hangar, sans musique",
+    "answer": "{\"clap_prompt\": \"A massive metallic impact in a large space recorded in an industrial hall tone\", \"variations\": [\"High quality sound effect of a heavy metal impact with long resonant ringing, in an industrial hall tone\", \"Sound design element built from a huge steel hit with a long decay\", \"Wide stereo capture of a massive metallic impact in a large space\"], \"suggested_categories\": [\"Impacts\", \"Metal impacts\"], \"suggested_tags\": [\"metal\", \"impact\", \"resonant\", \"steel\", \"heavy\", \"clang\", \"reverberant\"], \"exclude\": [\"music\"]}"
+  },
+  {
+    "query": "necesito pasos en la nievve, bien cerca",
+    "answer": "{\"clap_prompt\": \"Boots compressing fresh snow, captured very close to the source\", \"variations\": [\"Detailed field recording of boots compressing fresh snow with a natural tone\", \"Sound design element built from footsteps crunching in deep snow, captured very close to the source\", \"Walking slowly through snow heard up close\"], \"suggested_categories\": [\"Foley\", \"Footsteps\"], \"suggested_tags\": [\"boots\", \"winter\", \"snow\", \"footsteps\", \"rhythm\", \"soft\", \"outdoor\"], \"exclude\": []}"
+  },
+  {
+    "query": "ich brauch mal ein tür die zuknallt richtig schwer",
+    "answer": "{\"clap_prompt\": \"A heavy wooden door bang, sounding heavy and powerful\", \"variations\": [\"Detailed field recording of a big industrial door shutting with a natural tone\", \"Sound design element built from a steel door closing with a loud clang\", \"Wide stereo capture of a heavy wooden door bang, heavy and powerful\"], \"suggested_categories\": [\"Doors\", \"Wood impacts\"], \"suggested_tags\": [\"wooden\", \"door\", \"steel\", \"heavy\", \"clang\", \"metal\", \"hit\"], \"exclude\": []}"
+  },
+  {
+    "query": "ak-k47",
+    "answer": "{\"clap_prompt\": \"A heavy 9mm pistol discharge, from an AK-47 assault rifle, isolated sound effect recording\", \"variations\": [\"Isolated recording of a sharp 9mm pistol discharge with a clean transient\", \"Sound design element built from a single pistol gunshot\", \"Wide stereo capture of one handgun shot firing, from an AK-47 assault rifle\"], \"suggested_categories\": [\"Weapons\", \"Firearms\"], \"suggested_tags\": [\"ak-47\", \"firearm\", \"handgun\", \"pistol\", \"loud\", \"sharp\", \"bang\"], \"exclude\": []}"
+  },
+  {
+    "query": "city",
+    "answer": "{\"clap_prompt\": \"Downtown street atmosphere, single clear take without background noise\", \"variations\": [\"Detailed field recording of urban ambience with cars passing with a natural tone\", \"Sound design element built from downtown street atmosphere\", \"A busy city street with traffic performed with natural dynamics\"], \"suggested_categories\": [\"Ambience\", \"Urban\"], \"suggested_tags\": [\"urban\", \"street\", \"traffic\", \"city\", \"ambience\", \"outdoor\", \"car\", \"loop\"], \"exclude\": []}"
+  },
+  {
+    "query": "mi serve un rumore di vetri rotti e detriti",
+    "answer": "{\"clap_prompt\": \"A violent glass smash, isolated sound effect recording\", \"variations\": [\"Detailed field recording of breaking glass with debris falling with a natural tone\", \"Sound design element built from a window shattering with glass shards scattering\", \"Wide stereo capture of a violent glass smash\"], \"suggested_categories\": [\"Glass\", \"Impacts\"], \"suggested_tags\": [\"break\", \"shatter\", \"window\", \"glass\", \"sharp\", \"debris\", \"crash\"], \"exclude\": []}"
+  }
+]

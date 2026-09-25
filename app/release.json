@@ -1,0 +1,7 @@
+{
+  "toolId": "cy.tool.audiolibrary",
+  "version": "0.1.0",
+  "runtime_abi": "cpython312-base2-torch2.8",
+  "repository": "MrMybal/CyTools_AudioLibrary",
+  "notes": "An application release replaces app/ only. runtime_abi changes when requirements.txt or the engine pins change in an incompatible way."
+}

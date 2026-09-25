@@ -1,0 +1,81 @@
+# Everything that belongs to the person using the Tool, or to this machine, stays local.
+
+# User data: Libraries, caches, waveform pyramids, embeddings, jobs, logs, settings, reports, and the
+# models, which are downloaded from the Installation tab (or install_model), never shipped.
+/data/
+
+# The private Python environment, the AI engine, its pinned upstream sources, staged updates, backups
+# and build output. Rebuilt by app/Install.ps1 and app/setup_backend.py.
+/runtime/
+
+# Built binaries: the launcher is built by app/build_launcher.ps1 and attached to a release.
+*.exe
+*.dll
+*.pdb
+*.obj
+*.lib
+*.exp
+
+# CyToolsCore is installed from https://github.com/MrMybal/CyToolsCore at the commit pinned in
+# app/requirements.txt; a locally built wheel is never needed in the repository.
+/app/packages/*.whl
+
+# Documentation copied from the SDK when the Tool was generated. It stays on disk for local work; the current
+# version is in the SDK repository. Only the documents that belong to this Tool are versioned.
+/app/Docs/*
+!/app/Docs/AudioLibrary-Validation.md
+!/app/Docs/CapabilityCoverage.md
+!/app/Docs/UPDATES.md
+
+# Instructions for coding assistants used during development. They stay on disk for that work and are
+# not part of the software; the rules that matter to users are in app/README.md.
+/app/CyToolsGuide.md
+/app/AGENTS.md
+/CLAUDE.md
+/.claude/
+/.codex/
+/.cursor/
+
+# Anything a model could be: weights never enter the repository, wherever they land.
+*.safetensors
+*.gguf
+*.ckpt
+*.pt
+*.pth
+*.bin
+*.onnx
+*.h5
+*.npy
+*.f16
+
+# Audio: a sound library is personal data, and tests generate their own fixtures.
+*.wav
+*.flac
+*.ogg
+*.mp3
+*.m4a
+*.aif
+*.aiff
+
+# Python and test caches.
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+.cytools/
+
+# Local and editor files.
+.env
+.env.*
+*.log
+*.tmp
+*.bak
+*.sqlite
+*.sqlite-wal
+*.sqlite-shm
+.vscode/
+.idea/
+.vs/
+Thumbs.db
+desktop.ini
+.DS_Store

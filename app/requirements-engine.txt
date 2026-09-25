@@ -1,0 +1,16 @@
+# AI engine environment (runtime/engines/torch). PyTorch itself is installed first by
+# setup_backend.py from the CUDA or CPU wheel index declared in engine.json.
+numpy>=1.26,<3
+scipy>=1.11,<2
+soundfile>=0.12.1,<1
+av>=12,<16
+transformers==4.57.6
+tokenizers>=0.22,<0.23
+safetensors>=0.5
+accelerate>=1.0,<2
+peft>=0.18,<0.19
+timm>=1.0,<2
+einops>=0.8,<1
+nnAudio==0.3.3
+tqdm>=4.65
+sentencepiece>=0.2

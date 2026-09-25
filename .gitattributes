@@ -1,0 +1,13 @@
+# Text is stored with LF in the repository, whatever the editor wrote on Windows.
+* text=auto eol=lf
+
+# Windows command scripts keep CRLF.
+*.cmd text eol=crlf
+*.bat text eol=crlf
+
+# Never touched by line-ending conversion.
+*.png binary
+*.ico binary
+*.exe binary
+*.whl binary
+*.zip binary

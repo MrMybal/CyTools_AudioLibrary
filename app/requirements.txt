@@ -1,0 +1,19 @@
+# Base of the application: CyToolsCore, Dear ImGui interface, CLI, MCP, library
+# scanning, decoding, waveform cache and playback. No AI framework here: the
+# engine (PyTorch, transformers) is installed separately by setup_backend.py.
+# CyToolsCore, the SDK (GPL-3.0-only), from its public repository at the exact revision this Tool was tested with.
+# The commit is pinned rather than a branch, so an installation never picks up an untested SDK. Needs git.
+cytools-core @ git+https://github.com/MrMybal/CyToolsCore.git@442f53740fc65f092e4abd6b4d8ccf70d391116a
+mcp>=1.30,<2
+numpy>=1.26,<3
+scipy>=1.11,<2
+Pillow>=10,<12
+truststore>=0.10,<1
+imgui-bundle==1.92.900
+keyring>=25,<26
+psutil>=5.9
+soundfile>=0.12.1,<1
+av>=12,<16
+sounddevice>=0.4.6,<1
+# Writing tags into audio files (File Tools tab only). GPL-2.0-or-later: see licenses.json.
+mutagen>=1.47,<2

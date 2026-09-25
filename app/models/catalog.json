@@ -1,0 +1,825 @@
+[
+ {
+  "modelId": "m2d-clap",
+  "version": "2025",
+  "revision": "v0.5.0",
+  "displayName": "M2D-CLAP 2025",
+  "family": "M2D-CLAP",
+  "modelType": "AudioTextEmbedding",
+  "provider": "NTT Communication Science Laboratories",
+  "repository": "https://github.com/nttcslab/m2d",
+  "source": {
+   "kind": "url-archive",
+   "url": "https://github.com/nttcslab/m2d/releases/download/v0.5.0/m2d_clap_vit_base-80x1001p16x16p16kpBpTI-2025.zip",
+   "size": 1469703420,
+   "sha256": "fd193ae591720df7f1e27ed728ce127e0309b8bd427f0f4b3e5cd17d7ee5e1e1",
+   "archive": "zip"
+  },
+  "auxiliary": [
+   {
+    "kind": "huggingface",
+    "repo": "google-bert/bert-base-uncased",
+    "revision": "86b5e0934494bd15c9632b12f734a8a67f723594",
+    "target": "support/google-bert/bert-base-uncased",
+    "files": [
+     {
+      "path": "config.json",
+      "size": 570,
+      "sha256": ""
+     },
+     {
+      "path": "tokenizer.json",
+      "size": 466062,
+      "sha256": ""
+     },
+     {
+      "path": "tokenizer_config.json",
+      "size": 48,
+      "sha256": ""
+     },
+     {
+      "path": "vocab.txt",
+      "size": 231508,
+      "sha256": ""
+     }
+    ],
+    "gated": false
+   }
+  ],
+  "adapter": "m2d_clap",
+  "engine": "torch",
+  "engineSource": "m2d",
+  "embeddingDimension": 768,
+  "requiredSampleRate": 16000,
+  "maximumAudioDuration": null,
+  "preferredChunkDuration": 10.0,
+  "languages": [
+   "en"
+  ],
+  "capabilities": [
+   "AudioEmbedding",
+   "TextEmbedding",
+   "ZeroShotTagging"
+  ],
+  "license": {
+   "name": "NTT Software License (see LICENSE.pdf); research use terms apply",
+   "url": "https://github.com/nttcslab/m2d/blob/master/LICENSE.pdf",
+   "requiresAcceptance": true,
+   "notes": "Read the PDF before use; this Tool does not grant any right on the weights."
+  },
+  "resources": {
+   "vramBytes": 2147483648,
+   "ramBytes": 4294967296
+  },
+  "similarityRange": [
+   0.14,
+   0.36
+  ],
+  "defaultEnabled": true,
+  "flatFeatures": true,
+  "validation": "See Docs/AudioLibrary-Validation.md"
+ },
+ {
+  "modelId": "m2d-clap",
+  "version": "2024",
+  "revision": "v0.1.0",
+  "displayName": "M2D-CLAP 2024",
+  "family": "M2D-CLAP",
+  "modelType": "AudioTextEmbedding",
+  "provider": "NTT Communication Science Laboratories",
+  "repository": "https://github.com/nttcslab/m2d",
+  "source": {
+   "kind": "url-archive",
+   "url": "https://github.com/nttcslab/m2d/releases/download/v0.1.0/m2d_clap_vit_base-80x608p16x16-240128.zip",
+   "size": 1558023261,
+   "sha256": "",
+   "archive": "zip"
+  },
+  "auxiliary": [
+   {
+    "kind": "huggingface",
+    "repo": "thenlper/gte-base",
+    "revision": "c078288308d8dee004ab72c6191778064285ec0c",
+    "target": "support/thenlper/gte-base",
+    "files": [
+     {
+      "path": "config.json",
+      "size": 618,
+      "sha256": ""
+     },
+     {
+      "path": "model.safetensors",
+      "size": 218990904,
+      "sha256": "4a9e28bdb13c193da16ae4bdd6ba40ecceb5102b56bf8c1b039054290f644019"
+     },
+     {
+      "path": "special_tokens_map.json",
+      "size": 125,
+      "sha256": ""
+     },
+     {
+      "path": "tokenizer.json",
+      "size": 711661,
+      "sha256": ""
+     },
+     {
+      "path": "tokenizer_config.json",
+      "size": 314,
+      "sha256": ""
+     },
+     {
+      "path": "vocab.txt",
+      "size": 231508,
+      "sha256": ""
+     }
+    ],
+    "gated": false
+   }
+  ],
+  "adapter": "m2d_clap",
+  "engine": "torch",
+  "engineSource": "m2d",
+  "embeddingDimension": 768,
+  "requiredSampleRate": 16000,
+  "maximumAudioDuration": null,
+  "preferredChunkDuration": 6.0,
+  "languages": [
+   "en"
+  ],
+  "capabilities": [
+   "AudioEmbedding",
+   "TextEmbedding",
+   "ZeroShotTagging"
+  ],
+  "license": {
+   "name": "NTT Software License (see LICENSE.pdf); research use terms apply",
+   "url": "https://github.com/nttcslab/m2d/blob/master/LICENSE.pdf",
+   "requiresAcceptance": true,
+   "notes": "Read the PDF before use; this Tool does not grant any right on the weights."
+  },
+  "resources": {
+   "vramBytes": 3221225472,
+   "ramBytes": 6442450944
+  },
+  "similarityRange": [
+   0.0,
+   0.5
+  ],
+  "validation": "Not validated on this machine: kept as the previous version of the same model family"
+ },
+ {
+  "modelId": "laion-clap",
+  "version": "htsat-unfused",
+  "revision": "8fa0f1c6d0433df6e97c127f64b2a1d6c0dcda8a",
+  "displayName": "LAION-CLAP (HTSAT unfused, legacy)",
+  "family": "CLAP",
+  "modelType": "AudioTextEmbedding",
+  "provider": "LAION",
+  "repository": "https://huggingface.co/laion/clap-htsat-unfused",
+  "source": {
+   "kind": "huggingface",
+   "repo": "laion/clap-htsat-unfused",
+   "revision": "8fa0f1c6d0433df6e97c127f64b2a1d6c0dcda8a",
+   "target": "",
+   "files": [
+    {
+     "path": "config.json",
+     "size": 5390,
+     "sha256": ""
+    },
+    {
+     "path": "merges.txt",
+     "size": 456356,
+     "sha256": ""
+    },
+    {
+     "path": "preprocessor_config.json",
+     "size": 541,
+     "sha256": ""
+    },
+    {
+     "path": "pytorch_model.bin",
+     "size": 614525833,
+     "sha256": "1cd3c601bc4afe0fa87be3de4c13dd2cfadd249fac1e29acf74a9b296c3219bb"
+    },
+    {
+     "path": "special_tokens_map.json",
+     "size": 280,
+     "sha256": ""
+    },
+    {
+     "path": "tokenizer.json",
+     "size": 2108746,
+     "sha256": ""
+    },
+    {
+     "path": "tokenizer_config.json",
+     "size": 384,
+     "sha256": ""
+    },
+    {
+     "path": "vocab.json",
+     "size": 798293,
+     "sha256": ""
+    }
+   ],
+   "gated": false
+  },
+  "adapter": "hf_clap",
+  "engine": "torch",
+  "embeddingDimension": 512,
+  "requiredSampleRate": 48000,
+  "maximumAudioDuration": 10.0,
+  "preferredChunkDuration": 10.0,
+  "languages": [
+   "en"
+  ],
+  "capabilities": [
+   "AudioEmbedding",
+   "TextEmbedding",
+   "ZeroShotTagging"
+  ],
+  "license": {
+   "name": "apache-2.0",
+   "url": "https://huggingface.co/laion/clap-htsat-unfused",
+   "requiresAcceptance": false
+  },
+  "resources": {
+   "vramBytes": 1610612736,
+   "ramBytes": 3221225472
+  },
+  "similarityRange": [
+   0.05,
+   0.5
+  ],
+  "defaultEnabled": true
+ },
+ {
+  "modelId": "omni-embed-audio",
+  "version": "qwen3b-cl",
+  "revision": "54ccd008d4a1340d2a1f8edcd5dd0e82c61367a4",
+  "displayName": "Omni-Embed-Audio Qwen3B-Cl",
+  "family": "Omni-Embed-Audio",
+  "modelType": "AudioTextEmbedding",
+  "provider": "Omni-Embed-Audio authors (JudeJiwoo)",
+  "repository": "https://github.com/JudeJiwoo/Omni-Embed-Audio",
+  "source": {
+   "kind": "huggingface",
+   "repo": "JudeJiwoo/OEA-Qwen3B-Cl",
+   "revision": "54ccd008d4a1340d2a1f8edcd5dd0e82c61367a4",
+   "target": "",
+   "files": [
+    {
+     "path": "step_40.pt",
+     "size": 9466833858,
+     "sha256": "d5f2648c19b07fe5b33c22873098f9b9d749dfe2fb48e5d3dedfcea827c39b5c"
+    }
+   ],
+   "gated": false
+  },
+  "auxiliary": [
+   {
+    "kind": "huggingface",
+    "repo": "Qwen/Qwen2.5-Omni-3B",
+    "revision": "f75b40e3da2003cdd6e1829b1f420ca70797c34e",
+    "target": "backbone",
+    "files": [
+     {
+      "path": "LICENSE",
+      "size": 7387,
+      "sha256": ""
+     },
+     {
+      "path": "added_tokens.json",
+      "size": 579,
+      "sha256": ""
+     },
+     {
+      "path": "chat_template.json",
+      "size": 1313,
+      "sha256": ""
+     },
+     {
+      "path": "config.json",
+      "size": 13183,
+      "sha256": ""
+     },
+     {
+      "path": "generation_config.json",
+      "size": 74,
+      "sha256": ""
+     },
+     {
+      "path": "merges.txt",
+      "size": 1671853,
+      "sha256": ""
+     },
+     {
+      "path": "model-00001-of-00003.safetensors",
+      "size": 4994850880,
+      "sha256": "349972cebff443030e9e96e1e930d7230979c6961cf046fa29fc580e4bcf49a6"
+     },
+     {
+      "path": "model-00002-of-00003.safetensors",
+      "size": 4999787448,
+      "sha256": "b29a76dfefb3aa33a5bd0faa19c681d039a44de57223653ea0e933df728c6d8c"
+     },
+     {
+      "path": "model.safetensors.index.json",
+      "size": 241817,
+      "sha256": ""
+     },
+     {
+      "path": "preprocessor_config.json",
+      "size": 667,
+      "sha256": ""
+     },
+     {
+      "path": "special_tokens_map.json",
+      "size": 832,
+      "sha256": ""
+     },
+     {
+      "path": "tokenizer.json",
+      "size": 11421870,
+      "sha256": "8441917e39ae0244e06d704b95b3124795cec478e297f9afac39ba670d7e9d99"
+     },
+     {
+      "path": "tokenizer_config.json",
+      "size": 6469,
+      "sha256": ""
+     },
+     {
+      "path": "vocab.json",
+      "size": 2776833,
+      "sha256": ""
+     }
+    ],
+    "gated": false,
+    "thinkerOnly": true
+   }
+  ],
+  "weightFile": "step_40.pt",
+  "adapter": "omni_embed",
+  "engine": "torch",
+  "engineSource": "Omni-Embed-Audio",
+  "embeddingDimension": 512,
+  "requiredSampleRate": 16000,
+  "maximumAudioDuration": 128.0,
+  "preferredChunkDuration": 10.0,
+  "languages": [
+   "multilingual backbone; trained on English captions"
+  ],
+  "capabilities": [
+   "AudioEmbedding",
+   "TextEmbedding",
+   "ZeroShotTagging"
+  ],
+  "license": {
+   "name": "Checkpoint: mit; backbone Qwen/Qwen2.5-Omni-3B: qwen-research",
+   "url": "https://huggingface.co/Qwen/Qwen2.5-Omni-3B/blob/main/LICENSE",
+   "requiresAcceptance": true,
+   "notes": "The backbone licence (Qwen Research for the 3B model) restricts commercial use; accept it personally before installing."
+  },
+  "resources": {
+   "vramBytes": 11811160064,
+   "ramBytes": 17179869184
+  },
+  "similarityRange": [
+   0.05,
+   0.85
+  ],
+  "parameters": 3,
+  "defaultDevice": "cpu",
+  "validation": "See Docs/AudioLibrary-Validation.md"
+ },
+ {
+  "modelId": "omni-embed-audio",
+  "version": "qwen3b-ac",
+  "revision": "f6c4b3b86385fd7ecbe3bacf45548a2259af8db4",
+  "displayName": "Omni-Embed-Audio Qwen3B-AC",
+  "family": "Omni-Embed-Audio",
+  "modelType": "AudioTextEmbedding",
+  "provider": "Omni-Embed-Audio authors (JudeJiwoo)",
+  "repository": "https://github.com/JudeJiwoo/Omni-Embed-Audio",
+  "source": {
+   "kind": "huggingface",
+   "repo": "JudeJiwoo/OEA-Qwen3B-AC",
+   "revision": "f6c4b3b86385fd7ecbe3bacf45548a2259af8db4",
+   "target": "",
+   "files": [
+    {
+     "path": "step_350.pt",
+     "size": 9466835918,
+     "sha256": "afb22d02e610016184fa0e2b4314fe0de191ebcc909184e9e128d36abade4b44"
+    }
+   ],
+   "gated": false
+  },
+  "auxiliary": [
+   {
+    "kind": "huggingface",
+    "repo": "Qwen/Qwen2.5-Omni-3B",
+    "revision": "f75b40e3da2003cdd6e1829b1f420ca70797c34e",
+    "target": "backbone",
+    "files": [
+     {
+      "path": "LICENSE",
+      "size": 7387,
+      "sha256": ""
+     },
+     {
+      "path": "added_tokens.json",
+      "size": 579,
+      "sha256": ""
+     },
+     {
+      "path": "chat_template.json",
+      "size": 1313,
+      "sha256": ""
+     },
+     {
+      "path": "config.json",
+      "size": 13183,
+      "sha256": ""
+     },
+     {
+      "path": "generation_config.json",
+      "size": 74,
+      "sha256": ""
+     },
+     {
+      "path": "merges.txt",
+      "size": 1671853,
+      "sha256": ""
+     },
+     {
+      "path": "model-00001-of-00003.safetensors",
+      "size": 4994850880,
+      "sha256": "349972cebff443030e9e96e1e930d7230979c6961cf046fa29fc580e4bcf49a6"
+     },
+     {
+      "path": "model-00002-of-00003.safetensors",
+      "size": 4999787448,
+      "sha256": "b29a76dfefb3aa33a5bd0faa19c681d039a44de57223653ea0e933df728c6d8c"
+     },
+     {
+      "path": "model.safetensors.index.json",
+      "size": 241817,
+      "sha256": ""
+     },
+     {
+      "path": "preprocessor_config.json",
+      "size": 667,
+      "sha256": ""
+     },
+     {
+      "path": "special_tokens_map.json",
+      "size": 832,
+      "sha256": ""
+     },
+     {
+      "path": "tokenizer.json",
+      "size": 11421870,
+      "sha256": "8441917e39ae0244e06d704b95b3124795cec478e297f9afac39ba670d7e9d99"
+     },
+     {
+      "path": "tokenizer_config.json",
+      "size": 6469,
+      "sha256": ""
+     },
+     {
+      "path": "vocab.json",
+      "size": 2776833,
+      "sha256": ""
+     }
+    ],
+    "gated": false,
+    "thinkerOnly": true
+   }
+  ],
+  "weightFile": "step_350.pt",
+  "adapter": "omni_embed",
+  "engine": "torch",
+  "engineSource": "Omni-Embed-Audio",
+  "embeddingDimension": 512,
+  "requiredSampleRate": 16000,
+  "maximumAudioDuration": 128.0,
+  "preferredChunkDuration": 10.0,
+  "languages": [
+   "multilingual backbone; trained on English captions"
+  ],
+  "capabilities": [
+   "AudioEmbedding",
+   "TextEmbedding",
+   "ZeroShotTagging"
+  ],
+  "license": {
+   "name": "Checkpoint: mit; backbone Qwen/Qwen2.5-Omni-3B: qwen-research",
+   "url": "https://huggingface.co/Qwen/Qwen2.5-Omni-3B/blob/main/LICENSE",
+   "requiresAcceptance": true,
+   "notes": "The backbone licence (Qwen Research for the 3B model) restricts commercial use; accept it personally before installing."
+  },
+  "resources": {
+   "vramBytes": 11811160064,
+   "ramBytes": 17179869184
+  },
+  "similarityRange": [
+   0.05,
+   0.85
+  ],
+  "parameters": 3,
+  "defaultDevice": "cpu",
+  "validation": "Not validated on this machine"
+ },
+ {
+  "modelId": "qwen3-0.6b",
+  "version": "2025-04",
+  "revision": "c1899de289a04d12100db370d81485cdf75e47ca",
+  "displayName": "Qwen3-0.6B",
+  "family": "Qwen3",
+  "modelType": "LLM",
+  "provider": "Alibaba Qwen",
+  "repository": "https://huggingface.co/Qwen/Qwen3-0.6B",
+  "source": {
+   "kind": "huggingface",
+   "repo": "Qwen/Qwen3-0.6B",
+   "revision": "c1899de289a04d12100db370d81485cdf75e47ca",
+   "target": "",
+   "files": [
+    {
+     "path": "LICENSE",
+     "size": 11343,
+     "sha256": ""
+    },
+    {
+     "path": "config.json",
+     "size": 726,
+     "sha256": ""
+    },
+    {
+     "path": "generation_config.json",
+     "size": 239,
+     "sha256": ""
+    },
+    {
+     "path": "merges.txt",
+     "size": 1671853,
+     "sha256": ""
+    },
+    {
+     "path": "model.safetensors",
+     "size": 1503300328,
+     "sha256": "f47f71177f32bcd101b7573ec9171e6a57f4f4d31148d38e382306f42996874b"
+    },
+    {
+     "path": "tokenizer.json",
+     "size": 11422654,
+     "sha256": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4"
+    },
+    {
+     "path": "tokenizer_config.json",
+     "size": 9732,
+     "sha256": ""
+    },
+    {
+     "path": "vocab.json",
+     "size": 2776833,
+     "sha256": ""
+    }
+   ],
+   "gated": false
+  },
+  "adapter": "hf_causal_lm",
+  "engine": "torch",
+  "parameters": 0.6,
+  "defaultLlm": false,
+  "capabilities": [
+   "QueryUnderstanding",
+   "QueryExpansion",
+   "Translation",
+   "Classification",
+   "StructuredOutput"
+  ],
+  "license": {
+   "name": "apache-2.0",
+   "url": "https://huggingface.co/Qwen/Qwen3-0.6B/blob/main/LICENSE",
+   "requiresAcceptance": false
+  },
+  "resources": {
+   "vramBytes": 2147483648,
+   "ramBytes": 4724464025
+  }
+ },
+ {
+  "modelId": "qwen3-1.7b",
+  "version": "2025-04",
+  "revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+  "displayName": "Qwen3-1.7B",
+  "family": "Qwen3",
+  "modelType": "LLM",
+  "provider": "Alibaba Qwen",
+  "repository": "https://huggingface.co/Qwen/Qwen3-1.7B",
+  "source": {
+   "kind": "huggingface",
+   "repo": "Qwen/Qwen3-1.7B",
+   "revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+   "target": "",
+   "files": [
+    {
+     "path": "LICENSE",
+     "size": 11343,
+     "sha256": ""
+    },
+    {
+     "path": "config.json",
+     "size": 726,
+     "sha256": ""
+    },
+    {
+     "path": "generation_config.json",
+     "size": 239,
+     "sha256": ""
+    },
+    {
+     "path": "merges.txt",
+     "size": 1671853,
+     "sha256": ""
+    },
+    {
+     "path": "model-00001-of-00002.safetensors",
+     "size": 3441185608,
+     "sha256": "169ad53ec313c3a34b06c0809216e4fc072cce444a5d4ff2b59690d064130ed5"
+    },
+    {
+     "path": "model-00002-of-00002.safetensors",
+     "size": 622329984,
+     "sha256": "912becff8d60672aa8628ef08c05898d9adf17c2ad4ae3caf99b065622fdeff9"
+    },
+    {
+     "path": "model.safetensors.index.json",
+     "size": 25605,
+     "sha256": ""
+    },
+    {
+     "path": "tokenizer.json",
+     "size": 11422654,
+     "sha256": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4"
+    },
+    {
+     "path": "tokenizer_config.json",
+     "size": 9732,
+     "sha256": ""
+    },
+    {
+     "path": "vocab.json",
+     "size": 2776833,
+     "sha256": ""
+    }
+   ],
+   "gated": false
+  },
+  "adapter": "hf_causal_lm",
+  "engine": "torch",
+  "parameters": 1.7,
+  "defaultLlm": true,
+  "capabilities": [
+   "QueryUnderstanding",
+   "QueryExpansion",
+   "Translation",
+   "Classification",
+   "StructuredOutput"
+  ],
+  "license": {
+   "name": "apache-2.0",
+   "url": "https://huggingface.co/Qwen/Qwen3-1.7B/blob/main/LICENSE",
+   "requiresAcceptance": false
+  },
+  "resources": {
+   "vramBytes": 5368709120,
+   "ramBytes": 9448928051
+  }
+ },
+ {
+  "modelId": "qwen3-4b",
+  "version": "2025-04",
+  "revision": "1cfa9a7208912126459214e8b04321603b3df60c",
+  "displayName": "Qwen3-4B",
+  "family": "Qwen3",
+  "modelType": "LLM",
+  "provider": "Alibaba Qwen",
+  "repository": "https://huggingface.co/Qwen/Qwen3-4B",
+  "source": {
+   "kind": "huggingface",
+   "repo": "Qwen/Qwen3-4B",
+   "revision": "1cfa9a7208912126459214e8b04321603b3df60c",
+   "target": "",
+   "files": [
+    {
+     "path": "LICENSE",
+     "size": 11343,
+     "sha256": ""
+    },
+    {
+     "path": "config.json",
+     "size": 726,
+     "sha256": ""
+    },
+    {
+     "path": "generation_config.json",
+     "size": 239,
+     "sha256": ""
+    },
+    {
+     "path": "merges.txt",
+     "size": 1671853,
+     "sha256": ""
+    },
+    {
+     "path": "model-00001-of-00003.safetensors",
+     "size": 3957900840,
+     "sha256": "328a91d3122359d5547f9d79521205bc0a46e1f79a792dfe650e99fc2d651223"
+    },
+    {
+     "path": "model-00002-of-00003.safetensors",
+     "size": 3987450520,
+     "sha256": "6cd087b316306a68c562436b5492edbcf6e16c6dba3a1308279caa5a58e21ca5"
+    },
+    {
+     "path": "model-00003-of-00003.safetensors",
+     "size": 99630640,
+     "sha256": "e4bf436957184f4eeb86a80e9db394503f1f56446b2e6b7edeac5b81470f4ca1"
+    },
+    {
+     "path": "model.safetensors.index.json",
+     "size": 32819,
+     "sha256": ""
+    },
+    {
+     "path": "tokenizer.json",
+     "size": 11422654,
+     "sha256": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4"
+    },
+    {
+     "path": "tokenizer_config.json",
+     "size": 9732,
+     "sha256": ""
+    },
+    {
+     "path": "vocab.json",
+     "size": 2776833,
+     "sha256": ""
+    }
+   ],
+   "gated": false
+  },
+  "adapter": "hf_causal_lm",
+  "engine": "torch",
+  "parameters": 4.0,
+  "defaultLlm": false,
+  "capabilities": [
+   "QueryUnderstanding",
+   "QueryExpansion",
+   "Translation",
+   "Classification",
+   "StructuredOutput"
+  ],
+  "license": {
+   "name": "apache-2.0",
+   "url": "https://huggingface.co/Qwen/Qwen3-4B/blob/main/LICENSE",
+   "requiresAcceptance": false
+  },
+  "resources": {
+   "vramBytes": 10737418240,
+   "ramBytes": 19327352832
+  }
+ },
+ {
+  "modelId": "audio-flamingo-3",
+  "version": "hf",
+  "revision": "7d4bae64ee29878af6504ae6f6bb3e40492838ad",
+  "displayName": "Audio Flamingo 3 (declared, no adapter yet)",
+  "family": "Audio Flamingo",
+  "modelType": "AudioUnderstanding",
+  "provider": "NVIDIA",
+  "repository": "https://github.com/NVIDIA/audio-flamingo",
+  "adapter": "",
+  "engine": "torch",
+  "maximumAudioDuration": 600.0,
+  "capabilities": [
+   "Captioning",
+   "Reranking",
+   "QuestionAnswering"
+  ],
+  "license": {
+   "name": "NVIDIA OneWay Noncommercial License (weights)",
+   "url": "https://huggingface.co/nvidia/audio-flamingo-3-hf",
+   "requiresAcceptance": true
+  },
+  "resources": {
+   "vramBytes": 21474836480,
+   "ramBytes": 34359738368
+  },
+  "validation": "Extension point only: the registry, capabilities and Deep-mode hook exist, the adapter is not written or tested"
+ }
+]
