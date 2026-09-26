@@ -38,6 +38,21 @@ It does **not** carry:
   two File Tools operations, which ask for confirmation.
 - **the Windows launcher** `CyTools_AudioLibrary.exe`: compiled from `app/launcher.cpp`.
 
+## From a release
+
+Download `CyTools_AudioLibrary-<version>-windows-x64.zip` from the
+[releases](https://github.com/MrMybal/CyTools_AudioLibrary/releases), unzip it where the application
+should live (it creates its private environment in that folder), then run once, from that folder:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File app\Install.ps1
+.\CyTools_AudioLibrary.exe
+```
+
+Python 3.11 or newer and `git` are needed for that step; the launcher says so if it was skipped.
+`cytools-app.zip` and its `.sha256`, also attached to each release, are what the Updates tab of an
+installed copy downloads: they are not meant to be unzipped by hand.
+
 ## From a clone
 
 Windows, PowerShell. Python 3.11 or newer and `git` must be on the PATH: the SDK is installed

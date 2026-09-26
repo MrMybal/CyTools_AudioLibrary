@@ -8,9 +8,14 @@ index) va dans un cache que vous placez où vous voulez.
 
 ## Démarrer
 
-1. Double-cliquez sur **CyTools_AudioLibrary.exe** (Linux : `./CyTools_AudioLibrary.sh`, non testé).
-   Si un message indique que le runtime privé est absent, ouvrez PowerShell dans ce dossier et lancez :
+0. **Depuis une release GitHub** : téléchargez `CyTools_AudioLibrary-<version>-windows-x64.zip`, décompressez-le
+   là où l'application doit vivre (elle crée son environnement privé dans ce dossier), puis, une seule fois,
+   ouvrez PowerShell dans le dossier décompressé et lancez :
    `powershell -ExecutionPolicy Bypass -File app\Install.ps1`
+   Il faut Python 3.11 ou plus récent et git. Les deux autres fichiers de la release (`cytools-app.zip` et
+   son `.sha256`) servent à l'onglet *Mises à jour* : ne les décompressez pas à la main.
+1. Double-cliquez sur **CyTools_AudioLibrary.exe** (Linux : `./CyTools_AudioLibrary.sh`, non testé).
+   Si un message indique que le runtime privé est absent, c'est que l'étape 0 n'a pas été faite.
 2. Onglet **Installation** : installez le *moteur IA* (PyTorch privé, plusieurs Go), puis les modèles
    voulus. Pour un modèle dont la licence l'exige, lisez-la et cochez vous-même la case d'acceptation :
    le Tool ne l'accepte jamais à votre place.
