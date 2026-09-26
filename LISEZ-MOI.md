@@ -17,7 +17,8 @@ index) va dans un cache que vous placez où vous voulez.
 1. Double-cliquez sur **CyTools_AudioLibrary.exe** (Linux : `./CyTools_AudioLibrary.sh`, non testé).
    Si un message indique que le runtime privé est absent, c'est que l'étape 0 n'a pas été faite.
 2. Onglet **Installation** : installez le *moteur IA* (PyTorch privé, plusieurs Go), puis les modèles
-   voulus. Pour un modèle dont la licence l'exige, lisez-la et cochez vous-même la case d'acceptation :
+   voulus. L'assistant de recherche *CySearchAssist-CLAP-1.5B* (1,6 Go, par défaut) ou sa version
+   *0.5B* (0,5 Go, plus légère) vient de Hugging Face, comme dans CyMetaSound. Pour un modèle dont la licence l'exige, lisez-la et cochez vous-même la case d'acceptation :
    le Tool ne l'accepte jamais à votre place.
 3. Onglet **Bibliothèque** : *Nouvelle bibliothèque* (nom + dossier du cache, par ex.
    `G:\CyToolsCache\AudioLibrary`), *Ajouter un dossier* autant de fois que nécessaire, *Tout rescanner*.

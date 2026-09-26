@@ -166,6 +166,54 @@
           }
         },
         {
+          "id": "cytools-search-assist-v1",
+          "name": "CySearchAssist-CLAP-1.5B",
+          "version": "v1",
+          "source": "https://huggingface.co/cyberalien/CySearchAssist-CLAP-1.5B",
+          "license": "apache-2.0 (fine tune of Qwen/Qwen2.5-1.5B-Instruct; keep LICENSE and NOTICE)",
+          "licenseUrl": "https://huggingface.co/cyberalien/CySearchAssist-CLAP-1.5B/blob/main/LICENSE",
+          "location": "Local",
+          "runsLocally": true,
+          "capabilities": [
+            "QueryUnderstanding",
+            "StructuredOutput"
+          ],
+          "computeBackends": [
+            "CUDA",
+            "CPU"
+          ],
+          "resourceRequirements": {
+            "vramBytes": {
+              "auto": 4294967296
+            },
+            "ramBytes": 10737418240
+          }
+        },
+        {
+          "id": "cymetasound-search-assist-0.5b-v1",
+          "name": "CySearchAssist-CLAP-0.5B",
+          "version": "v1",
+          "source": "https://huggingface.co/cyberalien/CySearchAssist-CLAP-0.5B",
+          "license": "apache-2.0 (fine tune of Qwen/Qwen2.5-0.5B-Instruct; keep LICENSE and NOTICE)",
+          "licenseUrl": "https://huggingface.co/cyberalien/CySearchAssist-CLAP-0.5B/blob/main/LICENSE",
+          "location": "Local",
+          "runsLocally": true,
+          "capabilities": [
+            "QueryUnderstanding",
+            "StructuredOutput"
+          ],
+          "computeBackends": [
+            "CUDA",
+            "CPU"
+          ],
+          "resourceRequirements": {
+            "vramBytes": {
+              "auto": 2147483648
+            },
+            "ramBytes": 5368709120
+          }
+        },
+        {
           "id": "qwen3-0.6b-2025-04",
           "name": "Qwen3-0.6B",
           "version": "2025-04",

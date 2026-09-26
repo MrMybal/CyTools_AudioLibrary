@@ -45,7 +45,7 @@ store, never in argv, jobs, settings or logs).
 | `laion-clap@htsat-unfused` | legacy CLAP, second engine | `hf_clap` | installed, validated |
 | `omni-embed-audio@qwen3b-cl` | complex queries, negations | `omni_embed` | installed, validated (9.8 GiB VRAM peak) |
 | `qwen3-1.7b@2025-04` (default), `qwen3-0.6b`, `qwen3-4b` | query understanding LLM, generic prompt | `hf_causal_lm` | 1.7B validated |
-| `cytools-search-assist@v1` | query understanding, fine tuned on 4 753 messy queries | `hf_causal_lm` | validated, `promptProfile: caption` |
+| `cytools-search-assist@v1` (default), `cymetasound-search-assist-0.5b@v1` | query understanding, Qwen2.5 1.5B / 0.5B fine tuned on 4 753 messy queries, GGUF Q8_0 from Hugging Face, shared with CyMetaSound | `hf_causal_lm` (`ggufFile`) | installed from Hugging Face and validated, `promptProfile: caption` |
 | `m2d-clap@2024`, `omni-embed-audio@qwen3b-ac` | other versions of the same families | same adapters | not validated |
 | `audio-flamingo-3@hf` | deep captioning/reranking | none | declared extension point only |
 
@@ -63,12 +63,20 @@ version keeps its own embeddings and index. A brand-new architecture needs one a
 | + Omni-Embed on GPU | 10.3 GiB | 4/5 | 0.1 s |
 | + Omni-Embed on CPU (**its default device**) | 1.4 GiB, ~14 GB RAM | 4/5 | 2-3 s (51 s first load) |
 | Qwen3-1.7B assistant (Auto: long, non-English or negated requests only) | +~3.5 GiB | — | +1.2 s |
-| CyTools Search Assist 1.5B, the fine tune | +~3.1 GiB | 95.3 % in the top 5 against 58.0 % raw, on 150 messy queries | +1 to 2 s warm |
+| CySearchAssist 1.5B (GGUF Q8_0) | +~3.4 GiB | 92.0 % in the top 5 against 58.0 % raw, on 150 messy queries | +3.4 s warm |
+| CySearchAssist 0.5B (GGUF Q8_0) | +~1.2 GiB | 250/250 valid answers, weaker understanding of rare words | +2.2 s warm |
 
 The default model for query understanding is the one named in the application settings (`llmModel`,
 *Options* or the *LLM* list of the search bar). It is the same default for the interface, the CLI and
 MCP: an assistant that calls `search_sounds` without naming a model gets the one you see on screen.
-This delivery ships with `cytools-search-assist@v1` selected and the assistant on *Auto*.
+The catalogue marks `cytools-search-assist@v1` as the default assistant once it is installed (Installation tab).
+
+The two CySearchAssist models are published as GGUF Q8_0 on Hugging Face (`cyberalien/CySearchAssist-CLAP-1.5B` and
+`-0.5B`) and read through transformers with the `gguf` package, so no second runtime is needed. Dequantising takes
+35 to 45 s, so the first GPU load also writes the dequantised model to `_dequantized/` next to the GGUF (2.9 GB and
+0.9 GB); later loads read it in 1 to 2 s, and it is rebuilt if the GGUF changes. Quantisation costs a little: on the
+same 150 queries run on this machine, the 1.5B finds the right family in the top 5 for 94.0 % in float16 and 92.0 %
+in Q8_0.
 
 ### The two prompt profiles
 

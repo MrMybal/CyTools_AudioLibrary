@@ -533,6 +533,134 @@
   "validation": "Not validated on this machine"
  },
  {
+  "modelId": "cytools-search-assist",
+  "version": "v1",
+  "revision": "d582fe67d4f80ce327df3dccc87541ed464ab0d0",
+  "displayName": "CySearchAssist-CLAP-1.5B",
+  "family": "CySearchAssist",
+  "modelType": "LLM",
+  "provider": "Cyberalien",
+  "repository": "https://huggingface.co/cyberalien/CySearchAssist-CLAP-1.5B",
+  "source": {
+   "kind": "huggingface",
+   "repo": "cyberalien/CySearchAssist-CLAP-1.5B",
+   "revision": "d582fe67d4f80ce327df3dccc87541ed464ab0d0",
+   "target": "",
+   "files": [
+    {
+     "path": "CySearchAssist-v1-Q8_0.gguf",
+     "size": 1646572544,
+     "sha256": "bccbc069fe26c19c44b60f7f06f6edcb9fe9883f3684af772b62f306428448dd"
+    },
+    {
+     "path": "LICENSE",
+     "size": 11344,
+     "sha256": ""
+    },
+    {
+     "path": "NOTICE",
+     "size": 1172,
+     "sha256": ""
+    },
+    {
+     "path": "manifest.json",
+     "size": 659,
+     "sha256": ""
+    },
+    {
+     "path": "prompt/system.txt",
+     "size": 582,
+     "sha256": ""
+    }
+   ],
+   "gated": false
+  },
+  "ggufFile": "CySearchAssist-v1-Q8_0.gguf",
+  "adapter": "hf_causal_lm",
+  "engine": "torch",
+  "parameters": 1.5,
+  "promptProfile": "caption",
+  "defaultLlm": true,
+  "capabilities": [
+   "QueryUnderstanding",
+   "StructuredOutput"
+  ],
+  "license": {
+   "name": "apache-2.0 (fine tune of Qwen/Qwen2.5-1.5B-Instruct; keep LICENSE and NOTICE)",
+   "url": "https://huggingface.co/cyberalien/CySearchAssist-CLAP-1.5B/blob/main/LICENSE",
+   "requiresAcceptance": false
+  },
+  "resources": {
+   "vramBytes": 4294967296,
+   "ramBytes": 10737418240
+  },
+  "validation": "See Docs/AudioLibrary-Validation.md"
+ },
+ {
+  "modelId": "cymetasound-search-assist-0.5b",
+  "version": "v1",
+  "revision": "7a758ea7fca273cc3a86a111f218506bbe7cf7ef",
+  "displayName": "CySearchAssist-CLAP-0.5B",
+  "family": "CySearchAssist",
+  "modelType": "LLM",
+  "provider": "Cyberalien",
+  "repository": "https://huggingface.co/cyberalien/CySearchAssist-CLAP-0.5B",
+  "source": {
+   "kind": "huggingface",
+   "repo": "cyberalien/CySearchAssist-CLAP-0.5B",
+   "revision": "7a758ea7fca273cc3a86a111f218506bbe7cf7ef",
+   "target": "",
+   "files": [
+    {
+     "path": "CySearchAssist-CLAP-0.5B-v1-Q8_0.gguf",
+     "size": 531067680,
+     "sha256": "f0b27baf39fdef5d40e80d0d3e316e1cbef2309e6d112f112bd4a64ed0b2d852"
+    },
+    {
+     "path": "LICENSE",
+     "size": 11344,
+     "sha256": ""
+    },
+    {
+     "path": "NOTICE",
+     "size": 1182,
+     "sha256": ""
+    },
+    {
+     "path": "manifest.json",
+     "size": 687,
+     "sha256": ""
+    },
+    {
+     "path": "prompt/system.txt",
+     "size": 582,
+     "sha256": ""
+    }
+   ],
+   "gated": false
+  },
+  "ggufFile": "CySearchAssist-CLAP-0.5B-v1-Q8_0.gguf",
+  "adapter": "hf_causal_lm",
+  "engine": "torch",
+  "parameters": 0.5,
+  "promptProfile": "caption",
+  "defaultLlm": false,
+  "capabilities": [
+   "QueryUnderstanding",
+   "StructuredOutput"
+  ],
+  "license": {
+   "name": "apache-2.0 (fine tune of Qwen/Qwen2.5-0.5B-Instruct; keep LICENSE and NOTICE)",
+   "url": "https://huggingface.co/cyberalien/CySearchAssist-CLAP-0.5B/blob/main/LICENSE",
+   "requiresAcceptance": false
+  },
+  "resources": {
+   "vramBytes": 2147483648,
+   "ramBytes": 5368709120
+  },
+  "validation": "See Docs/AudioLibrary-Validation.md"
+ },
+ {
   "modelId": "qwen3-0.6b",
   "version": "2025-04",
   "revision": "c1899de289a04d12100db370d81485cdf75e47ca",
@@ -682,7 +810,7 @@
   "adapter": "hf_causal_lm",
   "engine": "torch",
   "parameters": 1.7,
-  "defaultLlm": true,
+  "defaultLlm": false,
   "capabilities": [
    "QueryUnderstanding",
    "QueryExpansion",

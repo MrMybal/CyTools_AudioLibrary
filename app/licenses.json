@@ -34,6 +34,20 @@
     "notes": "Not downloadable from this version."
   },
   {
+    "kind": "Model",
+    "name": "CySearchAssist-CLAP-1.5B (query understanding, GGUF Q8_0)",
+    "license": "Apache-2.0",
+    "url": "https://huggingface.co/cyberalien/CySearchAssist-CLAP-1.5B",
+    "notes": "Fine tune of Qwen/Qwen2.5-1.5B-Instruct (Apache-2.0) by Cyberalien. Its LICENSE and NOTICE are installed with the weights and must stay with them."
+  },
+  {
+    "kind": "Model",
+    "name": "CySearchAssist-CLAP-0.5B (query understanding, GGUF Q8_0)",
+    "license": "Apache-2.0",
+    "url": "https://huggingface.co/cyberalien/CySearchAssist-CLAP-0.5B",
+    "notes": "Fine tune of Qwen/Qwen2.5-0.5B-Instruct (Apache-2.0) by Cyberalien. Its LICENSE and NOTICE are installed with the weights and must stay with them."
+  },
+  {
     "kind": "Dependency",
     "name": "PortAudio (through sounddevice) and FFmpeg libraries (through PyAV)",
     "license": "MIT (PortAudio); LGPL/GPL components depending on the PyAV wheel build",

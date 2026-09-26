@@ -94,7 +94,23 @@ def main():
                         'notes': 'The backbone licence (Qwen Research for the 3B model) restricts commercial use; accept it personally before installing.'},
             'resources': {'vramBytes': vram*GIB, 'ramBytes': 16*GIB}, 'similarityRange': [0.05, 0.85], 'parameters': parameters, 'defaultDevice': 'cpu',
             'validation': 'See Docs/AudioLibrary-Validation.md' if variant == 'qwen3b-cl' else 'Not validated on this machine'})
-    for identifier, repo, parameters, vram, default in (('qwen3-0.6b', 'Qwen/Qwen3-0.6B', 0.6, 2, False), ('qwen3-1.7b', 'Qwen/Qwen3-1.7B', 1.7, 5, True),
+    # CySearchAssist: Qwen2.5 fine tunes that rewrite a messy request into CLAP captions, shared with CyMetaSound. They are
+    # published as GGUF Q8_0 and read through transformers; the keys are the ones their own manifest.json declares.
+    for repo, key, weights, parameters, vram, ram, default in (
+            ('cyberalien/CySearchAssist-CLAP-1.5B', 'cytools-search-assist@v1', 'CySearchAssist-v1-Q8_0.gguf', 1.5, 4, 10, True),
+            ('cyberalien/CySearchAssist-CLAP-0.5B', 'cymetasound-search-assist-0.5b@v1', 'CySearchAssist-CLAP-0.5B-v1-Q8_0.gguf', 0.5, 2, 5, False)):
+        source, card = hf(repo, (weights, 'LICENSE', 'NOTICE', 'manifest.json', 'prompt/system.txt'))
+        model_id, version = key.split('@')
+        catalog.append({
+            'modelId': model_id, 'version': version, 'revision': source['revision'], 'displayName': repo.split('/')[1],
+            'family': 'CySearchAssist', 'modelType': 'LLM', 'provider': 'Cyberalien', 'repository': 'https://huggingface.co/'+repo,
+            'source': source, 'ggufFile': weights, 'adapter': 'hf_causal_lm', 'engine': 'torch', 'parameters': parameters,
+            'promptProfile': 'caption', 'defaultLlm': default, 'capabilities': ['QueryUnderstanding', 'StructuredOutput'],
+            'license': {'name': f"{card.get('license', 'Not declared')} (fine tune of {card.get('base_model', 'Qwen2.5')}; keep LICENSE and NOTICE)",
+                        'url': f'https://huggingface.co/{repo}/blob/main/LICENSE', 'requiresAcceptance': False},
+            'resources': {'vramBytes': vram*GIB, 'ramBytes': ram*GIB},
+            'validation': 'See Docs/AudioLibrary-Validation.md'})
+    for identifier, repo, parameters, vram, default in (('qwen3-0.6b', 'Qwen/Qwen3-0.6B', 0.6, 2, False), ('qwen3-1.7b', 'Qwen/Qwen3-1.7B', 1.7, 5, False),
                                                         ('qwen3-4b', 'Qwen/Qwen3-4B', 4.0, 10, False)):
         source, card = hf(repo, SMALL+(lambda name: name.endswith('.safetensors'),))
         catalog.append({

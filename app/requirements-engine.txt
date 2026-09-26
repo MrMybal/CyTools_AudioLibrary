@@ -14,3 +14,5 @@ einops>=0.8,<1
 nnAudio==0.3.3
 tqdm>=4.65
 sentencepiece>=0.2
+# Reading GGUF checkpoints (the CySearchAssist models are published as GGUF Q8_0) through transformers.
+gguf>=0.10,<1
