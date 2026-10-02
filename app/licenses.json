@@ -63,16 +63,16 @@
   },
   {
     "kind": "Dependency",
-    "name": "CyToolsCore SDK 0.9.0 (runtime, jobs, CLI, MCP, interface helpers)",
-    "license": "GPL-3.0-only",
+    "name": "CyToolsCore SDK 0.10.1 (runtime, jobs, CLI, MCP, interface helpers)",
+    "license": "MIT",
     "url": "https://github.com/MrMybal/CyToolsCore/blob/main/LICENSE",
-    "notes": "Imported by every part of this application and installed from the public repository at a pinned commit. This Tool is itself distributed under the same GPL-3.0-only."
+    "notes": "Copyright (c) 2026 Cyberalien. Installed from the public repository at a pinned commit; several files of this application were created from its templates. Full text: LICENCES/CyToolsCore-MIT.txt; sources: LICENCES/SOURCES.txt."
   },
   {
     "kind": "Tool",
     "name": "CyTools_AudioLibrary application code",
     "license": "GPL-3.0-only",
     "url": "https://github.com/MrMybal/CyTools_AudioLibrary/blob/main/LICENSE",
-    "notes": "Copyright (C) 2026 Cyberalien. The full text is the LICENSE file at the root of this Tool. It covers the application code only: the engines and model weights listed here keep their own licences, and the non-commercial ones are downloaded by each user, never distributed with this Tool."
+    "notes": "Copyright (C) 2026 Cyberalien. The full text is the LICENSE file at the root of this Tool. It covers the application code only: the SDK is under MIT, and the engines and model weights listed here keep their own licences; the non-commercial ones are downloaded by each user, never distributed with this Tool."
   }
 ]

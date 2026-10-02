@@ -1,7 +1,7 @@
 """Build the application release assets: cytools-app.zip and cytools-app.zip.sha256.
 
 The file list comes from Git and the repository's .gitignore, so the archive contains exactly what the
-repository contains under app/, plus the LICENSE of the root: no data, no runtime, no model weights,
+repository contains under app/, plus the LICENSE and the LICENCES folder of the root: no data, no runtime, no model weights,
 no SDK wheel, no local files.
 There is one list of exclusions, not two that could drift apart.
 
@@ -69,8 +69,10 @@ def build(files, out):
     with zipfile.ZipFile(archive, 'w', zipfile.ZIP_DEFLATED, compresslevel=9) as bundle:
         for name in files:
             bundle.write(ROOT/name, name)          # entries keep the single top-level app/ folder
-        if (ROOT/'LICENSE').is_file():             # the GPL travels with every copy of the program, updates included
+        if (ROOT/'LICENSE').is_file():             # the licence texts travel with every copy of the program, updates included
             bundle.write(ROOT/'LICENSE', 'app/LICENSE')
+        for notice in sorted((ROOT/'LICENCES').glob('*')) if (ROOT/'LICENCES').is_dir() else []:
+            if notice.is_file(): bundle.write(notice, 'app/LICENCES/'+notice.name)
     digest = hashlib.sha256(archive.read_bytes()).hexdigest()
     (out/(NAME+'.sha256')).write_text(f'{digest}  {NAME}\n', encoding='ascii')
     return archive, digest

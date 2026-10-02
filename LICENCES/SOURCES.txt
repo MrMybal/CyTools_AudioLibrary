@@ -1,0 +1,78 @@
+CyTools_AudioLibrary - licences and sources
+==========================================
+
+This folder ships with every copy of CyTools_AudioLibrary. It lists the licences of the
+components distributed with the application and where their sources can be obtained.
+A link does not replace a licence text: the full texts are in this folder or next to the
+component they cover.
+
+
+1. CyTools_AudioLibrary
+-----------------------
+
+Licence:  GPL-3.0-only. Full text: LICENSE, at the root of the application.
+Copyright (C) 2026 Cyberalien.
+Source:   https://github.com/MrMybal/CyTools_AudioLibrary
+
+
+2. CyToolsCore 0.10.1 (SDK)
+---------------------------
+
+Licence:  MIT. Full text: CyToolsCore-MIT.txt, in this folder (unchanged copy of the
+          LICENSE of the SDK repository). Copyright (c) 2026 Cyberalien.
+Source:   https://github.com/MrMybal/CyToolsCore
+Revision: a8d200f2d0baaade1633e0683663b4506c595f74 (pinned in app/requirements.txt)
+
+The SDK is installed into the private Python environment of the application by
+app/Install.ps1. The following files of this application were created from CyToolsCore
+templates and adapted; the MIT licence above applies to the parts that come from the SDK:
+
+    app/tool.py
+    app/ui_common.py
+    app/generation_config.py
+    app/installation_ui.py
+    app/standalone_log.py
+    app/advanced_ui.py
+    app/locales/ui.json
+    app/launcher.cpp
+    app/build_launcher.ps1
+
+Guides for creating and integrating a CyTool:
+
+    https://github.com/MrMybal/CyToolsCore/blob/main/README.md
+    https://github.com/MrMybal/CyToolsCore/blob/main/Docs/CreatingYourFirstCyTool.md
+    https://github.com/MrMybal/CyToolsCore/blob/main/Docs/AgentGuide.md
+    https://github.com/MrMybal/CyToolsCore/blob/main/Docs/Licensing.md
+    https://github.com/MrMybal/CyToolsCore/blob/main/Docs/UpdateExistingProducts.md
+
+
+3. Components installed later, not distributed with the application
+-------------------------------------------------------------------
+
+The application package contains no third-party code beyond the SDK files listed above.
+The components below are downloaded on the user's machine, from their official sources,
+when the user installs them. Each keeps its own licence; the Options tab of the
+application and app/licenses.json list them, and the Installation tab shows the licence
+of every model before it is installed.
+
+Python packages (base runtime and AI engine), from PyPI:
+    app/requirements.txt, app/requirements-engine.txt
+    PyTorch: https://pytorch.org  (BSD-3-Clause)
+
+Engine sources, fetched at a pinned revision (app/engine.json):
+    M2D:                https://github.com/nttcslab/m2d                (NTT Software License)
+    Omni-Embed-Audio:   https://github.com/JudeJiwoo/Omni-Embed-Audio  (MIT)
+
+Model weights, fetched at a pinned revision with their checksum (app/models/catalog.json):
+    M2D-CLAP:           https://github.com/nttcslab/m2d/releases
+    LAION-CLAP:         https://huggingface.co/laion/clap-htsat-unfused
+    Omni-Embed-Audio:   https://huggingface.co/JudeJiwoo
+    Qwen3:              https://huggingface.co/Qwen
+    CySearchAssist:     https://huggingface.co/cyberalien/CySearchAssist-CLAP-1.5B
+                        https://huggingface.co/cyberalien/CySearchAssist-CLAP-0.5B
+                        (Apache-2.0; their LICENSE and NOTICE are installed with the weights)
+
+Some model licences restrict commercial use or require a personal acceptance; the
+application never accepts a licence on the user's behalf. The MIT licence of the SDK
+and the GPL licence of this application do not change the licence of any of these
+components.

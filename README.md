@@ -94,7 +94,8 @@ yes: the operations refuse to run without it. Details in [app/README.md](app/REA
 The Updates tab reads the releases of this repository. A release carries `cytools-app.zip` and
 `cytools-app.zip.sha256`, built by `app\scripts\build_release.py`. An update replaces `app/` only,
 is verified before it is activated at the next start, keeps the previous version for a rollback,
-and never touches `data/`. The engine sources and the model weights are separate update streams.
+and never touches `data/`. Packages of the private Python environment, such as the CyToolsCore SDK, are not
+part of an application update: run `app\Install.ps1` again to install the versions the new `app/requirements.txt` pins. The engine sources and the model weights are separate update streams.
 
 ## Tests
 
@@ -109,5 +110,7 @@ Copyright (C) 2026 Cyberalien. This program is free software: you can redistribu
 modify it under the terms of the GNU General Public License, version 3 only, as published by the
 Free Software Foundation. It is distributed WITHOUT ANY WARRANTY; see [LICENSE](LICENSE).
 
-The licence covers the application code. The engines and model weights keep their own terms,
-listed in the Options tab and in [app/licenses.json](app/licenses.json).
+The licence covers the application code. It is built on [CyToolsCore](https://github.com/MrMybal/CyToolsCore)
+0.10.1, under the MIT licence. [LICENCES/](LICENCES/) holds the full text of the SDK licence and the sources of
+every component; the engines and model weights keep their own terms, listed in the Options tab and in
+[app/licenses.json](app/licenses.json).

@@ -7,7 +7,7 @@ from pathlib import Path
 
 APP = Path(__file__).resolve().parent
 MIB, GIB = 1024**2, 1024**3
-VERSION = '0.1.0'
+VERSION = '0.1.1'
 
 LIBRARY = {'type': 'string', 'pattern': '^[0-9a-f]{8}$', 'description': 'LibraryId returned by create_library or list_libraries'}
 AUDIO_ID = {'type': 'string', 'pattern': '^[0-9a-f]{32}$', 'description': 'Stable AudioId of an asset (survives renames and moves)'}

@@ -15,6 +15,8 @@ APP = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(APP))
 import maintenance
 
+CURRENT = json.loads((APP/'release.json').read_text('utf-8'))['version']      # the version this application declares
+
 
 class Updates(unittest.TestCase):
     def setUp(self):
@@ -52,7 +54,7 @@ class Updates(unittest.TestCase):
     def test_stage_activate_and_rollback_preserve_data(self):
         archive, digest = self.release('0.2.0')
         self.assertEqual(maintenance.stage_archive(archive, digest), '0.2.0')
-        self.assertEqual(json.loads((maintenance.APP/'release.json').read_text('utf-8'))['version'], '0.1.0', 'staging must not touch the active application')
+        self.assertEqual(json.loads((maintenance.APP/'release.json').read_text('utf-8'))['version'], CURRENT, 'staging must not touch the active application')
         self.assertEqual(maintenance.apply_pending(), '0.2.0')
         self.assertEqual(json.loads((maintenance.APP/'release.json').read_text('utf-8'))['version'], '0.2.0')
         self.assertEqual((self.root/'runtime'/'bootstrap.py').read_bytes(), (maintenance.APP/'bootstrap.py').read_bytes(),
@@ -60,8 +62,8 @@ class Updates(unittest.TestCase):
         self.assertEqual((self.root/'data'/'libraries'/'keep.json').read_text('utf-8'), '{"user": "data"}')
         backups = list((maintenance.BACKUPS/'app').iterdir()); self.assertEqual(len(backups), 1)
         self.assertIsNone(maintenance.apply_pending())
-        maintenance.rollback_tool(); self.assertEqual(maintenance.apply_pending(), '0.1.0')
-        self.assertEqual(json.loads((maintenance.APP/'release.json').read_text('utf-8'))['version'], '0.1.0')
+        maintenance.rollback_tool(); self.assertEqual(maintenance.apply_pending(), CURRENT)
+        self.assertEqual(json.loads((maintenance.APP/'release.json').read_text('utf-8'))['version'], CURRENT)
         self.assertEqual((self.root/'data'/'libraries'/'keep.json').read_text('utf-8'), '{"user": "data"}')
 
     def test_hostile_or_wrong_archives_are_rejected(self):
@@ -74,7 +76,7 @@ class Updates(unittest.TestCase):
                 with self.assertRaises(Exception): maintenance.stage_archive(archive, digest)
                 self.assertFalse((maintenance.SETTINGS/'tool-pending.json').is_file(), name+' became pending')
                 self.assertFalse((self.temp/'escape.txt').exists())
-        self.assertEqual(json.loads((maintenance.APP/'release.json').read_text('utf-8'))['version'], '0.1.0')
+        self.assertEqual(json.loads((maintenance.APP/'release.json').read_text('utf-8'))['version'], CURRENT)
 
     def test_symlink_entry_is_rejected(self):
         archive, _ = self.release('0.4.0')
