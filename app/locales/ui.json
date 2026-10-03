@@ -9594,5 +9594,49 @@
 "Updates come from the repository this application is published from. Change it only to follow a fork.": {
 "en": "Updates come from the repository this application is published from. Change it only to follow a fork.",
 "fr": "Les mises à jour viennent du dépôt où cette application est publiée. Ne le changez que pour suivre un fork."
+},
+"A list of the copied files with their source, tags and categories. Untick it to import the folder into a game engine without it.": {
+"en": "A list of the copied files with their source, tags and categories. Untick it to import the folder into a game engine without it.",
+"fr": "La liste des fichiers copiés avec leur source, leurs tags et leurs catégories. Décochez-la pour importer le dossier dans un moteur de jeu sans elle."
+},
+"Bundle: ": {
+"en": "Bundle: ",
+"fr": "Bundle : "
+},
+"Choose the bundle folder (copies go there)": {
+"en": "Choose the bundle folder (copies go there)",
+"fr": "Choisissez le dossier du bundle (les copies y seront placées)"
+},
+"Copy these sounds into a folder you choose. The originals are not moved or changed, nothing is overwritten.": {
+"en": "Copy these sounds into a folder you choose. The originals are not moved or changed, nothing is overwritten.",
+"fr": "Copier ces sons dans un dossier de votre choix. Les originaux ne sont ni déplacés ni modifiés, rien n’est écrasé."
+},
+"Create Bundle...": {
+"en": "Create Bundle...",
+"fr": "Créer un bundle…"
+},
+"Ctrl+click or Shift+click selects several sounds, Ctrl+A the whole list. Drag them out to copy them.": {
+"en": "Ctrl+click or Shift+click selects several sounds, Ctrl+A the whole list. Drag them out to copy them.",
+"fr": "Ctrl+clic ou Maj+clic sélectionne plusieurs sons, Ctrl+A toute la liste. Glissez-les hors de la fenêtre pour les copier."
+},
+"Flat": {
+"en": "Flat",
+"fr": "À plat"
+},
+"Keep folders": {
+"en": "Keep folders",
+"fr": "Garder les dossiers"
+},
+"Open Bundle Folder": {
+"en": "Open Bundle Folder",
+"fr": "Ouvrir le dossier du bundle"
+},
+"already there": {
+"en": "already there",
+"fr": "déjà présents"
+},
+"copied": {
+"en": "copied",
+"fr": "copiés"
 }
 }

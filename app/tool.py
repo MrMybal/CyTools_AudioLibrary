@@ -17,7 +17,7 @@ import subprocess
 from cytools_core import CyToolError, Runtime, load_manifest
 from cytools_core.transports.cli import run_cli
 
-from audiolib import analysis, fileops, installer, llm, registry, scanner, search as searching, taxonomy
+from audiolib import analysis, bundle, fileops, installer, llm, registry, scanner, search as searching, taxonomy
 from audiolib.database import (asset_details, fetch_rows, flatten_folders, folder_tree, list_ids, open_database, set_user_categories,
                                set_user_tags, update_user_fields, user_category_ids)
 from audiolib.embeddings import EmbeddingStore, list_stores
@@ -211,6 +211,25 @@ def create_runtime(data_dir, **options):
         return {'audioId': asset['audio_id'], 'duration': pyramid.duration, 'sampleRate': pyramid.sample_rate, 'start': parameters.get('start', 0),
                 'stop': min(stop, pyramid.duration), 'levels': pyramid.header['levels'], 'min': [round(float(v), 4) for v in low], 'max': [round(float(v), 4) for v in high]}
 
+    def targets_of(library, database, parameters):
+        """audioIds, plus every asset the filters match. The runtime fills schema defaults in, so an empty filter
+        arrives as {"status": "present"}: a filter is judged by what it restricts, otherwise "no filter" would
+        silently mean "the whole Library"."""
+        filters = {k: v for k, v in (parameters.get('filters') or {}).items()
+                   if v not in (None, '', [], False) and not (k == 'status' and v == 'present')}
+        if 'audioIds' not in parameters and not filters:
+            raise CyToolError('InvalidParameters', 'Give audioIds, or filters that restrict something, such as {"rootIds": [...], "folderPrefix": "..."}')
+        targets = list(parameters.get('audioIds') or [])
+        if filters: targets += list_ids(database, visible_filters(library, parameters['filters']))
+        return list(dict.fromkeys(targets))
+
+    def op_export_bundle(context, parameters):
+        """Copies of a selection, or of everything a filter matches, gathered in a folder: originals are only read."""
+        library, database = opened(parameters)
+        return bundle.export_bundle(library, database, targets_of(library, database, parameters), parameters['destination'],
+                                    parameters.get('layout', 'flat'), parameters.get('manifest', True), cancelled(context),
+                                    lambda percent, name: context.progress(min(99, percent), currentStep='Copying into the bundle', currentFile=str(name)))
+
     def op_update_assets(context, parameters):
         """User data of one file, a selection (audioIds) or everything a filter matches, e.g. one folder.
 
@@ -218,15 +237,7 @@ def create_runtime(data_dir, **options):
         with its own confirmation). Automatic tags and categories live apart and are never changed.
         """
         library, database = opened(parameters)
-        # The runtime fills schema defaults in, so an empty filter arrives as {"status": "present"}: judge a filter
-        # by what it restricts, otherwise "no filter" would silently mean "the whole Library".
-        filters = {k: v for k, v in (parameters.get('filters') or {}).items()
-                   if v not in (None, '', [], False) and not (k == 'status' and v == 'present')}
-        if 'audioIds' not in parameters and not filters:
-            raise CyToolError('InvalidParameters', 'Give audioIds, or filters that restrict something, such as {"rootIds": [...], "folderPrefix": "..."}')
-        targets = list(parameters.get('audioIds') or [])
-        if filters: targets += list_ids(database, visible_filters(library, parameters['filters']))
-        targets = list(dict.fromkeys(targets))
+        targets = targets_of(library, database, parameters)
         fields = {k: parameters[k] for k in ('favorite', 'rating', 'description', 'notes') if k in parameters}
         category_keys = ('setCategories', 'addCategories', 'removeCategories')
         if any(k in parameters for k in category_keys):

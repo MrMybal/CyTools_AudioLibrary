@@ -25,6 +25,7 @@ from config import DATA, save_settings, settings
 from panels import FileToolsPanel, ModelsPanel, QueuePanel, UpdatesPanel
 from player import Player
 from state import MAINTENANCE, Browser, Jobs, initial_library
+import dragdrop
 from tool import create_runtime
 from waveform_view import WaveformView, clock
 
@@ -65,6 +66,9 @@ class App:
         # before another sound is shown; always to the sound they were typed for (notes_owner), never to the next one
         self.notes_owner, self.notes_buffer, self.description_buffer, self.notes_dirty, self.notes_changed = None, '', '', False, 0.0
         self.note_line, self.category_choice, self.batch_counts, self.batch_key = '', 0, {}, None
+        # bundle export (a copy of the chosen sounds in a folder) and drag out of the list (copies only)
+        self.bundle_layout, self.bundle_manifest, self.bundle_targets, self.bundle_report = 0, True, [], None
+        self.pending_drag, self.drag_note = None, ''
         self.duration_min, self.duration_max, self.channels, self.extension, self.rate_min = 0.0, 0.0, 0, '', 0
         self.frames, self.last_status = 0, 0.0
         self.sync = {}       # libraryId -> background synchronisation state
@@ -155,6 +159,38 @@ class App:
         if self.notes_dirty and self.notes_owner:
             self.edit_targets([self.notes_owner], notes=self.notes_buffer, description=self.description_buffer)
         self.notes_dirty = False
+
+    def ask_bundle(self, targets):
+        self.bundle_targets = list(targets)
+        if self.bundle_targets: self.ask_folder('bundle', 'Choose the bundle folder (copies go there)')
+
+    def export_bundle(self, folder):
+        """Copies of the chosen sounds in `folder`: one job per 10 000 sounds, the operation's limit."""
+        targets, self.bundle_targets = self.bundle_targets, []
+        def done(job):
+            if job['state'] == 'Completed': self.bundle_report = job['outputs']
+        for begin in range(0, len(targets), 10000):
+            self.submit('export_bundle', {'libraryId': self.library_id(), 'audioIds': targets[begin:begin+10000], 'destination': folder,
+                                          'layout': ('flat', 'folders')[self.bundle_layout], 'manifest': self.bundle_manifest}, done, 'Bundle')
+
+    def draw_bundle_options(self, targets, key):
+        if imgui.small_button('Create Bundle...##'+key): self.ask_bundle(targets)
+        if ig.is_item_hovered(): ig.set_tooltip(tr('Copy these sounds into a folder you choose. The originals are not moved or changed, nothing is overwritten.'))
+        ig.same_line(); ig.set_next_item_width(130)
+        _, self.bundle_layout = imgui.combo('##bundle-layout-'+key, self.bundle_layout, ['Flat', 'Keep folders'])
+        ig.same_line(); _, self.bundle_manifest = imgui.checkbox('bundle.json##'+key, self.bundle_manifest)
+        if ig.is_item_hovered(): ig.set_tooltip(tr('A list of the copied files with their source, tags and categories. Untick it to import the folder into a game engine without it.'))
+
+    def start_drag(self, index, row):
+        """Dragging a row carries the selection when the row is part of it, otherwise that sound alone."""
+        ids = self.browser.targets() if row['audio_id'] in self.browser.marked else [row['audio_id']]
+        self.pending_drag = self.browser.paths_of(ids)
+
+    def finish_drag(self):
+        paths, self.pending_drag = self.pending_drag, None
+        result = dragdrop.drag_files(paths)
+        ig.get_io().add_mouse_button_event(ig.MouseButton_.left, False)     # the drop consumed the release: tell ImGui
+        self.drag_note = '' if result in ('copied', 'cancelled') else result
 
     def show_folder(self, root_id, prefix):
         """Show one folder of one root, sub-folders included. prefix '' = the whole root, None = every folder again."""
@@ -290,6 +326,7 @@ class App:
         if purpose == 'add-folder': self.submit('add_folder', {'libraryId': self.library_id(), 'path': folder}, self.refresh, 'Add folder')
         elif purpose == 'new-cache': self.new_cache = folder
         elif purpose == 'move-cache': self.cache_target = folder
+        elif purpose == 'bundle': self.export_bundle(folder)
 
     # -- left panel ---------------------------------------------------------------
     def draw_left(self):
@@ -451,7 +488,17 @@ class App:
         if marked > 1:
             ig.text(f'{marked} '+tr('sounds selected')); ig.same_line()
             if imgui.small_button('Clear Selection##header'): self.browser.clear_marks()
-        else: ig.text_disabled(tr('Ctrl+click or Shift+click selects several sounds, Ctrl+A the whole list.'))
+        else: ig.text_disabled(tr('Ctrl+click or Shift+click selects several sounds, Ctrl+A the whole list. Drag them out to copy them.'))
+        report = self.bundle_report
+        if report:
+            ig.text_colored(STATE_COLOURS['Ready'], tr('Bundle: ')+f"{report['copied']+report['renamed']} "+tr('copied')+
+                            f", {report['identical']} "+tr('already there')+(f", {report['missing']} "+tr('missing') if report['missing'] else '')+
+                            '  ->  '+report['destination'])
+            ig.same_line()
+            if imgui.small_button('Open Bundle Folder'): open_in_explorer(report['destination'])
+            ig.same_line()
+            if ig.small_button('x##bundle-report'): self.bundle_report = None
+        if self.drag_note: ig.text_colored(STATE_COLOURS['Failed'], self.drag_note)
         ig.set_next_item_width(120)
         changed, self.view_mode = imgui.combo('View', self.view_mode, list(VIEW_MODES))
         ig.same_line()
@@ -542,6 +589,8 @@ class App:
                     else: browser.mark_only(index)
                     self.select(index)
                 if clicked and ig.is_mouse_double_clicked(ig.MouseButton_.left): self.player.play()
+                if ig.is_item_active() and ig.is_mouse_dragging(ig.MouseButton_.left, 12.0) and self.pending_drag is None and dragdrop.AVAILABLE:
+                    self.start_drag(index, row)
                 if ig.begin_popup_context_item('##row-menu'):
                     if imgui.menu_item('Play', '', False)[0]: self.select(index, play=True)
                     if imgui.menu_item('Find Similar Sounds', '', False)[0]: self.run_search(similarTo=row['audio_id'])
@@ -549,6 +598,8 @@ class App:
                     folder = os.path.dirname(row['relative_path']).replace('\\', '/')
                     if imgui.menu_item('Show Only This Folder', '', False)[0]: self.show_folder(row['root_id'], folder)
                     if len(browser.marked) > 1 and imgui.menu_item('Clear Selection', '', False)[0]: browser.clear_marks()
+                    if imgui.menu_item('Create Bundle...', '', False)[0]:
+                        self.ask_bundle(browser.targets() if row['audio_id'] in browser.marked else [row['audio_id']])
                     ig.end_popup()
                 ig.table_set_column_index(column['Waveform']); self.draw_thumbnail(row['audio_id'], row['duration'], row_height-6, playing)
                 ig.table_set_column_index(column['Duration']); ig.text(clock(row['duration'] or 0) if row['duration'] else '-')
@@ -687,6 +738,7 @@ class App:
             self.edit_targets(targets, appendNotes=self.note_line.strip()); self.note_line = ''
         ig.separator()
         if imgui.small_button('Analyze These Sounds'): self.submit('analyze_library', {'libraryId': self.library_id(), 'audioIds': targets}, self.refresh, 'Analysis')
+        self.draw_bundle_options(targets, 'batch')
         ig.push_style_color(ig.Col_.text, ig.get_style_color_vec4(ig.Col_.text_disabled))
         ig.text_wrapped(tr('Rename them or write their tags into the files: File Tools tab, "The selected sounds".'))
         ig.pop_style_color()
@@ -829,6 +881,7 @@ class App:
             if imgui.begin_tab_item('Installation', None, flag('Installation'))[0]: self.models.draw(); imgui.end_tab_item()
             if imgui.begin_tab_item('Updates', None, flag('Updates'))[0]: self.updates.draw(); imgui.end_tab_item()
             imgui.end_tab_bar()       # the facade appends Application log, Advanced and Options here
+        if self.pending_drag: self.finish_drag()
 
 
 def main():

@@ -431,6 +431,52 @@ class LibraryFlow(unittest.TestCase):
         self.assertEqual(self.run_job('update_assets', {'libraryId': library, 'audioIds': [noted], 'addCategories': ['no-such-category']},
                                       expect='Failed')['code'], 'InvalidParameters')
 
+    def test_19_bundle_copies_without_touching_the_library(self):
+        import hashlib
+        from audiolib.library import get_library
+        library = self.state['library']
+        sha = lambda path: hashlib.sha256(Path(path).read_bytes()).hexdigest()
+        before = listing(self.audio)
+        assets = sorted(self.run_job('browse_assets', {'libraryId': library, 'limit': 1000})['assets'], key=lambda a: a['filename'])[:3]
+        ids = [a['audio_id'] for a in assets]
+        bundle = TEMP/'Bundle for the engine'
+
+        first = self.run_job('export_bundle', {'libraryId': library, 'audioIds': ids, 'destination': str(bundle)})
+        self.assertEqual((first['copied'], first['identical'], first['renamed'], first['missing']), (3, 0, 0, 0))
+        for asset in assets:
+            self.assertEqual(sha(bundle/asset['filename']), sha(asset['absolute_path']), 'a copy must be the same file')
+        manifest = json.loads((bundle/'bundle.json').read_text(encoding='utf-8'))
+        self.assertEqual(sorted(e['audioId'] for e in manifest['files']), sorted(ids))
+        self.assertFalse(list(bundle.glob('*.part')), 'no temporary file is left behind')
+
+        again = self.run_job('export_bundle', {'libraryId': library, 'audioIds': ids, 'destination': str(bundle)})
+        self.assertEqual((again['copied'], again['identical']), (0, 3), 'exporting twice copies nothing twice')
+        self.assertEqual(len(json.loads((bundle/'bundle.json').read_text(encoding='utf-8'))['files']), 3)
+
+        other = assets[0]
+        (bundle/other['filename']).write_bytes(b'a different file with the same name')      # someone changed the copy in the bundle
+        renamed = self.run_job('export_bundle', {'libraryId': library, 'audioIds': [other['audio_id']], 'destination': str(bundle)})
+        self.assertEqual(renamed['renamed'], 1)
+        self.assertEqual((bundle/other['filename']).read_bytes(), b'a different file with the same name', 'never overwritten')
+        self.assertEqual(sha(bundle/renamed['files'][0]['file']), sha(other['absolute_path']))
+        self.assertIn(' (2)', renamed['files'][0]['file'])
+
+        folders = TEMP/'Bundle with folders'
+        scope = {'rootIds': [r['rootId'] for r in get_library(library).roots if Path(r['path']).resolve() == self.audio.resolve()], 'folderPrefix': 'Tones'}
+        by_folder = self.run_job('export_bundle', {'libraryId': library, 'filters': scope, 'destination': str(folders), 'layout': 'folders', 'manifest': False})
+        inside = self.run_job('browse_assets', {'libraryId': library, 'filters': scope, 'limit': 1000})['total']
+        self.assertEqual(by_folder['copied'], inside)
+        self.assertTrue(all(f['file'].startswith(self.audio.name+'/Tones/') for f in by_folder['files']), by_folder['files'][:2])
+        self.assertFalse((folders/'bundle.json').exists())
+
+        for unsafe in (self.audio/'Exports', get_library(library).cache/'Exports', 'relative/folder'):
+            error = self.run_job('export_bundle', {'libraryId': library, 'audioIds': ids, 'destination': str(unsafe)}, expect='Failed')
+            self.assertEqual(error['code'], 'InvalidParameters', unsafe)
+        self.assertFalse((self.audio/'Exports').exists(), 'a refused export creates nothing')
+        self.assertEqual(self.run_job('export_bundle', {'libraryId': library, 'filters': {}, 'destination': str(bundle)}, expect='Failed')['code'], 'InvalidParameters')
+        self.assertEqual(before, listing(self.audio), 'the Library folder was modified by an export')
+
+
 class Configurations(unittest.TestCase):
     """Save/Load of the search form: exact parameters, no secret, loading never starts a job, replay through the runtime."""
     def test_roundtrip_and_replay(self):

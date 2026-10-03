@@ -133,6 +133,19 @@ OPERATIONS = [
                'description': {'type': 'string', 'maxLength': 4000}, 'notes': {'type': 'string', 'maxLength': 20000, 'description': 'Replace the notes'},
                'appendNotes': {'type': 'string', 'maxLength': 4000, 'description': 'Add this line after the existing notes of every target, never replacing them'}},
               ['libraryId'], progress=True),
+    operation('export_bundle', 'Create Bundle', 'Copy a selection of sounds (audioIds) or every sound a filter matches into a folder the user '
+              'chooses, for instance to prepare what a game engine or a DAW will import. The originals are only read. Nothing is ever '
+              'overwritten: a file already present with the same content is left as it is, a different one with the same name gets a '
+              'numbered name. A destination that would put copies inside a folder of any Library or inside a cache is refused. '
+              'bundle.json lists every file with its source, AudioId, duration, tags and categories; exporting into the same folder '
+              'again adds to it.',
+              {'libraryId': LIBRARY, 'audioIds': {'type': 'array', 'items': AUDIO_ID, 'minItems': 1, 'maxItems': 10000},
+               'filters': {**FILTERS, 'description': 'Every asset these filters match is copied too (same filters as browse_assets). Must not be empty.'},
+               'destination': {'type': 'string', 'minLength': 3, 'description': 'Absolute folder path; created if it does not exist'},
+               'layout': {'type': 'string', 'enum': ['flat', 'folders'], 'default': 'flat',
+                          'description': 'flat = every file directly in the destination; folders = <root folder name>/<sub folders>/<file>'},
+               'manifest': {'type': 'boolean', 'default': True, 'description': 'Write or update bundle.json in the destination'}},
+              ['libraryId', 'destination'], progress=True),
     operation('list_folders', 'List Folders', 'Folder structure of a Library as its audio files describe it: every folder with its recursive '
               'and direct file counts, per root folder. Use a path from here as filters.folderPrefix (with rootIds) in browse_assets, '
               'update_assets, or to collect audioIds for analyze_library, suggest_names and write_metadata.',

@@ -139,6 +139,10 @@ and proposes sounds. The same Library files and caches are shared, so nothing ha
   from it becomes `filters: {"rootIds": [rootId], "folderPrefix": "Impacts/Metal"}` in `op_browse_assets` (the files)
   or `op_update_assets` (edit the whole folder in one call: `addTags`, `removeTags`, `addCategories`,
   `removeCategories`, `appendNotes`...). An empty filter is refused rather than read as "the whole Library".
+* Prepare files for another program: `op_export_bundle` copies `audioIds`, or everything `filters` match, into a
+  `destination` folder (`layout` `flat` or `folders`, `bundle.json` listing source, AudioId, tags and categories). It
+  only reads the originals, never overwrites, and refuses a destination inside a Library folder or a cache. In the
+  interface, the same sounds can also be dragged out of the list (Windows, copy only) into Explorer or Unreal Engine.
 * `op_install_model.acceptLicense`, `op_rename_files.confirm`, `op_undo_rename.confirm` and `op_write_metadata.confirm` are the
   user's decisions: ask, show what will change, and only then pass `true`.
 

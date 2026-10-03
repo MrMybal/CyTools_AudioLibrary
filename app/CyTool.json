@@ -1553,6 +1553,183 @@
       "supportsProgress": true
     },
     {
+      "id": "export_bundle",
+      "name": "Create Bundle",
+      "description": "Copy a selection of sounds (audioIds) or every sound a filter matches into a folder the user chooses, for instance to prepare what a game engine or a DAW will import. The originals are only read. Nothing is ever overwritten: a file already present with the same content is left as it is, a different one with the same name gets a numbered name. A destination that would put copies inside a folder of any Library or inside a cache is refused. bundle.json lists every file with its source, AudioId, duration, tags and categories; exporting into the same folder again adds to it.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "libraryId": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{8}$",
+            "description": "LibraryId returned by create_library or list_libraries"
+          },
+          "audioIds": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{32}$",
+              "description": "Stable AudioId of an asset (survives renames and moves)"
+            },
+            "minItems": 1,
+            "maxItems": 10000
+          },
+          "filters": {
+            "type": "object",
+            "additionalProperties": false,
+            "description": "Every asset these filters match is copied too (same filters as browse_assets). Must not be empty.",
+            "properties": {
+              "text": {
+                "type": "string",
+                "description": "Words that must appear in the file name, relative path, description or a tag"
+              },
+              "rootIds": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Restrict to these folders of the Library"
+              },
+              "folderPrefix": {
+                "type": "string",
+                "description": "Relative sub-folder inside the selected root(s), e.g. \"Doors/Metal\""
+              },
+              "extensions": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "File types, e.g. [\"wav\", \"flac\"]"
+              },
+              "minDuration": {
+                "type": "number",
+                "minimum": 0,
+                "description": "Seconds"
+              },
+              "maxDuration": {
+                "type": "number",
+                "minimum": 0,
+                "description": "Seconds"
+              },
+              "minSampleRate": {
+                "type": "integer",
+                "minimum": 0,
+                "description": "Hz, e.g. 48000"
+              },
+              "maxSampleRate": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "minBitDepth": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "channels": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 64,
+                "description": "1 = mono, 2 = stereo"
+              },
+              "categories": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Category ids (user or auto); all must match"
+              },
+              "tags": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Tags (user or auto); all must match"
+              },
+              "favorite": {
+                "type": "boolean"
+              },
+              "minRating": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 5
+              },
+              "duplicatesOnly": {
+                "type": "boolean"
+              },
+              "recent": {
+                "type": "boolean",
+                "description": "Only sounds that were played"
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "present",
+                  "missing",
+                  "any"
+                ],
+                "default": "present"
+              },
+              "metadataState": {
+                "type": "string",
+                "enum": [
+                  "Ready",
+                  "Failed",
+                  "Pending"
+                ],
+                "description": "Files whose metadata/waveform pass is in this state (Failed = unreadable)"
+              },
+              "analysisKey": {
+                "type": "string"
+              },
+              "analysisState": {
+                "type": "string",
+                "enum": [
+                  "Ready",
+                  "Failed",
+                  "NotAnalyzed"
+                ]
+              }
+            }
+          },
+          "destination": {
+            "type": "string",
+            "minLength": 3,
+            "description": "Absolute folder path; created if it does not exist"
+          },
+          "layout": {
+            "type": "string",
+            "enum": [
+              "flat",
+              "folders"
+            ],
+            "default": "flat",
+            "description": "flat = every file directly in the destination; folders = <root folder name>/<sub folders>/<file>"
+          },
+          "manifest": {
+            "type": "boolean",
+            "default": true,
+            "description": "Write or update bundle.json in the destination"
+          }
+        },
+        "required": [
+          "libraryId",
+          "destination"
+        ],
+        "additionalProperties": false
+      },
+      "outputSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "resourceRequirements": {
+        "ramBytes": 67108864
+      },
+      "supportedBackends": [],
+      "permissions": [],
+      "canRunAsync": true,
+      "canCancel": true,
+      "supportsProgress": true
+    },
+    {
       "id": "list_folders",
       "name": "List Folders",
       "description": "Folder structure of a Library as its audio files describe it: every folder with its recursive and direct file counts, per root folder. Use a path from here as filters.folderPrefix (with rootIds) in browse_assets, update_assets, or to collect audioIds for analyze_library, suggest_names and write_metadata.",

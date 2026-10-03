@@ -44,6 +44,18 @@ index) va dans un cache que vous placez où vous voulez.
 Tout cela reste dans la base de la bibliothèque : vos fichiers audio ne sont pas modifiés. Pour renommer ou écrire les
 tags dans les fichiers eux-mêmes, onglet *Outils fichiers*, choix *Les sons sélectionnés*.
 
+## Sortir des sons de la bibliothèque : bundle et glisser-déposer
+
+* **Créer un bundle** : onglet *Sélection* ou clic droit sur un son, *Créer un bundle…*, puis choisissez un dossier. Les
+  sons y sont **copiés**, à plat ou en gardant leurs dossiers. Les originaux ne sont ni déplacés ni modifiés, et rien
+  n'est écrasé : un fichier identique déjà présent est laissé tel quel, un fichier différent du même nom reçoit un
+  nom numéroté. `bundle.json` liste chaque fichier avec sa source, ses tags et ses catégories ; refaire un bundle dans
+  le même dossier le complète. Décochez `bundle.json` si vous importez ensuite tout le dossier dans un moteur de jeu.
+  Un dossier situé dans une de vos bibliothèques ou dans un cache est refusé : les copies y seraient indexées.
+* **Glisser-déposer** : faites glisser un son, ou la sélection, hors de la fenêtre, vers l'Explorateur pour en faire
+  des copies, ou vers le *Content Browser* d'Unreal Engine pour les importer dans le projet. Seule la copie est
+  proposée : un glisser ne peut jamais déplacer ni effacer vos originaux.
+
 ## Mise à jour automatique des bibliothèques
 
 Par défaut, l'application vérifie en arrière-plan (au démarrage puis toutes les 5 minutes) si des fichiers ont été

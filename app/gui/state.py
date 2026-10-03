@@ -154,6 +154,13 @@ class Browser:
     def clear_marks(self):
         self.marked, self.anchor = set(), -1
 
+    def paths_of(self, audio_ids):
+        """Absolute paths of the given sounds that are present on disk, in the given order."""
+        rows = {}
+        ids = list(audio_ids)
+        for begin in range(0, len(ids), 500): rows.update(fetch_rows(self.database, ids[begin:begin+500]))
+        return [rows[i]['absolute_path'] for i in ids if i in rows and rows[i]['status'] == 'present']
+
     def targets(self):
         """What an edit applies to: the marked sounds in list order, or the current one when nothing is marked."""
         if self.marked: return [audio_id for audio_id in self.ids if audio_id in self.marked]
