@@ -9,6 +9,7 @@ param([string]$Output = '')
 $ErrorActionPreference = 'Stop'
 $appRoot = $PSScriptRoot
 $toolRoot = Split-Path -Parent $appRoot
+& (Join-Path $appRoot 'build_icon.ps1')
 $build = Join-Path $toolRoot 'runtime\build'
 $source = Join-Path $appRoot 'launcher.cpp'
 $target = if ($Output) { [System.IO.Path]::GetFullPath($Output) } else { Join-Path $toolRoot 'CyTools_AudioLibrary.exe' }

@@ -832,6 +832,8 @@ class App:
 
 
 def main():
+    from branding import configure as configure_branding
+    configure_branding('Cyberalien.CyTools_AudioLibrary')
     runner = hello_imgui.RunnerParams()
     runner.app_window_params.window_title = 'CyTools AudioLibrary'
     runner.app_window_params.window_geometry.size = (1500, 920)

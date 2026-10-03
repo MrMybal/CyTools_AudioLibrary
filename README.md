@@ -1,5 +1,9 @@
 # CyTools_AudioLibrary
 
+<p align="center">
+  <img src="app/assets/branding/logo.png" alt="CyTools AudioLibrary logo" width="160">
+</p>
+
 Maintenance: **Cyberalien**.
 
 A desktop Tool to manage, analyse and search large local sound libraries. It references your

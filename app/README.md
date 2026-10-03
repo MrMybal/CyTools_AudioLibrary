@@ -223,3 +223,8 @@ Foundation; the full text is in `LICENSE` at the root of the Tool. It is distrib
 the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. The CyToolsCore SDK it is built on is
 under the MIT licence: its text and the sources of every component are in `LICENCES/`. The licence covers the application code: engines and model weights keep their own terms
 (`licenses.json`), and the non-commercial ones are downloaded by each user rather than distributed with the Tool.
+
+
+## Application icon
+
+The logo source is assets/branding/logo.png. build_icon.ps1 derives the 16-256 px Windows ICO and assets/app_settings/icon.png for Hello ImGui. build_launcher.ps1 embeds the ICO in the launcher. branding.py selects assets independently of the working directory and assigns this Tool its own Windows taskbar identity.

@@ -4,6 +4,8 @@
 #include <windows.h>
 #include "launcher.version.h"
 
+1 ICON "assets/branding/logo.ico"
+
 1 RT_MANIFEST "launcher.generated.manifest"
 
 VS_VERSION_INFO VERSIONINFO
