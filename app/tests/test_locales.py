@@ -7,6 +7,11 @@ from pathlib import Path
 APP = Path(__file__).resolve().parents[1]
 LABEL_CALLS = {'button', 'small_button', 'checkbox', 'radio_button', 'input_text', 'input_int', 'input_float', 'slider_float', 'combo',
                'collapsing_header', 'begin_tab_item', 'menu_item'}
+# CyUI widgets (app/cyui.py) translate these arguments themselves: positions of the literal texts they show.
+CY_TEXTS = {'button': (0,), 'primary_button': (0,), 'danger_button': (0,), 'ghost_button': (0,), 'icon_text_button': (1,), 'icon_button': (1,),
+            'toggle_switch': (0,), 'segmented': (1,), 'heading': (0,), 'section_title': (0,), 'overline': (0,), 'badge': (0,),
+            'property': (0, 1), 'begin_section': (0,), 'begin_card': (1,), 'empty_state': (0, 1), 'help_marker': (0,), 'panel_header': (0,),
+            'search_field': (2,)}
 
 
 def interface_strings():
@@ -25,6 +30,9 @@ def interface_strings():
             if name == 'tr' or (owner == 'imgui' and name in LABEL_CALLS):
                 for value in constants(node.args[0]) if node.args else (): found.add(value.partition('##')[0])
             if owner == 'imgui' and name == 'combo' and len(node.args) > 2: found.update(constants(node.args[2]))
+            if owner == 'cy' and name in CY_TEXTS:
+                for position in CY_TEXTS[name]:
+                    if position < len(node.args): found.update(value.partition('##')[0] for value in constants(node.args[position]))
     return sorted(text for text in found if text.strip())
 
 

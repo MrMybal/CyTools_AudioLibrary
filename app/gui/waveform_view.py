@@ -9,6 +9,7 @@ decoded samples of the player are used (sample-level detail). Interaction:
 import numpy as np
 from imgui_bundle import imgui
 
+import cyui as cy
 from audiolib.waveform import BASE, Pyramid
 
 
@@ -66,10 +67,10 @@ class WaveformView:
         hovered, active = imgui.is_item_hovered(), imgui.is_item_active()
         draw = imgui.get_window_draw_list()
         x0, y0, x1, y1 = origin.x, origin.y, origin.x+width, origin.y+height
-        colour = lambda r, g, b, a=1.0: imgui.get_color_u32((r, g, b, a))
-        draw.add_rect_filled((x0, y0), (x1, y1), colour(0.08, 0.09, 0.11))
+        p = cy.palette()       # colours by role: the view follows the theme
+        draw.add_rect_filled((x0, y0), (x1, y1), p.bg0, imgui.get_style().frame_rounding)
         if self.pyramid is None:
-            draw.add_text((x0+10, y0+height/2-8), colour(0.6, 0.6, 0.6), tr('Waveform not available yet: scan the Library'))
+            cy.centred_text(draw, (x0, y0), (x1, y1), p.textFaint, tr('Waveform not available yet: scan the Library'))
             return events
         duration = self.pyramid.duration
         start, stop = self.view
@@ -107,17 +108,18 @@ class WaveformView:
             self.drag_start = None
         # -- bands: matched segment, selection ---------------------------------------
         if self.marker:
-            draw.add_rect_filled((max(x0, to_x(self.marker[0])), y0), (min(x1, to_x(self.marker[1])), y1), colour(0.95, 0.75, 0.2, 0.16))
+            draw.add_rect_filled((max(x0, to_x(self.marker[0])), y0), (min(x1, to_x(self.marker[1])), y1), cy.alpha(p.warning, 0.16))
         if player.selection:
             a, b = player.selection
-            draw.add_rect_filled((max(x0, to_x(a)), y0), (min(x1, to_x(b)), y1), colour(0.35, 0.6, 1.0, 0.22))
+            draw.add_rect_filled((max(x0, to_x(a)), y0), (min(x1, to_x(b)), y1), p.selection)
+            draw.add_rect((max(x0, to_x(a)), y0), (min(x1, to_x(b)), y1), p.accent, 0.0, 0, cy.dp(1.5))
         # -- waveform: played part in another colour ------------------------------------
         low, high = self._peaks(player, width)
-        middle, half = (y0+y1)/2, height/2-4
-        draw.add_line((x0, middle), (x1, middle), colour(0.25, 0.27, 0.3))
+        middle, half = (y0+y1)/2, height/2-cy.dp(4)
+        draw.add_line((x0, middle), (x1, middle), p.gridStrong)
         playhead = player.position if player.path else 0.0
         head_x = to_x(playhead)
-        played, ahead = colour(0.98, 0.62, 0.2), colour(0.36, 0.72, 0.95)
+        played, ahead = p.accent, p.info
         count = len(low)
         if count:
             step = width/count
@@ -127,14 +129,15 @@ class WaveformView:
                 if bottom-top < 1.0: bottom = top+1.0
                 draw.add_line((x, top), (x, bottom), played if x <= head_x else ahead, max(1.0, step))
         if x0 <= head_x <= x1:
-            draw.add_line((head_x, y0), (head_x, y1), colour(1, 1, 1), 1.5)
-            draw.add_triangle_filled((head_x-5, y0), (head_x+5, y0), (head_x, y0+7), colour(1, 1, 1))
+            draw.add_line((head_x, y0), (head_x, y1), p.text, cy.dp(1.5))
+            draw.add_triangle_filled((head_x-cy.dp(5), y0), (head_x+cy.dp(5), y0), (head_x, y0+cy.dp(7)), p.text)
         # -- time ruler and readouts --------------------------------------------------------
-        ticks = max(2, int(width//120))
+        ticks = max(2, int(width//cy.dp(120)))
+        label = imgui.calc_text_size('00:00.000')
         for index in range(ticks+1):
             t = start+span*index/ticks; x = to_x(t)
-            draw.add_line((x, y1-6), (x, y1), colour(0.5, 0.5, 0.55))
-            draw.add_text((min(x+3, x1-62), y1-18), colour(0.6, 0.62, 0.66), clock(t))
-        draw.add_text((x0+6, y0+4), colour(0.95, 0.95, 0.95), clock(playhead)+' / '+clock(duration))
+            draw.add_line((x, y1-cy.dp(6)), (x, y1), p.lineStrong)
+            draw.add_text((min(x+cy.dp(3), x1-label.x-cy.dp(4)), y1-label.y-cy.dp(4)), p.textFaint, clock(t))
+        draw.add_text((x0+cy.dp(6), y0+cy.dp(4)), p.text, clock(playhead)+' / '+clock(duration))
         if hovered: imgui.set_tooltip(clock(to_t(mouse.x)))
         return events

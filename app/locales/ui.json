@@ -9638,5 +9638,249 @@
 "copied": {
 "en": "copied",
 "fr": "copiés"
+},
+"A Library references your audio folders: give it a name in the left panel, then add folders. Nothing is copied or moved.": {
+"en": "A Library references your audio folders: give it a name in the left panel, then add folders. Nothing is copied or moved.",
+"fr": "Une bibliothèque référence vos dossiers audio : donnez-lui un nom dans le panneau de gauche, puis ajoutez des dossiers. Rien n’est copié ni déplacé."
+},
+"A small local LLM turns the description into precise sound terms. Auto: only for long, non-English, negated or sequential requests.": {
+"en": "A small local LLM turns the description into precise sound terms. Auto: only for long, non-English, negated or sequential requests.",
+"fr": "Un petit LLM local traduit la description en termes sonores précis. Auto : seulement pour les demandes longues, non anglaises, avec négation ou enchaînement."
+},
+"AI engine, models and access": {
+"en": "AI engine, models and access",
+"fr": "Moteur IA, modèles et accès"
+},
+"Amber night (CyDAW)": {
+"en": "Amber night (CyDAW)",
+"fr": "Nuit ambre (CyDAW)"
+},
+"Analyze new files": {
+"en": "Analyze new files",
+"fr": "Analyser les nouveaux fichiers"
+},
+"Analyze the sounds not yet analyzed by the checked models. Progress: Analysis Queue tab.": {
+"en": "Analyze the sounds not yet analyzed by the checked models. Progress: Analysis Queue tab.",
+"fr": "Analyser les sons pas encore analysés par les modèles cochés. Avancement : onglet File d’analyse."
+},
+"Automatic tag vocabulary": {
+"en": "Automatic tag vocabulary",
+"fr": "Vocabulaire des tags automatiques"
+},
+"Back to the list": {
+"en": "Back to the list",
+"fr": "Retour à la liste"
+},
+"Bundle created: ": {
+"en": "Bundle created: ",
+"fr": "Bundle créé : "
+},
+"Categories, tags and duplicates": {
+"en": "Categories, tags and duplicates",
+"fr": "Catégories, tags et doublons"
+},
+"Clear the selection (Esc)": {
+"en": "Clear the selection (Esc)",
+"fr": "Vider la sélection (Échap)"
+},
+"Comfortable": {
+"en": "Comfortable",
+"fr": "Confortable"
+},
+"Density": {
+"en": "Density",
+"fr": "Densité"
+},
+"Details": {
+"en": "Details",
+"fr": "Détails"
+},
+"Dismiss": {
+"en": "Dismiss",
+"fr": "Fermer"
+},
+"Download size": {
+"en": "Download size",
+"fr": "Taille du téléchargement"
+},
+"Fields": {
+"en": "Fields",
+"fr": "Champs"
+},
+"Include this folder in the Library": {
+"en": "Include this folder in the Library",
+"fr": "Inclure ce dossier dans la bibliothèque"
+},
+"Information, tags and AI results of the selected sound appear here.": {
+"en": "Information, tags and AI results of the selected sound appear here.",
+"fr": "Les informations, tags et résultats IA du son sélectionné s’affichent ici."
+},
+"LLM assist": {
+"en": "LLM assist",
+"fr": "Assistance LLM"
+},
+"Leave the search results and show the whole list again.": {
+"en": "Leave the search results and show the whole list again.",
+"fr": "Quitter les résultats de recherche et réafficher toute la liste."
+},
+"Left panel: Add Folder, then Rescan All. Your files are only read, never moved.": {
+"en": "Left panel: Add Folder, then Rescan All. Your files are only read, never moved.",
+"fr": "Panneau de gauche : Ajouter un dossier, puis Tout rescanner. Vos fichiers sont seulement lus, jamais déplacés."
+},
+"Library created. Add an audio folder, then Rescan All.": {
+"en": "Library created. Add an audio folder, then Rescan All.",
+"fr": "Bibliothèque créée. Ajoutez un dossier audio, puis Tout rescanner."
+},
+"Licence": {
+"en": "Licence",
+"fr": "Licence"
+},
+"Light grey (CyDAW)": {
+"en": "Light grey (CyDAW)",
+"fr": "Gris clair (CyDAW)"
+},
+"Mid grey (CyDAW)": {
+"en": "Mid grey (CyDAW)",
+"fr": "Gris moyen (CyDAW)"
+},
+"Model hash": {
+"en": "Model hash",
+"fr": "Empreinte du modèle"
+},
+"Navy (CyEngineHub)": {
+"en": "Navy (CyEngineHub)",
+"fr": "Bleu marine (CyEngineHub)"
+},
+"New category": {
+"en": "New category",
+"fr": "Nouvelle catégorie"
+},
+"No Library": {
+"en": "No Library",
+"fr": "Aucune bibliothèque"
+},
+"No Library yet": {
+"en": "No Library yet",
+"fr": "Pas encore de bibliothèque"
+},
+"No analysis data yet.": {
+"en": "No analysis data yet.",
+"fr": "Pas encore de données d’analyse."
+},
+"No embedding model is available: Installation tab.": {
+"en": "No embedding model is available: Installation tab.",
+"fr": "Aucun modèle d’embedding disponible : onglet Installation."
+},
+"No folder yet: Add Folder, then Rescan All.": {
+"en": "No folder yet: Add Folder, then Rescan All.",
+"fr": "Aucun dossier pour l’instant : Ajouter un dossier, puis Tout rescanner."
+},
+"No sound found yet": {
+"en": "No sound found yet",
+"fr": "Aucun son trouvé pour l’instant"
+},
+"No sound matches these filters": {
+"en": "No sound matches these filters",
+"fr": "Aucun son ne correspond à ces filtres"
+},
+"No sound matches this search": {
+"en": "No sound matches this search",
+"fr": "Aucun son ne correspond à cette recherche"
+},
+"No sound selected": {
+"en": "No sound selected",
+"fr": "Aucun son sélectionné"
+},
+"No tag yet: analyze the Library, or add your own tags to a sound.": {
+"en": "No tag yet: analyze the Library, or add your own tags to a sound.",
+"fr": "Pas encore de tag : analysez la bibliothèque, ou ajoutez vos propres tags à un son."
+},
+"Path copied to the clipboard.": {
+"en": "Path copied to the clipboard.",
+"fr": "Chemin copié dans le presse-papiers."
+},
+"Play / Pause (Space)": {
+"en": "Play / Pause (Space)",
+"fr": "Lecture / Pause (Espace)"
+},
+"Play a sound as soon as it is selected": {
+"en": "Play a sound as soon as it is selected",
+"fr": "Lire un son dès qu’il est sélectionné"
+},
+"Quick filters": {
+"en": "Quick filters",
+"fr": "Filtres rapides"
+},
+"Read every folder again: new, changed and missing files. Your tags are kept.": {
+"en": "Read every folder again: new, changed and missing files. Your tags are kept.",
+"fr": "Relire tous les dossiers : fichiers nouveaux, modifiés et disparus. Vos tags sont conservés."
+},
+"Remove a category": {
+"en": "Remove a category",
+"fr": "Retirer une catégorie"
+},
+"Remove a filter chip above, or Reset filters.": {
+"en": "Remove a filter chip above, or Reset filters.",
+"fr": "Retirez un filtre ci-dessus, ou réinitialisez les filtres."
+},
+"Remove this category": {
+"en": "Remove this category",
+"fr": "Retirer cette catégorie"
+},
+"Remove this filter": {
+"en": "Remove this filter",
+"fr": "Retirer ce filtre"
+},
+"Remove this tag": {
+"en": "Remove this tag",
+"fr": "Retirer ce tag"
+},
+"Rescan All reads the folders of this Library. Supported: WAV, FLAC, OGG, MP3, M4A, AIFF...": {
+"en": "Rescan All reads the folders of this Library. Supported: WAV, FLAC, OGG, MP3, M4A, AIFF...",
+"fr": "Tout rescanner lit les dossiers de cette bibliothèque. Formats : WAV, FLAC, OGG, MP3, M4A, AIFF…"
+},
+"Reset filters": {
+"en": "Reset filters",
+"fr": "Réinitialiser les filtres"
+},
+"Row size of the list": {
+"en": "Row size of the list",
+"fr": "Hauteur des lignes de la liste"
+},
+"Search models": {
+"en": "Search models",
+"fr": "Modèles de recherche"
+},
+"Tag": {
+"en": "Tag",
+"fr": "Tag"
+},
+"The only actions that change your audio files": {
+"en": "The only actions that change your audio files",
+"fr": "Les seules actions qui modifient vos fichiers audio"
+},
+"This Library has no folder yet": {
+"en": "This Library has no folder yet",
+"fr": "Cette bibliothèque n’a pas encore de dossier"
+},
+"Try other words, another LLM assist mode, or fewer filters.": {
+"en": "Try other words, another LLM assist mode, or fewer filters.",
+"fr": "Essayez d’autres mots, un autre mode d’assistance LLM ou moins de filtres."
+},
+"Unreadable files": {
+"en": "Unreadable files",
+"fr": "Fichiers illisibles"
+},
+"Validation": {
+"en": "Validation",
+"fr": "Validation"
+},
+"Violet (Shaderixel)": {
+"en": "Violet (Shaderixel)",
+"fr": "Violet (Shaderixel)"
+},
+"sounds dropped as copies": {
+"en": "sounds dropped as copies",
+"fr": "sons déposés en copie"
 }
 }

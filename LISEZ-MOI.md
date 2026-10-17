@@ -79,6 +79,12 @@ en une fois : ajouter des tags, une catégorie ou une ligne de notes à tous ses
 * **Écrire les tags dans les fichiers** (l'équivalent audio de l'EXIF : ID3, Vorbis, MP4) pour que d'autres logiciels
   les lisent. L'audio est vérifié identique avant de remplacer l'original, et une sauvegarde est gardée dans le cache.
 
+## Apparence
+
+Onglet *Options* : cinq thèmes (*Gris moyen*, par défaut, *Gris clair*, *Nuit ambre*, *Violet*, *Bleu marine*), densité
+*Compacte* ou *Confortable* et taille du texte. Le filtre actif, le dossier affiché et la sélection apparaissent en pastilles
+au-dessus de la liste : un clic sur la croix les retire. La barre du bas résume la bibliothèque et les tâches en cours.
+
 ## Raccourcis
 
 Espace : lecture/pause · Haut/Bas : son précédent/suivant (Maj+Haut/Bas étend la sélection) · Ctrl+clic, Maj+clic,
