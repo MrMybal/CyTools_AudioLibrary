@@ -3,7 +3,7 @@
   "protocolVersion": "1.0",
   "id": "cy.tool.audiolibrary",
   "name": "CyTools_AudioLibrary",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Management, analysis, categorization and intelligent search in large local audio libraries, with several embedding models and small local LLMs.",
   "vendor": "Cyberalien",
   "author": "Cyberalien",
