@@ -24,6 +24,18 @@ The user guide, in French, is [LISEZ-MOI.md](LISEZ-MOI.md). The developer notes 
 Only Windows 10 with an NVIDIA card has been executed. The Linux launcher exists and has never
 been run.
 
+## Screenshots
+
+The library: folders, categories and quick filters on the left, the search bar and the sound list in
+the centre, then the player with its waveform and what each model found for the selected sound.
+
+![Library tab: folder tree, categories, sound list, waveform player and AI analysis](.github/images/library.png)
+
+The analysis queue: progress of every stage and model, the analysis data kept per model version, and
+the editor of the categories and tag vocabulary.
+
+![Analysis Queue tab: progress per stage and model, stored analysis data, taxonomy editor](.github/images/analysis-queue.png)
+
 ## What this repository contains, and what it does not
 
 The repository carries the application (`app/`), the user guide and the Linux launcher.
