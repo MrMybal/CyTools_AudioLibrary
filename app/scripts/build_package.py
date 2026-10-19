@@ -22,6 +22,7 @@ from pathlib import Path
 APP = Path(__file__).resolve().parents[1]
 ROOT = APP.parent
 GIT_ONLY = {'.gitignore', '.gitattributes', 'app/.gitignore'}
+REPOSITORY_ONLY = ('.github/',)      # README screenshots: shown on GitHub, not shipped
 REQUIRED = ('LICENSE', 'LICENCES/CyToolsCore-MIT.txt', 'LICENCES/SOURCES.txt', 'CyTools_AudioLibrary.exe')
 
 
@@ -46,7 +47,7 @@ def main():
     with tarfile.open(fileobj=io.BytesIO(git('archive', '--format=tar', 'HEAD', binary=True))) as tar, \
             zipfile.ZipFile(package, 'w', zipfile.ZIP_DEFLATED, compresslevel=9) as bundle:
         for member in sorted(tar.getmembers(), key=lambda m: m.name):
-            if not member.isfile() or member.name in GIT_ONLY: continue
+            if not member.isfile() or member.name in GIT_ONLY or member.name.startswith(REPOSITORY_ONLY): continue
             entry = zipfile.ZipInfo(top+member.name, date_time=(2026, 1, 1, 0, 0, 0))
             entry.compress_type = zipfile.ZIP_DEFLATED
             bundle.writestr(entry, tar.extractfile(member).read())

@@ -109,7 +109,7 @@ troisième clic revient à l'ordre de pertinence de la recherche. Le son sélect
 Changer de modèle ou de version n'efface rien : les anciennes données restent jusqu'à ce que vous les
 supprimiez (onglet *File d'analyse*). Une réanalyse ne supprime jamais vos tags ni vos catégories.
 
-## Limites connues (version 0.1.2)
+## Limites connues (version 0.1.3)
 
 Validé uniquement sur cette machine Windows 10 x64 + RTX 3090. Linux et macOS : jamais exécutés.
 L'installation utilise le Python du système pour créer les environnements privés : ce n'est pas un
