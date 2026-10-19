@@ -192,11 +192,63 @@ def build_filter(filters):
     return (' WHERE '+' AND '.join(clauses)) if clauses else '', values
 
 
-def list_ids(database, filters=None, sort='name', descending=False):
-    """All matching AudioIds in display order: a few bytes per asset, even for 100 000 files."""
+# Sorts on what the list shows but no single column holds: computed per asset, then applied in Python.
+DERIVED_SORTS = ('category', 'tags', 'state')
+
+
+def list_ids(database, filters=None, sort='name', descending=False, category_names=None, enabled_models=0):
+    """All matching AudioIds in display order: a few bytes per asset, even for 100 000 files.
+    category = the first category shown (user ones first, then by score), by its name; tags = the first tag shown;
+    state = failed, then pending, then ready (and by the number of models done)."""
     where, values = build_filter(filters)
+    if sort in DERIVED_SORTS:
+        ids = [row[0] for row in database.query('SELECT a.audio_id FROM assets a'+where+' ORDER BY '+SORTS['name']+', a.audio_id', values)]
+        return order_ids(ids, sort_values(database, ids, sort, category_names, enabled_models), descending)
     order = SORTS.get(sort, SORTS['name'])+(' DESC' if descending else ' ASC')+', a.audio_id'
     return [row[0] for row in database.query('SELECT a.audio_id FROM assets a'+where+' ORDER BY '+order, values)]
+
+
+def order_ids(ids, values, descending=False):
+    """Stable sort of `ids` by `values` (id -> value); assets without a value always come last."""
+    present = [i for i in ids if values.get(i) is not None]
+    return sorted(present, key=values.get, reverse=descending)+[i for i in ids if values.get(i) is None]
+
+
+def sort_values(database, audio_ids, sort, category_names=None, enabled_models=0):
+    """id -> the value the list is sorted by, for a column of the database or a derived one (DERIVED_SORTS)."""
+    wanted = set(audio_ids)
+    if not wanted: return {}
+    if sort == 'category':
+        names, out = category_names or {}, {}
+        for row in database.query('SELECT audio_id,category_id FROM asset_categories GROUP BY audio_id,category_id ORDER BY source DESC, MAX(score) DESC'):
+            if row['audio_id'] in wanted and row['audio_id'] not in out: out[row['audio_id']] = str(names.get(row['category_id'], row['category_id'])).casefold()
+        return out
+    if sort == 'tags':
+        user, auto = {}, {}
+        for row in database.query('SELECT audio_id,tag,source FROM tags GROUP BY audio_id,tag,source ORDER BY MAX(score) DESC'):
+            if row['audio_id'] in wanted: (user if row['source'] == 'user' else auto).setdefault(row['audio_id'], row['tag'].casefold())
+        return {**auto, **user}
+    if sort == 'state':
+        ready, failed = {}, set()
+        for row in database.query('SELECT audio_id,state FROM analysis'):
+            if row['state'] == 'Ready': ready[row['audio_id']] = ready.get(row['audio_id'], 0)+1
+            elif row['state'] == 'Failed': failed.add(row['audio_id'])
+        out = {}
+        for row in database.query('SELECT audio_id,metadata_state FROM assets'):
+            audio_id = row['audio_id']
+            if audio_id not in wanted: continue
+            done = ready.get(audio_id, 0)
+            rank = 0 if row['metadata_state'] == 'Failed' or audio_id in failed else (1 if row['metadata_state'] != 'Ready' or done < enabled_models else 2)
+            out[audio_id] = (rank, done)
+        return out
+    column, out = SORTS.get(sort, SORTS['name']).replace(' COLLATE NOCASE', ''), {}
+    ids = list(wanted)
+    for begin in range(0, len(ids), 900):
+        chunk = ids[begin:begin+900]
+        for row in database.query('SELECT a.audio_id,%s FROM assets a WHERE a.audio_id IN (%s)' % (column, ','.join('?'*len(chunk))), chunk):
+            value = row[1]
+            out[row[0]] = value.casefold() if isinstance(value, str) else value
+    return out
 
 
 def fetch_rows(database, audio_ids):

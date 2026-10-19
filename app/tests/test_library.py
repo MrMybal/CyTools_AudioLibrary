@@ -476,6 +476,28 @@ class LibraryFlow(unittest.TestCase):
         self.assertEqual(self.run_job('export_bundle', {'libraryId': library, 'filters': {}, 'destination': str(bundle)}, expect='Failed')['code'], 'InvalidParameters')
         self.assertEqual(before, listing(self.audio), 'the Library folder was modified by an export')
 
+    def test_20_sort_by_category_tags_and_state(self):
+        from audiolib.library import flatten_taxonomy, get_library
+        library = self.state['library']
+        names = {identifier: name for identifier, name, _, _ in flatten_taxonomy(get_library(library).taxonomy)}
+        def shown(sort, descending=False):
+            return self.run_job('browse_assets', {'libraryId': library, 'sort': sort, 'descending': descending, 'limit': 1000})['assets']
+        everything = {a['audio_id'] for a in shown('name')}
+        for sort in ('category', 'tags', 'state'):
+            for descending in (False, True):
+                assets = shown(sort, descending)
+                self.assertEqual({a['audio_id'] for a in assets}, everything, (sort, 'a sort never drops a sound'))
+        def first_category(asset): return names.get(asset['categories'][0], asset['categories'][0]).casefold() if asset['categories'] else None
+        def first_tag(asset): return (asset['userTags'] or asset['autoTags'] or [None])[0]
+        for sort, value in (('category', first_category), ('tags', first_tag)):
+            values = [value(a) for a in shown(sort)]
+            present = [v.casefold() for v in values if v is not None]
+            self.assertEqual(present, sorted(present), sort)
+            self.assertEqual(values[len(present):], [None]*(len(values)-len(present)), (sort, 'sounds without a value come last'))
+            self.assertEqual([v.casefold() for v in (value(a) for a in shown(sort, True)) if v is not None], sorted(present, reverse=True), sort)
+        with self.assertRaises(CyToolError) as refused: self.runtime.submit(self.actor, self.session, 'browse_assets', {'libraryId': library, 'sort': 'nope'})
+        self.assertEqual(refused.exception.code, 'InvalidParameters')
+
 
 class Configurations(unittest.TestCase):
     """Save/Load of the search form: exact parameters, no secret, loading never starts a job, replay through the runtime."""

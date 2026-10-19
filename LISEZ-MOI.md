@@ -92,6 +92,10 @@ Ctrl+A : sélection multiple · Échap : vider la sélection · clic droit sur u
 similaires* · sur la waveform : molette = zoom, Maj+molette = défilement, clic = positionner,
 glisser = sélectionner (puis *Boucler la sélection* ou *Trouver des sons similaires à la sélection*).
 
+Clic sur l'en-tête d'une colonne : trier la liste par nom, durée, type, catégorie, tags, dossier, état d'analyse et, dans les
+résultats d'une recherche, par score final ou par score d'un modèle ; un second clic inverse l'ordre. Dans les résultats, un
+troisième clic revient à l'ordre de pertinence de la recherche. Le son sélectionné reste sélectionné quand l'ordre change.
+
 ## Où sont mes données ?
 
 | Dossier | Contenu |

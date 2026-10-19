@@ -187,7 +187,10 @@ def create_runtime(data_dir, **options):
 
     def op_browse_assets(context, parameters):
         library, database = opened(parameters)
-        ids = list_ids(database, visible_filters(library, parameters.get('filters')), parameters.get('sort', 'name'), parameters.get('descending', False))
+        from audiolib.library import flatten_taxonomy
+        names = {identifier: name for identifier, name, _, _ in flatten_taxonomy(library.taxonomy)}
+        ids = list_ids(database, visible_filters(library, parameters.get('filters')), parameters.get('sort', 'name'), parameters.get('descending', False),
+                       names, len(library.enabled_models))
         window = ids[parameters.get('offset', 0):parameters.get('offset', 0)+parameters.get('limit', 100)]
         rows = fetch_rows(database, window)
         return {'total': len(ids), 'offset': parameters.get('offset', 0), 'assets': [rows[i] for i in window if i in rows]}

@@ -1204,9 +1204,13 @@
               "rating",
               "played",
               "sampleRate",
-              "channels"
+              "channels",
+              "category",
+              "tags",
+              "state"
             ],
-            "default": "name"
+            "default": "name",
+            "description": "category = first category shown (user ones first), by name; tags = first tag shown; state = failed, pending, then ready."
           },
           "descending": {
             "type": "boolean",

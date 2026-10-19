@@ -706,22 +706,27 @@ class App:
         columns = ['', 'Play', 'Name', 'Waveform', 'Duration', 'Type', 'Category', 'Tags', 'Folder', 'Analysis State']+(['Final']+models if searching else [])
         column = {name: position for position, name in enumerate(columns)}
         flags = ig.TableFlags_.scroll_y | ig.TableFlags_.row_bg | ig.TableFlags_.resizable | ig.TableFlags_.borders_inner_v | ig.TableFlags_.sortable | ig.TableFlags_.hideable
-        if not ig.begin_table('##assets', len(columns), flags, (0, height)): return
+        # search results get their own table: a third click on a header gives back the relevance order
+        if not ig.begin_table('##search-results' if searching else '##assets', len(columns), flags | (ig.TableFlags_.sort_tristate if searching else 0), (0, height)): return
         ig.table_setup_scroll_freeze(0, 1)
         widths = {'': 26, 'Play': 30, 'Waveform': 150, 'Duration': 78, 'Type': 52, 'Final': 60, 'Analysis State': 120}
-        sort_keys = {column['Name']: 'name', column['Duration']: 'duration', column['Type']: 'type', column['Folder']: 'folder'}
+        # every column showing a value sorts on a click of its header; scores sort from the best down first
+        keys = {'Name': 'name', 'Duration': 'duration', 'Type': 'type', 'Category': 'category', 'Tags': 'tags', 'Folder': 'folder',
+                'Analysis State': 'state', 'Final': 'final', **{model: 'model:'+model for model in models}}
+        sort_keys = {column[name]: key for name, key in keys.items() if name in column}
         for position, name in enumerate(columns):
             column_flags = ig.TableColumnFlags_.width_fixed if name in widths or name in models else ig.TableColumnFlags_.width_stretch
-            if position not in sort_keys or searching: column_flags |= ig.TableColumnFlags_.no_sort
+            if position not in sort_keys: column_flags |= ig.TableColumnFlags_.no_sort
+            elif name == 'Final' or name in models: column_flags |= ig.TableColumnFlags_.prefer_sort_descending
             title = '##'+name if name in ('', 'Play') else (tr(name) if name not in models else name)
             ig.table_setup_column(title, column_flags, cy.dp(widths.get(name, 70 if name in models else 0)))
         ig.table_headers_row()
         specs = ig.table_get_sort_specs()
-        if specs and specs.specs_dirty and not searching:
+        if specs and specs.specs_dirty:
             if specs.specs_count:
                 spec = specs.get_specs(0)
-                browser.sort = sort_keys.get(spec.column_index, 'name'); browser.descending = spec.get_sort_direction() == ig.SortDirection.descending
-                browser.reload()
+                browser.sort_list(sort_keys.get(spec.column_index, 'name'), spec.get_sort_direction() == ig.SortDirection.descending)
+            else: browser.sort_list(None, False)
             specs.specs_dirty = False
         category_names = {identifier: name for identifier, name, _, _ in flatten_taxonomy(browser.library.taxonomy)} if browser.library else {}
         large = VIEW_MODES[self.view_mode] == 'Large Row'

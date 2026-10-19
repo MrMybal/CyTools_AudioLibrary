@@ -9,8 +9,8 @@ import time
 
 from audiolib import registry
 from audiolib.analysis import library_status
-from audiolib.database import facet_counts, fetch_rows, folder_tree, list_ids, open_database
-from audiolib.library import get_library, list_libraries
+from audiolib.database import facet_counts, fetch_rows, folder_tree, list_ids, open_database, order_ids, sort_values
+from audiolib.library import flatten_taxonomy, get_library, list_libraries
 from config import save_settings, settings
 from cytools_core import CyToolError
 
@@ -69,6 +69,7 @@ class Browser:
         self.ids, self.rows, self.scores = [], {}, {}
         self.filters, self.sort, self.descending = {}, 'name', False
         self.search = None          # last search_sounds output, or None when browsing
+        self.search_sort = None     # (column key, descending) chosen on the search results; None = relevance order
         self.selected = -1
         self.marked, self.anchor = set(), -1     # the multi-selection, by AudioId so it survives reloads and scrolling
         self.folders, self.folder_signature = {}, None
@@ -91,7 +92,10 @@ class Browser:
         if not (keep_search and self.search):
             filters = dict(self.filters)
             if not filters.get('rootIds'): filters['rootIds'] = [r['rootId'] for r in self.library.roots if r['enabled']]
-            self.ids = list_ids(self.database, filters, self.sort, self.descending); self.search, self.scores = None, {}
+            current = self.current_id()
+            self.ids = list_ids(self.database, filters, self.sort, self.descending, self.category_names(), len(self.library.enabled_models))
+            self.search, self.scores = None, {}
+            self.follow(current)
         self.keep_visible_marks()
         self.folder_signature = None       # an explicit reload also rebuilds the folder tree (a rename changes paths, not counts)
         self.refresh_status()
@@ -106,10 +110,48 @@ class Browser:
 
     def show_search(self, outputs):
         self.search = outputs
-        self.ids = [r['audioId'] for r in outputs['results']]
         self.scores = {r['audioId']: r for r in outputs['results']}
-        self.rows.clear(); self.selected = 0 if self.ids else -1
+        self.rows.clear(); self.ids, self.selected = [], -1      # a new search starts on its first result
+        self.order_search()
+        self.selected = 0 if self.ids else -1
         self.keep_visible_marks()
+
+    # -- sorting ------------------------------------------------------------------------------------------------
+    def category_names(self):
+        return {identifier: name for identifier, name, _, _ in flatten_taxonomy(self.library.taxonomy)} if self.library else {}
+
+    def current_id(self):
+        return self.ids[self.selected] if 0 <= self.selected < len(self.ids) else None
+
+    def follow(self, audio_id):
+        """After a re-order, the selected sound stays selected (its row moved, not the selection)."""
+        if audio_id is None: return
+        try: self.selected = self.ids.index(audio_id)
+        except ValueError: self.selected = min(self.selected, len(self.ids)-1)
+
+    def sort_list(self, key, descending):
+        """A click on a column header. Browsing: key of list_ids. Search results: also 'final' or 'model:<key>',
+        and None for the relevance order of the search."""
+        if self.search is not None:
+            self.search_sort = (key, descending) if key else None
+            self.order_search()
+        else:
+            self.sort, self.descending = key or 'name', descending
+            self.reload()
+
+    def order_search(self):
+        current = self.current_id()
+        order = [r['audioId'] for r in self.search['results']]
+        if self.search_sort:
+            key, descending = self.search_sort
+            if key == 'final': values = {i: self.scores[i].get('finalScore') for i in order}
+            elif key.startswith('model:'):
+                model = key.partition(':')[2]
+                values = {i: ((self.scores[i].get('models') or {}).get(model) or {}).get('score') for i in order}
+            else: values = sort_values(self.database, order, key, self.category_names(), len(self.library.enabled_models) if self.library else 0)
+            order = order_ids(order, values, descending)
+        self.ids = order
+        self.follow(current)
 
     def row(self, index):
         audio_id = self.ids[index]
