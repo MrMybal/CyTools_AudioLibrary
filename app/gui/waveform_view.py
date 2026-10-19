@@ -112,7 +112,7 @@ class WaveformView:
         if player.selection:
             a, b = player.selection
             draw.add_rect_filled((max(x0, to_x(a)), y0), (min(x1, to_x(b)), y1), p.selection)
-            draw.add_rect((max(x0, to_x(a)), y0), (min(x1, to_x(b)), y1), p.accent, 0.0, 0, cy.dp(1.5))
+            draw.add_rect((max(x0, to_x(a)), y0), (min(x1, to_x(b)), y1), p.accent, rounding=0.0, thickness=cy.dp(1.5))
         # -- waveform: played part in another colour ------------------------------------
         low, high = self._peaks(player, width)
         middle, half = (y0+y1)/2, height/2-cy.dp(4)
