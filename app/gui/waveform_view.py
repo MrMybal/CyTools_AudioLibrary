@@ -9,7 +9,9 @@ decoded samples of the player are used (sample-level detail). Interaction:
 import numpy as np
 from imgui_bundle import imgui
 
-import cyui as cy
+import ui_style as cy
+from cyui_modules.audioviews import WaveformState, waveform
+from cyui_modules.common import Range
 from audiolib.waveform import BASE, Pyramid
 
 
@@ -20,6 +22,9 @@ def clock(seconds):
 
 class WaveformView:
     def __init__(self):
+        self.state = WaveformState()
+        self._pending_seek = None
+        self._selection_before = None
         self.pyramid = None
         self.view = (0.0, 1.0)      # visible time range, seconds
         self.drag_start = None
@@ -59,85 +64,59 @@ class WaveformView:
         return self._cache
 
     def draw(self, player, height=150.0, tr=lambda text: text):
-        """Returns an event dict: {'seek': seconds} and/or {'selection': (a, b) | None}."""
-        events = {}
-        width = max(64.0, imgui.get_content_region_avail().x)
-        origin = imgui.get_cursor_screen_pos()
-        imgui.invisible_button('##waveform', (width, height))
-        hovered, active = imgui.is_item_hovered(), imgui.is_item_active()
-        draw = imgui.get_window_draw_list()
-        x0, y0, x1, y1 = origin.x, origin.y, origin.x+width, origin.y+height
-        p = cy.palette()       # colours by role: the view follows the theme
-        draw.add_rect_filled((x0, y0), (x1, y1), p.bg0, imgui.get_style().frame_rounding)
+        """Host decoding/cache + the shared waveform, without moving playback on a drag."""
+        events={}
         if self.pyramid is None:
-            cy.centred_text(draw, (x0, y0), (x1, y1), p.textFaint, tr('Waveform not available yet: scan the Library'))
+            cy.empty_state(tr('Waveform not available yet: scan the Library'))
             return events
-        duration = self.pyramid.duration
-        start, stop = self.view
-        span = max(1e-6, stop-start)
-        to_x = lambda t: x0+(t-start)/span*width
-        to_t = lambda x: start+(x-x0)/width*span
-        mouse = imgui.get_mouse_pos()
-        io = imgui.get_io()
-        # -- zoom / pan ---------------------------------------------------------
-        if hovered and io.mouse_wheel != 0:
-            if io.key_shift: shift = -io.mouse_wheel*span*0.15
-            else:
-                factor = 0.8 if io.mouse_wheel > 0 else 1.25
-                minimum = 64/self.pyramid.sample_rate       # never closer than 64 samples across the view
-                new_span = float(np.clip(span*factor, minimum, duration))
-                anchor = to_t(mouse.x); ratio = (mouse.x-x0)/width
-                start, stop = anchor-ratio*new_span, anchor+(1-ratio)*new_span; shift = 0.0
-            start, stop = start+shift, stop+shift
-        if hovered and imgui.is_mouse_dragging(imgui.MouseButton_.middle):
-            delta = -io.mouse_delta.x/width*span; start, stop = start+delta, stop+delta
-        if start < 0: start, stop = 0.0, stop-start
-        if stop > duration: start, stop = max(0.0, start-(stop-duration)), duration
-        self.view = (start, stop); span = max(1e-6, stop-start)
-        # -- selection / seek ------------------------------------------------------
-        if hovered and imgui.is_mouse_double_clicked(imgui.MouseButton_.left):
-            player.selection = None; events['selection'] = None
-        elif hovered and imgui.is_mouse_clicked(imgui.MouseButton_.left):
-            self.drag_start, self.dragged = float(np.clip(to_t(mouse.x), 0, duration)), False
-        if self.drag_start is not None and active and imgui.is_mouse_dragging(imgui.MouseButton_.left, 4.0):
-            self.dragged = True
-            player.selection = tuple(sorted((self.drag_start, float(np.clip(to_t(mouse.x), 0, duration)))))
-        if self.drag_start is not None and imgui.is_mouse_released(imgui.MouseButton_.left):
-            if self.dragged: events['selection'] = player.selection      # a drag selects, a plain click seeks
-            else: events['seek'] = self.drag_start
-            self.drag_start = None
-        # -- bands: matched segment, selection ---------------------------------------
+        width=max(cy.dp(64),imgui.get_content_region_avail().x)
+        origin=imgui.get_cursor_screen_pos()
+        duration=self.pyramid.duration
+        coverage=Range(*self.view)
+        low,high=self._peaks(player,width)
+        self.state.view=coverage
+        if not self.state.selecting:
+            self.state.selection=Range(*(player.selection or (0.,0.)))
+        was_selecting=self.state.selecting
+        result=waveform('##waveform',self.state,[list(zip(low,high))],coverage,
+                        player.position if player.path else 0.,(width,height))
+        io=imgui.get_io()
+        hovered=imgui.is_item_hovered()
+        if result['seek'] is not None:
+            self._pending_seek=max(0.,min(duration,result['seek']))
+            self._selection_before=player.selection
+        if self.state.selecting or was_selecting:
+            a,b=self.state.selection.minimum,self.state.selection.maximum
+            dragged=abs(b-a)/max(1e-9,self.state.view.span)*width>=cy.dp(4)
+            if dragged:
+                player.selection=(max(0.,min(duration,a)),max(0.,min(duration,b)))
+            if not self.state.selecting:
+                if dragged: events['selection']=player.selection
+                elif self._pending_seek is not None:
+                    events['seek']=self._pending_seek
+                    player.selection=self._selection_before
+                self._pending_seek=None
+        if hovered and imgui.is_mouse_double_clicked(0):
+            self.state.selection=Range(0,0)
+            player.selection=None;events['selection']=None;self._pending_seek=None
+        # Keep the host's finite file bounds and sample-detail lower limit.
+        span=min(duration,max(64/self.pyramid.sample_rate,self.state.view.span))
+        start=max(0.,min(duration-span,self.state.view.minimum))
+        self.view=(start,start+max(1e-9,span))
+        # Search-result marker and timecode are application metadata overlays.
+        draw=imgui.get_window_draw_list();p=cy.palette()
+        x=lambda t:origin.x+(t-self.state.view.minimum)/self.state.view.span*width
+        draw.push_clip_rect(origin,(origin.x+width,origin.y+height),True)
         if self.marker:
-            draw.add_rect_filled((max(x0, to_x(self.marker[0])), y0), (min(x1, to_x(self.marker[1])), y1), cy.alpha(p.warning, 0.16))
-        if player.selection:
-            a, b = player.selection
-            draw.add_rect_filled((max(x0, to_x(a)), y0), (min(x1, to_x(b)), y1), p.selection)
-            draw.add_rect((max(x0, to_x(a)), y0), (min(x1, to_x(b)), y1), p.accent, rounding=0.0, thickness=cy.dp(1.5))
-        # -- waveform: played part in another colour ------------------------------------
-        low, high = self._peaks(player, width)
-        middle, half = (y0+y1)/2, height/2-cy.dp(4)
-        draw.add_line((x0, middle), (x1, middle), p.gridStrong)
-        playhead = player.position if player.path else 0.0
-        head_x = to_x(playhead)
-        played, ahead = p.accent, p.info
-        count = len(low)
-        if count:
-            step = width/count
-            for index in range(count):
-                x = x0+(index+0.5)*step
-                top, bottom = middle-float(high[index])*half, middle-float(low[index])*half
-                if bottom-top < 1.0: bottom = top+1.0
-                draw.add_line((x, top), (x, bottom), played if x <= head_x else ahead, max(1.0, step))
-        if x0 <= head_x <= x1:
-            draw.add_line((head_x, y0), (head_x, y1), p.text, cy.dp(1.5))
-            draw.add_triangle_filled((head_x-cy.dp(5), y0), (head_x+cy.dp(5), y0), (head_x, y0+cy.dp(7)), p.text)
-        # -- time ruler and readouts --------------------------------------------------------
-        ticks = max(2, int(width//cy.dp(120)))
-        label = imgui.calc_text_size('00:00.000')
+            draw.add_rect_filled((x(self.marker[0]),origin.y),(x(self.marker[1]),origin.y+height),cy.alpha(p.warning,.16))
+        draw.add_text((origin.x+cy.dp(6),origin.y+cy.dp(4)),p.text,clock(player.position if player.path else 0.)+' / '+clock(duration))
+        ticks=max(2,int(width//cy.dp(120)))
+        label_size=imgui.calc_text_size('00:00.000')
         for index in range(ticks+1):
-            t = start+span*index/ticks; x = to_x(t)
-            draw.add_line((x, y1-cy.dp(6)), (x, y1), p.lineStrong)
-            draw.add_text((min(x+cy.dp(3), x1-label.x-cy.dp(4)), y1-label.y-cy.dp(4)), p.textFaint, clock(t))
-        draw.add_text((x0+cy.dp(6), y0+cy.dp(4)), p.text, clock(playhead)+' / '+clock(duration))
-        if hovered: imgui.set_tooltip(clock(to_t(mouse.x)))
+            time=self.state.view.minimum+self.state.view.span*index/ticks
+            pixel=x(time)
+            draw.add_line((pixel,origin.y+height-cy.dp(6)),(pixel,origin.y+height),p.lineStrong)
+            draw.add_text((min(pixel+cy.dp(3),origin.x+width-label_size.x-cy.dp(4)),origin.y+height-label_size.y-cy.dp(4)),p.textFaint,clock(time))
+        draw.pop_clip_rect()
+        if hovered:cy.tooltip(clock(self.state.view.minimum+(io.mouse_pos.x-origin.x)/width*self.state.view.span))
         return events

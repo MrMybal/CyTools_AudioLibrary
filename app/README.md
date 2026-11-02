@@ -232,3 +232,9 @@ under the MIT licence: its text and the sources of every component are in `LICEN
 ## Application icon
 
 The logo source is assets/branding/logo.png. build_icon.ps1 derives the 16-256 px Windows ICO and assets/app_settings/icon.png for Hello ImGui. build_launcher.ps1 embeds the ICO in the launcher. branding.py selects assets independently of the working directory and assigns this Tool its own Windows taskbar identity.
+
+## Modular CyUI
+
+The standalone interface uses the pinned, selected CyUI 1.2 modules. See
+[the migration and validation notes](Docs/CyUIMigration.md) for replacements, retained host
+adaptations, source hashes and reproducible refresh instructions.

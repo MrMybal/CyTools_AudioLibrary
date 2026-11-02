@@ -6,7 +6,7 @@ from pathlib import Path
 from imgui_bundle import imgui as ig
 from ui_common import imgui, tr
 
-import cyui as cy
+import ui_style as cy
 from audiolib import installer, registry
 
 STATE_TONE = {'Installed': 'success', 'Downloading': 'warning', 'Verifying': 'warning', 'Partial': 'warning', 'Interrupted': 'warning',

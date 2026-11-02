@@ -9882,5 +9882,13 @@
 "sounds dropped as copies": {
 "en": "sounds dropped as copies",
 "fr": "sons déposés en copie"
+},
+"Structured log": {
+"en": "Structured log",
+"fr": "Journal structuré"
+},
+"Selectable text": {
+"en": "Selectable text",
+"fr": "Texte sélectionnable"
 }
 }

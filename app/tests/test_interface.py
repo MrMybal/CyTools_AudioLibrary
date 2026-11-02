@@ -21,13 +21,15 @@ class Interface(unittest.TestCase):
             values = ui_common.Preferences(path).values
             self.assertEqual(values['theme'], new)
             self.assertEqual((values['language'], values['font_scale'], values['density']), ('fr', 1.2, 'compact'), 'other preferences are kept')
-        self.assertEqual(set(ui_common.THEMES), set(cyui.THEMES))
+        self.assertEqual(set(ui_common.THEMES), {entry[0] for entry in cyui.THEMES})
 
     def test_every_palette_has_every_role(self):
-        for key, (name, light, palette) in cyui.THEMES.items():
-            for role in cyui.ROLES: self.assertIsInstance(getattr(palette, role), int, (key, role))
+        for key, name, values, light in cyui.THEMES:
+            from types import SimpleNamespace
+            palette=SimpleNamespace(**values)
+            for role in cyui.FIELDS: self.assertIsInstance(getattr(palette, role), int, (key, role))
             self.assertEqual(light, key == 'light-grey')
-            self.assertGreater(abs(cyui.contrast_text(palette.bg1)-palette.text), 0, 'text is not drawn in the colour of its ground')
+            self.assertGreater(abs(cyui.contrast_text(palette.bg1)-palette.bg1), 0, 'text is not drawn in the colour of its ground')
 
     def test_colour_helpers_keep_imgui_packing(self):
         self.assertEqual(cyui.rgb(0x112233), 0xff332211)

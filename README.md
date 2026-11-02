@@ -130,3 +130,13 @@ The licence covers the application code. It is built on [CyToolsCore](https://gi
 0.10.1, under the MIT licence. [LICENCES/](LICENCES/) holds the full text of the SDK licence and the sources of
 every component; the engines and model weights keep their own terms, listed in the Options tab and in
 [app/licenses.json](app/licenses.json).
+
+## Modular CyUI
+
+The standalone interface uses the pinned, selected CyUI 1.2 modules. See
+[the migration and validation notes](app/Docs/CyUIMigration.md) for replacements, retained host
+adaptations, source hashes and reproducible refresh instructions.
+
+CyUI: MIT. Full license: LICENCES/CyUI-MIT.txt.
+Upstream license: https://github.com/MrMybal/CyUI/blob/main/LICENSE
+Repository: https://github.com/MrMybal/CyUI (currently private; no upstream access required to run this application).

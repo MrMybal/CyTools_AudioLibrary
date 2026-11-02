@@ -274,6 +274,8 @@ def raw():
 def tr(text):
     if not isinstance(text, str) or not text: return text
     language = preferences.values['language']
+    from cyui_modules.locale import set_locale
+    set_locale(language)
     translation = catalog.get(text) or _normalized.get(normalized(text))
     if translation: return translation.get(language, translation.get('en', text))
     # Only registered display fragments are substituted. No remote translator,
@@ -357,7 +359,7 @@ class ImGuiFacade:
 imgui = ImGuiFacade()
 
 def apply_style():
-    import cyui
+    import ui_style as cyui
     cyui.apply(preferences.values['theme'], preferences.values['density'], preferences.values['font_scale'])
 
 def license_records():
@@ -391,7 +393,7 @@ def dependency_records():
 def options_panel():
     global _licenses
     native=raw()
-    import cyui
+    import ui_style as cyui
     cyui.heading('Interface preferences',2)
     if cyui.begin_properties('##interface-preferences',180):
         cyui.property('Language')
@@ -480,7 +482,7 @@ def run(runner):
     runner.app_window_params.window_title=tr(runner.app_window_params.window_title)
     source=Path(sys.modules['__main__'].__file__).read_text(encoding='utf-8-sig')
     has_tabs='begin_tab_bar(' in source
-    import cyui
+    import ui_style as cyui
     cyui.configure(preferences.values['theme'], preferences.values['density'])     # before the context: the fonts are sized from the density
     runner.callbacks.load_additional_fonts=cyui.load_fonts
     def draw():

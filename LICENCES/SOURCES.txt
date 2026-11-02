@@ -76,3 +76,13 @@ Some model licences restrict commercial use or require a personal acceptance; th
 application never accepts a licence on the user's behalf. The MIT licence of the SDK
 and the GPL licence of this application do not change the licence of any of these
 components.
+
+CyUI 1.2.0 (MIT)
+Repository: https://github.com/MrMybal/CyUI
+Revision: ff023e646c6a3038b3dfbfd53f6d2b4a2f5955e3
+Selected Python modules and SHA-256: app/cyui-source.json
+Full license: LICENCES/CyUI-MIT.txt
+
+CyUI: MIT. Full license: LICENCES/CyUI-MIT.txt.
+Upstream license: https://github.com/MrMybal/CyUI/blob/main/LICENSE
+Repository: https://github.com/MrMybal/CyUI (currently private; no upstream access required to run this application).

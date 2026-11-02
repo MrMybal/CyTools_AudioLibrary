@@ -74,5 +74,13 @@
     "license": "GPL-3.0-only",
     "url": "https://github.com/MrMybal/CyTools_AudioLibrary/blob/main/LICENSE",
     "notes": "Copyright (C) 2026 Cyberalien. The full text is the LICENSE file at the root of this Tool. It covers the application code only: the SDK is under MIT, and the engines and model weights listed here keep their own licences; the non-commercial ones are downloaded by each user, never distributed with this Tool."
+  },
+  {
+    "kind": "Interface library",
+    "name": "CyUI 1.2.0 (ff023e6)",
+    "license": "MIT",
+    "url": "https://github.com/MrMybal/CyUI/blob/main/LICENSE",
+    "notes": "MIT license text is included in LICENCES/CyUI-MIT.txt. The upstream repository is currently private; installed applications do not need access to it.",
+    "repository": "https://github.com/MrMybal/CyUI"
   }
 ]

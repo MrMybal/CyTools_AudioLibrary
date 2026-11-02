@@ -18,7 +18,7 @@ sys.path.insert(0, str(APP)); sys.path.insert(0, str(APP/'gui'))
 from imgui_bundle import hello_imgui, imgui as ig, portable_file_dialogs as pfd
 from ui_common import configure_generation, imgui, run, tr
 
-import cyui as cy
+import ui_style as cy
 from audiolib.database import list_ids, user_tag_counts
 from audiolib.library import flatten_taxonomy, list_libraries
 from audiolib.waveform import Pyramid, waveform_path
@@ -1081,11 +1081,16 @@ class App:
         bottom = cy.dp(330)
         self.draw_table(max(cy.dp(120), ig.get_content_region_avail().y-bottom-cy.dp(8)))
         cy.space(2)
-        if cy.begin_card('##player', None, -1e-6, width=max(cy.dp(300), ig.get_content_region_avail().x*0.58)): self.draw_player()
-        cy.end_card()
-        ig.same_line()
-        if cy.begin_card('##details-panel', None, -1e-6): self.draw_details()
-        cy.end_card()
+        if ig.begin_table('##library-bottom',2,ig.TableFlags_.sizing_stretch_prop):
+            ig.table_setup_column('##playback',init_width_or_weight=.58)
+            ig.table_setup_column('##details',init_width_or_weight=.42)
+            ig.table_next_column()
+            if cy.begin_card('##player', None, -1e-6): self.draw_player()
+            cy.end_card()
+            ig.table_next_column()
+            if cy.begin_card('##details-panel', None, -1e-6): self.draw_details()
+            cy.end_card()
+            ig.end_table()
         ig.end_child()
 
     def draw(self):
