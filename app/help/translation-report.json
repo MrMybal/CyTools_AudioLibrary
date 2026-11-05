@@ -1,0 +1,129 @@
+{
+  "defaultLocale": "en",
+  "missing": [
+    {
+      "id": "guide-app-docs-audiolibrary-validation",
+      "title": "Validation report — CyTools_AudioLibrary 0.1.0 (2026-09-21)",
+      "locale": "fr",
+      "expectedRevision": "4a3ca7a1f89d6882"
+    },
+    {
+      "id": "guide-app-docs-capabilitycoverage",
+      "title": "Capability coverage — CyTools_AudioLibrary 0.1.0",
+      "locale": "fr",
+      "expectedRevision": "df0ad782e7b20cb5"
+    },
+    {
+      "id": "guide-app-docs-cyuimigration",
+      "title": "Modular CyUI integration",
+      "locale": "fr",
+      "expectedRevision": "18b1209e51a8d4fd"
+    },
+    {
+      "id": "guide-app-docs-updates",
+      "title": "Updates: three separate streams",
+      "locale": "fr",
+      "expectedRevision": "d48df2a604cd8b22"
+    },
+    {
+      "id": "guide-app-documentation-readme",
+      "title": "Local documentation (CyDoc)",
+      "locale": "fr",
+      "expectedRevision": "7813cec244e6cdf6"
+    },
+    {
+      "id": "guide-app-documentation-validation",
+      "title": "CyDoc migration validation",
+      "locale": "fr",
+      "expectedRevision": "e4b1dd22ce7c3655"
+    },
+    {
+      "id": "guide-app-readme",
+      "title": "CyTools_AudioLibrary — developer and integrator guide",
+      "locale": "fr",
+      "expectedRevision": "ce1fffc996599718"
+    },
+    {
+      "id": "guide-readme",
+      "title": "CyTools_AudioLibrary",
+      "locale": "fr",
+      "expectedRevision": "90d1f9c1803d3b1e"
+    },
+    {
+      "id": "licenses",
+      "title": "Licenses",
+      "locale": "fr",
+      "expectedRevision": "c99592d9fc6b7fdf"
+    },
+    {
+      "id": "migration-notes",
+      "title": "Migration notes",
+      "locale": "fr",
+      "expectedRevision": "32c69573c2dd226f"
+    },
+    {
+      "id": "reference-app-licenses-json",
+      "title": "app/licenses.json",
+      "locale": "fr",
+      "expectedRevision": "78697825867f40c7"
+    },
+    {
+      "id": "reference-licences-cydoc-mit-txt",
+      "title": "LICENCES/CyDoc-MIT.txt",
+      "locale": "fr",
+      "expectedRevision": "1513dc9b71717581"
+    },
+    {
+      "id": "reference-licences-cytoolscore-mit-txt",
+      "title": "LICENCES/CyToolsCore-MIT.txt",
+      "locale": "fr",
+      "expectedRevision": "d604437eff19de43"
+    },
+    {
+      "id": "reference-licences-cyui-mit-txt",
+      "title": "LICENCES/CyUI-MIT.txt",
+      "locale": "fr",
+      "expectedRevision": "d4ddcf0e401b8515"
+    },
+    {
+      "id": "reference-licences-sources-txt",
+      "title": "LICENCES/SOURCES.txt",
+      "locale": "fr",
+      "expectedRevision": "01a890156ad485f5"
+    },
+    {
+      "id": "reference-license",
+      "title": "LICENSE",
+      "locale": "fr",
+      "expectedRevision": "aaa62e7f14d30e88"
+    }
+  ],
+  "outdated": [],
+  "untracked": [
+    {
+      "id": "guide-lisez-moi",
+      "title": "CyTools_AudioLibrary",
+      "locale": "fr",
+      "expectedRevision": "828cf10e8291259c"
+    },
+    {
+      "id": "python-library-view-library-view",
+      "title": "library_view",
+      "locale": "fr",
+      "expectedRevision": "b9579e401c63"
+    },
+    {
+      "id": "python-exclusive-exclusive",
+      "title": "exclusive",
+      "locale": "fr",
+      "expectedRevision": "9bb6533703f5"
+    },
+    {
+      "id": "python-create-runtime-create-runtime",
+      "title": "create_runtime",
+      "locale": "fr",
+      "expectedRevision": "2cee509e64a7"
+    }
+  ],
+  "current": 39
+}

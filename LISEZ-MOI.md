@@ -122,3 +122,8 @@ CLI, MCP et commandes développeur : `app/README.md`.
 
 Maintenance : Cyberalien. Licence : GPL-3.0-only, texte complet dans `LICENSE`. Les moteurs et les poids des modèles
 gardent leurs propres licences, listées dans l'onglet *Options*.
+
+
+## Documentation locale
+
+Dans l’application, ouvrir **Options → Ouvrir le manuel local (F1)** ou appuyer sur **F1**. Le lecteur hors ligne complet est livré dans [`app/help/index.html`](app/help/index.html). [Régénérer le manuel](app/documentation/README.md).

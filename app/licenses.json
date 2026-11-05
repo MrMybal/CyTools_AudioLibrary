@@ -82,5 +82,12 @@
     "url": "https://github.com/MrMybal/CyUI/blob/main/LICENSE",
     "notes": "MIT license text is included in LICENCES/CyUI-MIT.txt. The upstream repository is currently private; installed applications do not need access to it.",
     "repository": "https://github.com/MrMybal/CyUI"
+  },
+  {
+    "kind": "Library",
+    "name": "CyDoc 0.1.0",
+    "license": "MIT",
+    "url": "https://github.com/MrMybal/CyDoc",
+    "notes": "Local documentation reader; full license in LICENCES/CyDoc-MIT.txt. Build dependencies are not required for reading."
   }
 ]

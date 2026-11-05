@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "documents": [
+    {
+      "source": "LISEZ-MOI.md",
+      "id": "guide-lisez-moi",
+      "locale": "fr",
+      "sha256": "53835f2bb2e30c61f056953e6e2061aa41af1787836a7ebf6be48365e5db73ac"
+    },
+    {
+      "source": "README.md",
+      "id": "guide-readme",
+      "locale": "en",
+      "sha256": "0c18339023e7969bb6bee42876a765ea8116ab52df7897c7b0fc6b2b4f8edc63"
+    },
+    {
+      "source": "app/Docs/AudioLibrary-Validation.md",
+      "id": "guide-app-docs-audiolibrary-validation",
+      "locale": "en",
+      "sha256": "d7ddadfc4cf0a4b04f8fe80ea697345efb9f0a94307f586947afe18850bdda4f"
+    },
+    {
+      "source": "app/Docs/CapabilityCoverage.md",
+      "id": "guide-app-docs-capabilitycoverage",
+      "locale": "en",
+      "sha256": "d1d4d946816284c19cf283934844fd5ef210b12e21887130712d467054ca4c8c"
+    },
+    {
+      "source": "app/Docs/CyUIMigration.md",
+      "id": "guide-app-docs-cyuimigration",
+      "locale": "en",
+      "sha256": "d5a0bde4b2b2797b6f79bd1415ebc2542806b1cf47635729b670da909085fbf0"
+    },
+    {
+      "source": "app/Docs/UPDATES.md",
+      "id": "guide-app-docs-updates",
+      "locale": "en",
+      "sha256": "f9370c2175594133c6dce03b403054957d3fd6db35cf31113b7ce766662df1c7"
+    },
+    {
+      "source": "app/README.md",
+      "id": "guide-app-readme",
+      "locale": "en",
+      "sha256": "ffc736f649777bca992d4a1e1aa4d5afb0ab1866135b2ab76f14b682b54166f7"
+    },
+    {
+      "source": "app/documentation/README.md",
+      "id": "guide-app-documentation-readme",
+      "locale": "en",
+      "sha256": "aebad11f76f73968b71d99a280f47c556fd97038915ae0992b784e5b205616da"
+    },
+    {
+      "source": "app/documentation/VALIDATION.md",
+      "id": "guide-app-documentation-validation",
+      "locale": "en",
+      "sha256": "54bf1d94dab3ac58e5af64fb1ebf956ed379a22cb0502066f782e5ef1f409411"
+    }
+  ],
+  "issues": [],
+  "modules": [
+    "image"
+  ],
+  "sourceIndex": [
+    "app/tool.py"
+  ],
+  "platforms": {
+    "Windows": "See validation report",
+    "Linux": "Not executed",
+    "macOS": "Not executed"
+  }
+}

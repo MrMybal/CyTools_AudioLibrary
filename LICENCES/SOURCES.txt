@@ -86,3 +86,7 @@ Full license: LICENCES/CyUI-MIT.txt
 CyUI: MIT. Full license: LICENCES/CyUI-MIT.txt.
 Upstream license: https://github.com/MrMybal/CyUI/blob/main/LICENSE
 Repository: https://github.com/MrMybal/CyUI (currently private; no upstream access required to run this application).
+
+CyDoc 0.1.0 (MIT)
+https://github.com/MrMybal/CyDoc
+Revision: 774f2a7eabf7dd181a98ffc5add115b580b67f42

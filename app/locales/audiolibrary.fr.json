@@ -434,5 +434,9 @@
  "user": "utilisateur",
  "very short name": "nom très court",
  "whole clip": "clip entier",
- "without category or tag: analyze them first": "sans catégorie ni tag : analysez-les d'abord"
+ "without category or tag: analyze them first": "sans catégorie ni tag : analysez-les d'abord",
+ "Documentation": "Documentation",
+ "Open local manual (F1)": "Ouvrir le manuel local (F1)",
+ "Help for current workspace": "Aide du panneau actuel",
+ "The manual opens locally in your browser and works offline.": "Le manuel s’ouvre localement dans le navigateur et fonctionne hors ligne."
 }
