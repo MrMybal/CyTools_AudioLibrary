@@ -26,10 +26,16 @@
       "expectedRevision": "d48df2a604cd8b22"
     },
     {
+      "id": "guide-app-documentation-publishing",
+      "title": "Publishing the CyDoc reader",
+      "locale": "fr",
+      "expectedRevision": "cf24b9cad95ae730"
+    },
+    {
       "id": "guide-app-documentation-readme",
       "title": "Local documentation (CyDoc)",
       "locale": "fr",
-      "expectedRevision": "7813cec244e6cdf6"
+      "expectedRevision": "3e112061aafe36e0"
     },
     {
       "id": "guide-app-documentation-validation",
@@ -41,13 +47,13 @@
       "id": "guide-app-readme",
       "title": "CyTools_AudioLibrary — developer and integrator guide",
       "locale": "fr",
-      "expectedRevision": "ce1fffc996599718"
+      "expectedRevision": "d4ebe27c8409accb"
     },
     {
       "id": "guide-readme",
       "title": "CyTools_AudioLibrary",
       "locale": "fr",
-      "expectedRevision": "90d1f9c1803d3b1e"
+      "expectedRevision": "bb7c6e5a2ab60eef"
     },
     {
       "id": "licenses",

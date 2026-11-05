@@ -11,3 +11,4 @@
 *.exe binary
 *.whl binary
 *.zip binary
+.github export-ignore

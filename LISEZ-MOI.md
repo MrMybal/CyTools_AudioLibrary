@@ -1,5 +1,7 @@
 # CyTools_AudioLibrary
 
+[Documentation](https://mrmybal.github.io/CyTools_AudioLibrary/#/fr/overview) · [English](https://mrmybal.github.io/CyTools_AudioLibrary/#/en/overview)
+
 Bibliothèque audio locale intelligente : gestion, analyse, catégorisation et recherche en langage
 naturel dans de grandes collections de sons. Vos fichiers ne sont jamais déplacés, copiés ni modifiés
 (sauf si vous utilisez vous-même l'onglet *Outils fichiers*, voir plus bas) :
@@ -126,4 +128,4 @@ gardent leurs propres licences, listées dans l'onglet *Options*.
 
 ## Documentation locale
 
-Dans l’application, ouvrir **Options → Ouvrir le manuel local (F1)** ou appuyer sur **F1**. Le lecteur hors ligne complet est livré dans [`app/help/index.html`](app/help/index.html). [Régénérer le manuel](app/documentation/README.md).
+Dans l’application, ouvrir **Options → Ouvrir le manuel local (F1)** ou appuyer sur **F1**. Le lecteur hors ligne complet est livré dans `app/help/index.html`. [Régénérer le manuel](app/documentation/README.md).

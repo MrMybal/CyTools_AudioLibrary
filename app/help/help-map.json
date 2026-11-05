@@ -8,6 +8,7 @@
     "app/Docs/CyUIMigration.md": "guide-app-docs-cyuimigration",
     "app/Docs/UPDATES.md": "guide-app-docs-updates",
     "app/README.md": "guide-app-readme",
+    "app/documentation/PUBLISHING.md": "guide-app-documentation-publishing",
     "app/documentation/README.md": "guide-app-documentation-readme",
     "app/documentation/VALIDATION.md": "guide-app-documentation-validation"
   },
@@ -48,9 +49,19 @@
       ],
       "locale": "en"
     },
+    "guide-app-documentation-publishing": {
+      "headings": [
+        "publishing-the-cydoc-reader",
+        "regenerate-and-stage",
+        "automatic-deployment",
+        "embedded-help"
+      ],
+      "locale": "en"
+    },
     "guide-app-documentation-readme": {
       "headings": [
-        "local-documentation-cydoc"
+        "local-documentation-cydoc",
+        "web-documentation"
       ],
       "locale": "en"
     },
