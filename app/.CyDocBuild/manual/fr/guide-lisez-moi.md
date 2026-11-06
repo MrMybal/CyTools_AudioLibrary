@@ -1,0 +1,65 @@
+---
+id: guide-lisez-moi
+title: Guide d’utilisation
+description: Utilisez l’application étape par étape.
+section: Guide
+order: 10
+parent: overview
+sourceRevision: 31a03a357becd790
+---
+
+## CyTools_AudioLibrary {#cytools-audiolibrary}
+
+Bibliothèque audio locale intelligente : gestion, analyse, catégorisation et recherche en langage naturel dans de grandes collections de sons. Vos fichiers ne sont jamais déplacés, copiés ni modifiés (sauf si vous utilisez vous-même l'onglet *Outils fichiers*, voir plus bas) : une bibliothèque *référence* des dossiers, et tout ce que le Tool calcule (base, waveforms, embeddings, index) va dans un cache que vous placez où vous voulez.
+
+## Démarrer {#demarrer}
+
+0. **Depuis une release GitHub** : téléchargez `CyTools_AudioLibrary-<version>-windows-x64.zip`, décompressez-le là où l'application doit vivre (elle crée son environnement privé dans ce dossier), puis, une seule fois, ouvrez PowerShell dans le dossier décompressé et lancez : `powershell -ExecutionPolicy Bypass -File app\Install.ps1` Il faut Python 3.11 ou plus récent et git. Les deux autres fichiers de la release (`cytools-app.zip` et son `.sha256`) servent à l'onglet *Mises à jour* : ne les décompressez pas à la main.
+1. Double-cliquez sur **CyTools_AudioLibrary.exe** (Linux : `./CyTools_AudioLibrary.sh`, non testé). Si un message indique que le runtime privé est absent, c'est que l'étape 0 n'a pas été faite.
+2. Onglet **Installation** : installez le *moteur IA* (PyTorch privé, plusieurs Go), puis les modèles voulus. L'assistant de recherche *CySearchAssist-CLAP-1.5B* (1,6 Go, par défaut) ou sa version *0.5B* (0,5 Go, plus légère) vient de Hugging Face, comme dans CyMetaSound. Pour un modèle dont la licence l'exige, lisez-la et cochez vous-même la case d'acceptation : le Tool ne l'accepte jamais à votre place.
+3. Onglet **Bibliothèque** : *Nouvelle bibliothèque* (nom + dossier du cache, par ex. `G:\CyToolsCache\AudioLibrary`), *Ajouter un dossier* autant de fois que nécessaire, *Tout rescanner*.
+4. Cochez les modèles à utiliser (panneau *Modèles*), puis *Analyser la bibliothèque*. L'onglet **File d'analyse** montre l'avancement et permet Pause / Reprendre / Annuler / Réessayer les échecs.
+5. Recherchez en langage naturel, dans n'importe quelle langue : « gros impact métallique très lourd avec une longue réverbération ». Cliquez un résultat : waveform, lecture immédiate, tête de lecture, informations, tags, catégories, score de chaque modèle et segment correspondant.
+
+## Vos tags, catégories et notes, sur un son, une sélection ou un dossier {#vos-tags-categories-et-notes-sur-un-son-une-selection-ou-un-dossier}
+
+* **Un son** : onglet *Tags et catégories* sous la waveform. Ajoutez ou retirez vos tags, choisissez une catégorie puis *Ajouter la catégorie* ou *Retirer la catégorie*, une note de 0 à 5, une description d'une ligne et des notes libres. Description et notes s'enregistrent seules, sans bouton.
+* **Plusieurs sons** : Ctrl+clic pour ajouter un son à la sélection, Maj+clic pour prendre toute une plage, Ctrl+A pour toute la liste, Échap pour vider. L'onglet devient *Sélection (N)* et chaque modification s'applique à tous : tags (chaque tag déjà présent affiche combien de sons le portent, et se retire de tous d'un clic), catégorie, note, favori, une ligne ajoutée aux notes de chacun sans effacer l'existant, et *Analyser ces sons*.
+* **Un dossier** : panneau gauche, la flèche d'un dossier ouvre ses sous-dossiers avec leur nombre de sons. Un clic affiche ce dossier et tout ce qu'il contient ; clic droit : *Sélectionner tous les sons de ce dossier*, *Analyser ce dossier*, *Ouvrir le dossier*. Sur un son de la liste, clic droit > *Afficher seulement ce dossier*.
+
+Tout cela reste dans la base de la bibliothèque : vos fichiers audio ne sont pas modifiés. Pour renommer ou écrire les tags dans les fichiers eux-mêmes, onglet *Outils fichiers*, choix *Les sons sélectionnés*.
+
+## Sortir des sons de la bibliothèque : bundle et glisser-déposer {#sortir-des-sons-de-la-bibliotheque-bundle-et-glisser-deposer}
+
+* **Créer un bundle** : onglet *Sélection* ou clic droit sur un son, *Créer un bundle…*, puis choisissez un dossier. Les sons y sont **copiés**, à plat ou en gardant leurs dossiers. Les originaux ne sont ni déplacés ni modifiés, et rien n'est écrasé : un fichier identique déjà présent est laissé tel quel, un fichier différent du même nom reçoit un nom numéroté. `bundle.json` liste chaque fichier avec sa source, ses tags et ses catégories ; refaire un bundle dans le même dossier le complète. Décochez `bundle.json` si vous importez ensuite tout le dossier dans un moteur de jeu. Un dossier situé dans une de vos bibliothèques ou dans un cache est refusé : les copies y seraient indexées.
+* **Glisser-déposer** : faites glisser un son, ou la sélection, hors de la fenêtre, vers l'Explorateur pour en faire des copies, ou vers le *Content Browser* d'Unreal Engine pour les importer dans le projet. Seule la copie est proposée : un glisser ne peut jamais déplacer ni effacer vos originaux.
+
+## Mise à jour automatique des bibliothèques {#mise-a-jour-automatique-des-bibliotheques}
+
+Par défaut, l'application vérifie en arrière-plan (au démarrage puis toutes les 5 minutes) si des fichiers ont été ajoutés, modifiés ou retirés dans vos dossiers, et met la bibliothèque à jour toute seule, y compris l'analyse IA des nouveaux sons. Panneau gauche > *Mise à jour automatique* : *Mettre à jour automatiquement*, *Me demander d'abord* (un bandeau apparaît avec un bouton *Mettre à jour maintenant*) ou *Désactivée*. Les fichiers disparus sont masqués, jamais supprimés de la base : s'ils reviennent ou ont été déplacés, ils retrouvent leurs tags.
+
+## Outils fichiers (modifient vos fichiers, uniquement à votre demande) {#outils-fichiers-modifient-vos-fichiers-uniquement-a-votre-demande}
+
+* **Renommer les fichiers mal nommés** (`sound_01`, `ZOOM0012`...) : le Tool propose un nom à partir de la catégorie et des tags ; vous cochez, corrigez si besoin, confirmez. Rien n'est écrasé, *Annuler le dernier renommage* existe, et les tags et analyses suivent le fichier.
+* **Écrire les tags dans les fichiers** (l'équivalent audio de l'EXIF : ID3, Vorbis, MP4) pour que d'autres logiciels les lisent. L'audio est vérifié identique avant de remplacer l'original, et une sauvegarde est gardée dans le cache.
+
+## Apparence {#apparence}
+
+Onglet *Options* : cinq thèmes (*Gris moyen*, par défaut, *Gris clair*, *Nuit ambre*, *Violet*, *Bleu marine*), densité *Compacte* ou *Confortable* et taille du texte. Le filtre actif, le dossier affiché et la sélection apparaissent en pastilles au-dessus de la liste : un clic sur la croix les retire. La barre du bas résume la bibliothèque et les tâches en cours.
+
+## Raccourcis {#raccourcis}
+
+Espace : lecture/pause · Haut/Bas : son précédent/suivant (Maj+Haut/Bas étend la sélection) · Ctrl+clic, Maj+clic, Ctrl+A : sélection multiple · Échap : vider la sélection · clic droit sur un son : *Trouver des sons similaires* · sur la waveform : molette = zoom, Maj+molette = défilement, clic = positionner, glisser = sélectionner (puis *Boucler la sélection* ou *Trouver des sons similaires à la sélection*).
+
+Clic sur l'en-tête d'une colonne : trier la liste par nom, durée, type, catégorie, tags, dossier, état d'analyse et, dans les résultats d'une recherche, par score final ou par score d'un modèle ; un second clic inverse l'ordre. Dans les résultats, un troisième clic revient à l'ordre de pertinence de la recherche. Le son sélectionné reste sélectionné quand l'ordre change.
+
+## Où sont mes données ? {#ou-sont-mes-donnees}
+
+| Dossier | Contenu |
+|---|---|
+| `data/libraries` | définition portable de chaque bibliothèque (dossiers, cache, modèles, taxonomie) |
+| cache choisi (défaut `data/cache`) | base, waveforms, embeddings et index, **par modèle et par version** |
+| `data/models` | poids des modèles installés |
+| `app/` | application (remplaçable par une mise à jour) · `runtime/` : Python privé, moteur IA, mises à jour |
+
+Changer de modèle ou de version n'efface rien : les anciennes données restent jusqu'à ce que vous les supprimiez (onglet *File d'analyse*). Une réanalyse ne supprime jamais vos tags ni vos catégories.

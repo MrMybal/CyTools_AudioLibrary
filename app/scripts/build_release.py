@@ -47,7 +47,7 @@ def tracked_files():
                                      capture_output=True, text=True, encoding='utf-8', check=True).stdout
         finally:
             shutil.rmtree(scratch, ignore_errors=True)
-    files = sorted({line.strip() for line in listing.splitlines() if line.strip()})
+    files = sorted({line.strip() for line in listing.splitlines() if line.strip() and (ROOT/line.strip()).is_file() and not any(part in {'.CyDocBuild', '.CyDocExport', '.CyDocExport.previous', 'node_modules'} for part in Path(line.strip()).parts)})
     if not files: raise SystemExit('Git returned no file under app/: is git installed and the .gitignore present?')
     return files
 
@@ -56,6 +56,7 @@ def check_selection(files):
     problems = []
     for name in files:
         path = Path(name)
+        if any(part in {'.CyDocBuild', '.CyDocExport', '.CyDocExport.previous', 'node_modules'} for part in path.parts):problems.append('private documentation build workspace: '+name)
         if path.name in NEVER_SHIPPED_NAMES or path.suffix.lower() in NEVER_SHIPPED_SUFFIXES:
             problems.append('must not be shipped: '+name)
         if (ROOT/name).is_symlink(): problems.append('symbolic link: '+name)
@@ -111,6 +112,6 @@ def main():
 if __name__ == '__main__':
     import subprocess as _doc_subprocess, sys as _doc_sys
     from pathlib import Path as _DocPath
-    _doc_build = _DocPath(__file__).resolve().parents[1] / 'documentation' / 'build.py'
+    _doc_build = _DocPath(__file__).resolve().parents[1] / '.CyDocBuild' / 'build.py'
     _doc_subprocess.run([_doc_sys.executable, str(_doc_build), '--check'], check=True)
     main()

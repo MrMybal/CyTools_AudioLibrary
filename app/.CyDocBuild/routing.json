@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "legacyPaths": {
+    "LISEZ-MOI.md": "guide-lisez-moi",
+    "README.md": "guide-readme",
+    "app/Docs/AudioLibrary-Validation.md": "guide-app-docs-audiolibrary-validation",
+    "app/Docs/CapabilityCoverage.md": "guide-app-docs-capabilitycoverage",
+    "app/Docs/CyUIMigration.md": "guide-app-docs-cyuimigration",
+    "app/Docs/UPDATES.md": "guide-app-docs-updates",
+    "app/README.md": "guide-app-readme",
+    "app/documentation/PUBLISHING.md": "guide-app-documentation-publishing",
+    "app/documentation/README.md": "guide-app-documentation-readme",
+    "app/documentation/VALIDATION.md": "guide-app-documentation-validation"
+  }
+}

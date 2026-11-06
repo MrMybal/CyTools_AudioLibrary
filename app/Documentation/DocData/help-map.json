@@ -1,0 +1,422 @@
+{
+  "schemaVersion": 2,
+  "legacyPaths": {
+    "LISEZ-MOI.md": "guide-lisez-moi",
+    "README.md": "guide-readme",
+    "app/Docs/AudioLibrary-Validation.md": "guide-app-docs-audiolibrary-validation",
+    "app/Docs/CapabilityCoverage.md": "guide-app-docs-capabilitycoverage",
+    "app/Docs/CyUIMigration.md": "guide-app-docs-cyuimigration",
+    "app/Docs/UPDATES.md": "guide-app-docs-updates",
+    "app/README.md": "guide-app-readme",
+    "app/documentation/PUBLISHING.md": "guide-app-documentation-publishing",
+    "app/documentation/README.md": "guide-app-documentation-readme",
+    "app/documentation/VALIDATION.md": "guide-app-documentation-validation"
+  },
+  "aliases": {
+    "guide-app-docs-audiolibrary-validation": "overview",
+    "guide-app-docs-capabilitycoverage": "overview",
+    "guide-app-docs-cyuimigration": "overview",
+    "guide-app-docs-updates": "overview",
+    "guide-app-readme": "operations",
+    "guide-app-documentation-publishing": "overview",
+    "guide-app-documentation-readme": "overview",
+    "guide-app-documentation-validation": "overview",
+    "home": "overview",
+    "readme": "guide-readme",
+    "help": "overview",
+    "user-guide": "guide-lisez-moi",
+    "api": "operations",
+    "migration-notes": "overview",
+    "reference-app-licenses-json": "overview",
+    "reference-licences-cydoc-mit-txt": "overview",
+    "reference-licences-cytoolscore-mit-txt": "overview",
+    "reference-licences-cyui-mit-txt": "overview",
+    "reference-licences-sources-txt": "overview",
+    "reference-license": "overview",
+    "python-library-view-library-view": "operations",
+    "python-exclusive-exclusive": "operations",
+    "source-sources-tool-py": "operations",
+    "translation-report": "overview"
+  },
+  "pages": {
+    "guide-lisez-moi": {
+      "headings": [
+        "cytools-audiolibrary",
+        "demarrer",
+        "vos-tags-categories-et-notes-sur-un-son-une-selection-ou-un-dossier",
+        "sortir-des-sons-de-la-bibliotheque-bundle-et-glisser-deposer",
+        "mise-a-jour-automatique-des-bibliotheques",
+        "outils-fichiers-modifient-vos-fichiers-uniquement-a-votre-demande",
+        "apparence",
+        "raccourcis",
+        "ou-sont-mes-donnees"
+      ],
+      "locale": "fr"
+    },
+    "guide-readme": {
+      "headings": [
+        "workflow",
+        "requirements"
+      ],
+      "locale": "fr"
+    },
+    "installation": {
+      "headings": [
+        "start",
+        "models",
+        "storage"
+      ],
+      "locale": "fr"
+    },
+    "licenses": {
+      "headings": [
+        "application",
+        "models"
+      ],
+      "locale": "fr"
+    },
+    "operation-add-folder": {
+      "headings": [
+        "contract",
+        "returns",
+        "behaviour"
+      ],
+      "locale": "fr"
+    },
+    "operation-analyze-library": {
+      "headings": [
+        "contract",
+        "returns",
+        "behaviour"
+      ],
+      "locale": "fr"
+    },
+    "operation-browse-assets": {
+      "headings": [
+        "contract",
+        "returns",
+        "behaviour"
+      ],
+      "locale": "fr"
+    },
+    "operation-categorize-library": {
+      "headings": [
+        "contract",
+        "returns",
+        "behaviour"
+      ],
+      "locale": "fr"
+    },
+    "operation-check-library": {
+      "headings": [
+        "contract",
+        "returns",
+        "behaviour"
+      ],
+      "locale": "fr"
+    },
+    "operation-control-analysis": {
+      "headings": [
+        "contract",
+        "returns",
+        "behaviour"
+      ],
+      "locale": "fr"
+    },
+    "operation-create-library": {
+      "headings": [
+        "contract",
+        "returns",
+        "behaviour"
+      ],
+      "locale": "fr"
+    },
+    "operation-delete-library": {
+      "headings": [
+        "contract",
+        "returns",
+        "behaviour"
+      ],
+      "locale": "fr"
+    },
+    "operation-engine-status": {
+      "headings": [
+        "contract",
+        "returns",
+        "behaviour"
+      ],
+      "locale": "fr"
+    },
+    "operation-export-bundle": {
+      "headings": [
+        "contract",
+        "returns",
+        "behaviour"
+      ],
+      "locale": "fr"
+    },
+    "operation-find-duplicates": {
+      "headings": [
+        "contract",
+        "returns",
+        "behaviour"
+      ],
+      "locale": "fr"
+    },
+    "operation-get-asset": {
+      "headings": [
+        "contract",
+        "returns",
+        "behaviour"
+      ],
+      "locale": "fr"
+    },
+    "operation-get-waveform": {
+      "headings": [
+        "contract",
+        "returns",
+        "behaviour"
+      ],
+      "locale": "fr"
+    },
+    "operation-install-engine": {
+      "headings": [
+        "contract",
+        "returns",
+        "behaviour"
+      ],
+      "locale": "fr"
+    },
+    "operation-install-model": {
+      "headings": [
+        "contract",
+        "returns",
+        "behaviour"
+      ],
+      "locale": "fr"
+    },
+    "operation-library-status": {
+      "headings": [
+        "contract",
+        "returns",
+        "behaviour"
+      ],
+      "locale": "fr"
+    },
+    "operation-list-folders": {
+      "headings": [
+        "contract",
+        "returns",
+        "behaviour"
+      ],
+      "locale": "fr"
+    },
+    "operation-list-libraries": {
+      "headings": [
+        "contract",
+        "returns",
+        "behaviour"
+      ],
+      "locale": "fr"
+    },
+    "operation-list-models": {
+      "headings": [
+        "contract",
+        "returns",
+        "behaviour"
+      ],
+      "locale": "fr"
+    },
+    "operation-move-cache": {
+      "headings": [
+        "contract",
+        "returns",
+        "behaviour"
+      ],
+      "locale": "fr"
+    },
+    "operation-purge-missing": {
+      "headings": [
+        "contract",
+        "returns",
+        "behaviour"
+      ],
+      "locale": "fr"
+    },
+    "operation-register-model": {
+      "headings": [
+        "contract",
+        "returns",
+        "behaviour"
+      ],
+      "locale": "fr"
+    },
+    "operation-release-models": {
+      "headings": [
+        "contract",
+        "returns",
+        "behaviour"
+      ],
+      "locale": "fr"
+    },
+    "operation-remove-folder": {
+      "headings": [
+        "contract",
+        "returns",
+        "behaviour"
+      ],
+      "locale": "fr"
+    },
+    "operation-remove-model-data": {
+      "headings": [
+        "contract",
+        "returns",
+        "behaviour"
+      ],
+      "locale": "fr"
+    },
+    "operation-remove-model": {
+      "headings": [
+        "contract",
+        "returns",
+        "behaviour"
+      ],
+      "locale": "fr"
+    },
+    "operation-rename-files": {
+      "headings": [
+        "contract",
+        "returns",
+        "behaviour"
+      ],
+      "locale": "fr"
+    },
+    "operation-scan-library": {
+      "headings": [
+        "contract",
+        "returns",
+        "behaviour"
+      ],
+      "locale": "fr"
+    },
+    "operation-search-sounds": {
+      "headings": [
+        "contract",
+        "returns",
+        "behaviour"
+      ],
+      "locale": "fr"
+    },
+    "operation-set-folder-enabled": {
+      "headings": [
+        "contract",
+        "returns",
+        "behaviour"
+      ],
+      "locale": "fr"
+    },
+    "operation-suggest-names": {
+      "headings": [
+        "contract",
+        "returns",
+        "behaviour"
+      ],
+      "locale": "fr"
+    },
+    "operation-understand-query": {
+      "headings": [
+        "contract",
+        "returns",
+        "behaviour"
+      ],
+      "locale": "fr"
+    },
+    "operation-undo-rename": {
+      "headings": [
+        "contract",
+        "returns",
+        "behaviour"
+      ],
+      "locale": "fr"
+    },
+    "operation-update-assets": {
+      "headings": [
+        "contract",
+        "returns",
+        "behaviour"
+      ],
+      "locale": "fr"
+    },
+    "operation-update-library": {
+      "headings": [
+        "contract",
+        "returns",
+        "behaviour"
+      ],
+      "locale": "fr"
+    },
+    "operation-verify-model": {
+      "headings": [
+        "contract",
+        "returns",
+        "behaviour"
+      ],
+      "locale": "fr"
+    },
+    "operation-write-metadata": {
+      "headings": [
+        "contract",
+        "returns",
+        "behaviour"
+      ],
+      "locale": "fr"
+    },
+    "operations": {
+      "headings": [
+        "cli",
+        "mcp",
+        "task-files",
+        "operations"
+      ],
+      "locale": "fr"
+    },
+    "overview": {
+      "headings": [
+        "getting-started",
+        "topics"
+      ],
+      "locale": "fr"
+    },
+    "screenshots": {
+      "headings": [],
+      "locale": "fr"
+    },
+    "settings": {
+      "headings": [
+        "appearance",
+        "configurations",
+        "help"
+      ],
+      "locale": "fr"
+    },
+    "troubleshooting": {
+      "headings": [
+        "installation",
+        "jobs",
+        "outputs"
+      ],
+      "locale": "fr"
+    },
+    "python-create-runtime-create-runtime": {
+      "headings": [
+        "signature",
+        "returns"
+      ],
+      "locale": "fr"
+    }
+  },
+  "modules": [
+    "gallery",
+    "image"
+  ]
+}

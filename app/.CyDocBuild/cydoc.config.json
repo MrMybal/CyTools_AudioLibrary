@@ -1,0 +1,64 @@
+{
+  "name": "CyTools_AudioLibrary",
+  "version": "0.1.5",
+  "defaultLocale": "en",
+  "locales": [
+    {
+      "code": "en",
+      "label": "English"
+    },
+    {
+      "code": "fr",
+      "label": "Français"
+    }
+  ],
+  "homePage": "overview",
+  "content": "manual",
+  "assets": "assets",
+  "out": "../Documentation",
+  "modules": [
+    "gallery",
+    "image"
+  ],
+  "aliases": {
+    "guide-app-docs-audiolibrary-validation": "overview",
+    "guide-app-docs-capabilitycoverage": "overview",
+    "guide-app-docs-cyuimigration": "overview",
+    "guide-app-docs-updates": "overview",
+    "guide-app-readme": "operations",
+    "guide-app-documentation-publishing": "overview",
+    "guide-app-documentation-readme": "overview",
+    "guide-app-documentation-validation": "overview",
+    "home": "overview",
+    "readme": "guide-readme",
+    "help": "overview",
+    "user-guide": "guide-lisez-moi",
+    "api": "operations",
+    "migration-notes": "overview",
+    "reference-app-licenses-json": "overview",
+    "reference-licences-cydoc-mit-txt": "overview",
+    "reference-licences-cytoolscore-mit-txt": "overview",
+    "reference-licences-cyui-mit-txt": "overview",
+    "reference-licences-sources-txt": "overview",
+    "reference-license": "overview",
+    "python-library-view-library-view": "operations",
+    "python-exclusive-exclusive": "operations",
+    "source-sources-tool-py": "operations",
+    "translation-report": "overview"
+  },
+  "logo": "assets/app-logo.png",
+  "apiImports": [
+    {
+      "format": "cydoc",
+      "prefix": "python",
+      "locale": "en",
+      "path": "api-en.json"
+    },
+    {
+      "format": "cydoc",
+      "prefix": "python",
+      "locale": "fr",
+      "path": "api-fr.json"
+    }
+  ]
+}

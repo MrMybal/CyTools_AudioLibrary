@@ -12,3 +12,8 @@
 *.whl binary
 *.zip binary
 .github export-ignore
+
+# Distribute the complete generated manual, never its private build workspace.
+app/.CyDocBuild export-ignore
+app/.CyDocExport export-ignore
+app/.CyDocExport.previous export-ignore
