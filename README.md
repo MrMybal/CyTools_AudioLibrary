@@ -1,149 +1,142 @@
-# CyTools_AudioLibrary
+<table width="100%">
+  <tr>
+    <td width="300" align="left" valign="top">
+      <a href="https://mrmybal.github.io/CyTools_AudioLibrary/">Website</a><br>
+      <a href="https://mrmybal.github.io/CyTools_AudioLibrary/Documentation.html#/en/overview">Documentation</a><br>
+      <a href="https://github.com/MrMybal/CyTools_AudioLibrary">GitHub</a><br><br>
+      <sub>README</sub><br>
+      <a href="README.md">English</a> · <a href="README.fr.md">Français</a>
+    </td>
+    <td width="400" align="center" valign="middle">
+      <a href="https://mrmybal.github.io/CyTools_AudioLibrary/"><img src="app/assets/branding/logo.png" alt="CyTools AudioLibrary logo" width="128"></a>
+    </td>
+    <td width="300" align="right" valign="top">
+      <p><sub>Application license</sub><br><a href="LICENSE"><strong>GPL-3.0-only</strong></a></p>
+      <p><sub>Application version</sub><br><a href="VERSION.md"><strong>0.1.5</strong></a><br><strong>EXPERIMENTAL</strong></p>
+      <p><a href="https://github.com/MrMybal/CyTools_AudioLibrary/releases/download/v0.1.5/CyTools_AudioLibrary-0.1.5-windows-x64.zip"><strong>Download</strong></a><br><sub>Windows x64 · portable</sub></p>
+    </td>
+  </tr>
+</table>
 
-[Documentation](https://mrmybal.github.io/CyTools_AudioLibrary/#/en/overview) · [Website](https://mrmybal.github.io/CyTools_AudioLibrary/) · [Français](https://mrmybal.github.io/CyTools_AudioLibrary/#/fr/overview)
+<h1 align="center">CyTools AudioLibrary</h1>
 
-<p align="center">
-  <img src="app/assets/branding/logo.png" alt="CyTools AudioLibrary logo" width="160">
-</p>
+Maintained by **Cyberalien**.
 
-Maintenance: **Cyberalien**.
 
-A desktop Tool to manage, analyse and search large local sound libraries. It references your
-folders without ever moving or copying the files, draws their waveforms, plays them, and lets
-you find a sound by describing it in any language: several audio embedding models (M2D-CLAP 2025,
-LAION-CLAP, Omni-Embed-Audio) search at once and their rankings are fused, and an optional small
-local LLM turns a messy request into clean captions first. Your own tags, categories, ratings and
-notes can be set on one sound, a selection or a whole folder. The same library can be searched by
-an AI assistant through MCP.
+Explore your own sound collection with waveforms, tags and natural-language search. Your folders stay where they are. For sound designers, editors and anyone working with a growing collection of audio files.
 
-It runs as a Dear ImGui application, as a command line and as an MCP server, all on the same
-[CyToolsCore](https://github.com/MrMybal/CyToolsCore) runtime.
+> **EXPERIMENTAL · 0.1.5**
+>
+> Published Windows build for evaluation; some engine paths remain unvalidated. Read the [version notes and known limitations](VERSION.md).
 
-The user guide, in French, is [LISEZ-MOI.md](LISEZ-MOI.md). The developer notes are in
-[app/README.md](app/README.md), and what was measured, with its limits, in
-[app/Docs/AudioLibrary-Validation.md](app/Docs/AudioLibrary-Validation.md).
+[![Library workspace · folders, sound list, waveform and analysis.](website/assets/showcase/library.webp)](website/assets/showcase/library.webp)
 
-Only Windows 10 with an NVIDIA card has been executed. The Linux launcher exists and has never
-been run.
+*Library workspace · folders, sound list, waveform and analysis.*
 
-## Screenshots
 
-The library: folders, categories and quick filters on the left, the search bar and the sound list in
-the centre, then the player with its waveform and what each model found for the selected sound.
+## The application
 
-![Library tab: folder tree, categories, sound list, waveform player and AI analysis](.github/images/library.png)
+### Your collection
 
-The analysis queue: progress of every stage and model, the analysis data kept per model version, and
-the editor of the categories and tag vocabulary.
+Add sound folders, browse their tree and listen directly from the waveform. Analysis data lives in a cache you choose, separate from the original audio.
 
-![Analysis Queue tab: progress per stage and model, stored analysis data, taxonomy editor](.github/images/analysis-queue.png)
+### Semantic search
 
-## What this repository contains, and what it does not
+Compatible audio embedding models search the collection. When several models are enabled, rankings are combined rather than mixing incompatible embeddings. An optional local assistant can reformulate a request before search.
 
-The repository carries the application (`app/`), the user guide and the Linux launcher.
+### Analysis & organisation
 
-It does **not** carry:
+Follow each stage in the analysis queue, pause or resume work, and manage model-specific analysis stores. Tags, categories, notes and favourites belong to you and are preserved during analysis.
 
-- **model weights** (`data/models/`, about 2 GB for the default search pair, about 26 GB with
-  every catalogue model): installed from the Installation tab or with `install_model`, from the
-  pinned catalogue in `app/models/catalog.json`. M2D-CLAP and the Omni-Embed-Audio backbone come
-  under their own licences, the latter non-commercial, which each user accepts personally in
-  that tab.
-- **`runtime/`**: the private Python of the application, the PyTorch engine, the pinned engine
-  sources, staged updates and backups. It is rebuilt with the steps below.
-- **your data** (`data/`): libraries, caches, waveforms, embeddings, jobs, logs, settings and
-  reports stay on your machine. Nothing is ever written next to your audio files, except by the
-  two File Tools operations, which ask for confirmation.
-- **the Windows launcher** `CyTools_AudioLibrary.exe`: compiled from `app/launcher.cpp`.
+[![Analysis queue · progress, analysis stores and taxonomy controls.](website/assets/showcase/queue.webp)](website/assets/showcase/queue.webp)
 
-## From a release
+*Analysis queue · progress, analysis stores and taxonomy controls.*
 
-Download `CyTools_AudioLibrary-<version>-windows-x64.zip` from the
-[releases](https://github.com/MrMybal/CyTools_AudioLibrary/releases), unzip it where the application
-should live (it creates its private environment in that folder), then run once, from that folder:
 
-```powershell
-powershell -ExecutionPolicy Bypass -File app\Install.ps1
-.\CyTools_AudioLibrary.exe
-```
+## Features
 
-Python 3.11 or newer and `git` are needed for that step; the launcher says so if it was skipped.
-`cytools-app.zip` and its `.sha256`, also attached to each release, are what the Updates tab of an
-installed copy downloads: they are not meant to be unzipped by hand.
+- **Collection management:** folder references, waveform playback, filtering, tags, categories, notes, ratings and favourites on a sound, selection or folder.
+- **Semantic search:** compatible M2D-CLAP, LAION-CLAP and Omni-Embed-Audio paths; rankings can be combined without mixing model embeddings.
+- **Query preparation:** optional CySearchAssist-CLAP rewrites a request for audio search. It has its own model installation.
+- **Analysis queue:** pause/resume, model-specific stores, taxonomy and background folder synchronisation. Analysis preserves user annotations.
+- **File delivery:** export copied sounds as bundles or drag them to compatible applications. Explicitly confirmed File Tools can rename files or write metadata, with backup/undo safeguards.
 
-## From a clone
+**Desktop and automation:** English is the default interface language; French is selectable in Options. Save/load generation configurations, follow copyable application logs and use the declared operations through the CLI or MCP. The [manual](https://mrmybal.github.io/CyTools_AudioLibrary/Documentation.html#/en/overview) describes the real parameters and output contracts.
 
-Windows, PowerShell. Python 3.11 or newer and `git` must be on the PATH: the SDK is installed
-from its repository at the exact commit pinned in `app/requirements.txt`. These steps were
-executed on the development machine from a fresh clone, with Python 3.11: installation, the
-tests, and the interface started both through the launcher and through `runtime\bootstrap.py`.
-Building the launcher itself was not repeated there.
+---
+
+## Installation
+
+The published application build is **Windows x64**. The portable ZIP includes its private Python runtime and base UI/media dependencies. Models and optional heavy engines are separate downloads.
+
+1. [Download CyTools AudioLibrary 0.1.5](https://github.com/MrMybal/CyTools_AudioLibrary/releases/download/v0.1.5/CyTools_AudioLibrary-0.1.5-windows-x64.zip).
+2. Extract the complete ZIP into a writable folder. Keep `app/` and `runtime/` beside the launcher.
+3. Open **CyTools_AudioLibrary.exe**. Use the installation/model workspace for the components you need; review each component licence and any provider access conditions before download.
+
+No machine Python is needed just to open the portable application. Source setup and some optional engine installers require additional tools such as Git. Keep the full release folder; the standalone `.exe` or an `app` update ZIP alone is not a complete installation.
+
+Windows x64 is tested; the Linux launcher is unvalidated. Semantic search requires separately installed compatible models and the AI engine. Some model licences restrict commercial use. File Tools can rename files or write metadata only when explicitly requested.
+
+### Updates and data
+
+For an existing compatible installation, use its Updates page and the matching application update package. Keep `data/`, installed engines and models. An update for another runtime ABI must not be forced. If the required runtime changes, use the complete portable release in a separate folder and follow the migration instructions.
+
+## Source, build and required libraries
+
+<details>
+<summary>Windows source setup and optional build tools</summary>
+
+
+Use Python **3.11** for the base source environment. Git is needed for cloning and pinned Git requirements. Building the launcher needs the MSVC x64 Build Tools; use a developer command prompt.
 
 ```powershell
 git clone https://github.com/MrMybal/CyTools_AudioLibrary.git
 cd CyTools_AudioLibrary
-powershell -ExecutionPolicy Bypass -File app\Install.ps1           # private runtime in runtime\python
-powershell -ExecutionPolicy Bypass -File app\build_launcher.ps1    # CyTools_AudioLibrary.exe (Visual C++ build tools)
+powershell -File app\Install.ps1
+powershell -File app\build_launcher.ps1
 .\CyTools_AudioLibrary.exe
 ```
 
-Without the Visual C++ build tools, start the same interface with
-`.\runtime\python\Scripts\pythonw.exe runtime\bootstrap.py`.
+The exact base requirements are in [app/requirements.txt](app/requirements.txt). Engines use their own environments and model catalogues; installing the base environment does not install them. Follow the [developer setup](app/README.md) for the detailed build and optional components.
 
-In the application, the **Installation** tab installs the AI engine (a private PyTorch
-environment, several GB) and the models, with their size, source and licence. Then create a
-Library, add your folders, scan, and search. `app\Install.ps1 -Engine` installs the engine from
-the command line instead.
+</details>
 
-## From an AI assistant (MCP)
+---
 
-```json
-{"mcpServers": {"cytools-audiolibrary": {"command": "<tool>/runtime/python/Scripts/python.exe",
-  "args": ["<tool>/app/tool.py", "--data-dir", "<tool>/data/jobs-mcp", "mcp"]}}}
-```
+## License
 
-Replace `<tool>` with the absolute path of the clone. The assistant can search every library,
-browse the folder tree, edit tags and notes, and scan or analyse on request. Installing a model
-under a personal licence, renaming files and writing tags into files always need your explicit
-yes: the operations refuse to run without it. Details in [app/README.md](app/README.md).
+**CyTools AudioLibrary is licensed under [GPL-3.0-only](LICENSE).** CyToolsCore, CyUI and CyDoc remain MIT components; their licences do not change the application licence. Optional engines, plugins and model weights retain their own terms.
 
-## Updates
+### Main components and third-party libraries
 
-The Updates tab reads the releases of this repository. A release carries `cytools-app.zip` and
-`cytools-app.zip.sha256`, built by `app\scripts\build_release.py`. An update replaces `app/` only,
-is verified before it is activated at the next start, keeps the previous version for a rollback,
-and never touches `data/`. Packages of the private Python environment, such as the CyToolsCore SDK, are not
-part of an application update: run `app\Install.ps1` again to install the versions the new `app/requirements.txt` pins. The engine sources and the model weights are separate update streams.
+| Library · source | License · terms | Use / scope |
+| --- | --- | --- |
+| [CyToolsCore 0.10.1](https://github.com/MrMybal/CyToolsCore) | [MIT](LICENCES/CyToolsCore-MIT.txt) | SDK/runtime: jobs, sessions, resources, CLI and MCP. |
+| [CyUI 1.2.0](https://github.com/MrMybal/CyUI) | [MIT](LICENCES/CyUI-MIT.txt) | Selected bundled Python UI modules. |
+| [CyDoc 0.1.0](https://github.com/MrMybal/CyDoc) | [MIT](LICENCES/CyDoc-MIT.txt) | Bundled offline reader; Node/npm are authoring/build tools only. |
+| [Dear ImGui / imgui-bundle](https://github.com/pthom/imgui_bundle) | [MIT + component notices](https://github.com/pthom/imgui_bundle/blob/main/LICENSE) | Desktop renderer and its bundled native components. |
+| [CPython 3.11](https://www.python.org/) | [PSF + component notices](https://docs.python.org/3.11/license.html) | Private runtime included in the Windows portable archive. |
+| [NumPy / SciPy / Pillow](app/requirements.txt) | [BSD-3-Clause / MIT-CMU](LICENCES/SOURCES.txt) | Base audio/image processing. |
+| [soundfile / sounddevice / PyAV](app/requirements.txt) | [BSD / MIT; native libraries retain their terms](app/licenses.json) | Decode, waveform playback and audio devices; libsndfile/FFmpeg notices remain applicable. |
+| [Mutagen](https://github.com/quodlibet/mutagen) | [GPL-2.0-or-later](https://github.com/quodlibet/mutagen/blob/main/COPYING) | File Tools metadata writing, only on explicit confirmation. |
+| [M2D](https://github.com/nttcslab/m2d) | [NTT Software License](https://github.com/nttcslab/m2d/blob/master/LICENSE.pdf) | Optional downloaded analysis source/runtime. |
+| [Omni-Embed-Audio](https://github.com/JudeJiwoo/Omni-Embed-Audio) | [MIT (code); separate model terms](app/licenses.json) | Optional analysis backend; Qwen2.5-Omni backbone weights have non-commercial terms. |
 
-## Tests
+This table indexes the main components; it does not replace their complete transitive notices. Retain [LICENCES/](LICENCES/), [app/licenses.json](app/licenses.json), the licences beside installed packages and the notices in each optional engine/model. CUDA libraries, when installed, also retain NVIDIA’s terms.
 
-```powershell
-.\runtime\python\Scripts\python.exe -m unittest discover -s app\tests -v   # no PyTorch, no weights
-.\runtime\python\Scripts\cytools.exe validate app\CyTool.json
-```
+## References and links
 
-## Licence
+- [Documentation](https://mrmybal.github.io/CyTools_AudioLibrary/Documentation.html#/en/overview)
+- [Website](https://mrmybal.github.io/CyTools_AudioLibrary/)
+- [Source repository](https://github.com/MrMybal/CyTools_AudioLibrary) · [Releases and checksums](https://github.com/MrMybal/CyTools_AudioLibrary/releases)
+- [Issue tracker](https://github.com/MrMybal/CyTools_AudioLibrary/issues) · [Version notes](VERSION.md)
+- [Developer setup](app/README.md)
 
-Copyright (C) 2026 Cyberalien. This program is free software: you can redistribute it and/or
-modify it under the terms of the GNU General Public License, version 3 only, as published by the
-Free Software Foundation. It is distributed WITHOUT ANY WARRANTY; see [LICENSE](LICENSE).
+<details>
+<summary><strong>AI Usage</strong></summary>
 
-The licence covers the application code. It is built on [CyToolsCore](https://github.com/MrMybal/CyToolsCore)
-0.10.1, under the MIT licence. [LICENCES/](LICENCES/) holds the full text of the SDK licence and the sources of
-every component; the engines and model weights keep their own terms, listed in the Options tab and in
-[app/licenses.json](app/licenses.json).
+- [Start here: project agent guide](app/AGENTS.md) — product rules and important files.
+- [Operations and AI integration](app/Documentation/DocAI.md) — actual tool contracts and task usage.
+- [Build this application](app/README.md) — source setup and application-specific commands.
 
-## Modular CyUI
-
-The standalone interface uses the pinned, selected CyUI 1.2 modules. See
-[the migration and validation notes](app/Docs/CyUIMigration.md) for replacements, retained host
-adaptations, source hashes and reproducible refresh instructions.
-
-CyUI: MIT. Full license: LICENCES/CyUI-MIT.txt.
-Upstream license: https://github.com/MrMybal/CyUI/blob/main/LICENSE
-Repository: https://github.com/MrMybal/CyUI (currently private; no upstream access required to run this application).
-
-
-## Local documentation
-
-Open **Options → Open local manual (F1)** or press **F1** in the application. The complete offline reader is shipped in `app/Documentation/Documentation.html`. [Regenerate the manual](app/.CyDocBuild/README.md).
+</details>
