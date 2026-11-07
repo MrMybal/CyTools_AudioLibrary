@@ -1,0 +1,14 @@
+[
+  {
+    "file": "assets/showcase/library.webp",
+    "origin": "Repository screenshot: app/.CyDocBuild/assets/98a9157ef8e5cd8c.png",
+    "originalSha256": "98a9157ef8e5cd8c21308ed8f467667309a4abd65d88bf5814012181f61b4616",
+    "transform": "Full frame, converted to WebP; metadata omitted. No compositing or generative editing."
+  },
+  {
+    "file": "assets/showcase/queue.webp",
+    "origin": "Repository screenshot: app/.CyDocBuild/assets/223ad4561798ae26.png",
+    "originalSha256": "223ad4561798ae267ca1c8a95745d0d959c17e6237ab7954a612988654a23bbb",
+    "transform": "Full frame, converted to WebP; metadata omitted. No compositing or generative editing."
+  }
+]

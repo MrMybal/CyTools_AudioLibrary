@@ -1,0 +1,178 @@
+{
+  "accent": "#5ddac8",
+  "category": {
+    "en": "Sound / organisation & discovery",
+    "fr": "Son / organisation et recherche"
+  },
+  "intro": {
+    "en": "Find the sound you have in mind.",
+    "fr": "Retrouvez le son que vous avez en tête."
+  },
+  "description": {
+    "en": "Explore your own sound collection with waveforms, tags and natural-language search. Your folders stay where they are.",
+    "fr": "Explorez votre collection sonore avec les formes d’onde, les tags et la recherche en langage naturel. Vos dossiers restent à leur place."
+  },
+  "audience": {
+    "en": "For sound designers, editors and anyone working with a growing collection of audio files.",
+    "fr": "Pour les sound designers, les monteurs et toute personne qui travaille avec une collection de sons."
+  },
+  "tags": [
+    {
+      "en": "Waveforms",
+      "fr": "Formes d’onde"
+    },
+    {
+      "en": "CLAP",
+      "fr": "CLAP"
+    },
+    {
+      "en": "Tags",
+      "fr": "Tags"
+    },
+    {
+      "en": "MCP",
+      "fr": "MCP"
+    }
+  ],
+  "hero": "library",
+  "heroCaption": {
+    "en": "Library workspace · folders, sound list, waveform and analysis.",
+    "fr": "Bibliothèque · dossiers, liste des sons, forme d’onde et analyse."
+  },
+  "sections": [
+    {
+      "id": "library",
+      "label": {
+        "en": "01 / Your collection",
+        "fr": "01 / Votre collection"
+      },
+      "title": {
+        "en": "A library that references your folders.",
+        "fr": "Une bibliothèque qui référence vos dossiers."
+      },
+      "body": {
+        "en": "Add sound folders, browse their tree and listen directly from the waveform. Analysis data lives in a cache you choose, separate from the original audio.",
+        "fr": "Ajoutez des dossiers sonores, parcourez leur arborescence et écoutez depuis la forme d’onde. Les données d’analyse restent dans le cache de votre choix, séparées des originaux."
+      },
+      "points": [
+        {
+          "en": "Waveform zoom, selection and loop playback",
+          "fr": "Zoom, sélection et lecture en boucle sur la forme d’onde"
+        },
+        {
+          "en": "Categories, filters and sortable sound lists",
+          "fr": "Catégories, filtres et listes triables"
+        },
+        {
+          "en": "Optional background library synchronisation",
+          "fr": "Synchronisation facultative de la bibliothèque en arrière-plan"
+        }
+      ],
+      "image": "library",
+      "caption": {
+        "en": "Browse and audition audio without reorganising the source folders.",
+        "fr": "Parcourez et écoutez les sons sans réorganiser les dossiers sources."
+      },
+      "doc": "guide-lisez-moi"
+    },
+    {
+      "id": "search",
+      "label": {
+        "en": "02 / Semantic search",
+        "fr": "02 / Recherche sémantique"
+      },
+      "title": {
+        "en": "Describe a sound. Explore the matches.",
+        "fr": "Décrivez un son. Explorez les résultats."
+      },
+      "body": {
+        "en": "Compatible audio embedding models search the collection. When several models are enabled, rankings are combined rather than mixing incompatible embeddings. An optional local assistant can reformulate a request before search.",
+        "fr": "Les modèles compatibles recherchent dans la collection. Avec plusieurs modèles actifs, leurs classements sont fusionnés sans mélanger des embeddings incompatibles. Un assistant local facultatif peut reformuler la demande avant la recherche."
+      },
+      "points": [
+        {
+          "en": "Text search in different languages",
+          "fr": "Recherche textuelle dans plusieurs langues"
+        },
+        {
+          "en": "Inspect analysis and individual model scores",
+          "fr": "Consultation de l’analyse et des scores de chaque modèle"
+        },
+        {
+          "en": "Search from a selected sound or waveform segment",
+          "fr": "Recherche depuis un son ou un segment sélectionné"
+        }
+      ],
+      "image": "library",
+      "caption": {
+        "en": "The waveform and analysis remain available while browsing the collection.",
+        "fr": "La forme d’onde et l’analyse restent accessibles pendant l’exploration."
+      },
+      "doc": "guide-lisez-moi"
+    },
+    {
+      "id": "analysis",
+      "label": {
+        "en": "03 / Analysis & organisation",
+        "fr": "03 / Analyse et organisation"
+      },
+      "title": {
+        "en": "Follow the work. Keep your own annotations.",
+        "fr": "Suivez l’analyse. Gardez vos annotations."
+      },
+      "body": {
+        "en": "Follow each stage in the analysis queue, pause or resume work, and manage model-specific analysis stores. Tags, categories, notes and favourites belong to you and are preserved during analysis.",
+        "fr": "Suivez les étapes dans la file d’analyse, mettez le travail en pause ou reprenez-le et gérez les données propres à chaque modèle. Vos tags, catégories, notes et favoris sont préservés pendant l’analyse."
+      },
+      "points": [
+        {
+          "en": "Apply annotations to a sound, selection or folder",
+          "fr": "Annotations sur un son, une sélection ou un dossier"
+        },
+        {
+          "en": "Export copies as a reusable bundle",
+          "fr": "Export de copies sous forme de bundle réutilisable"
+        },
+        {
+          "en": "File renaming and metadata writing require explicit confirmation",
+          "fr": "Renommage et écriture de métadonnées avec confirmation explicite"
+        }
+      ],
+      "image": "queue",
+      "caption": {
+        "en": "Analysis queue · progress, analysis stores and taxonomy controls.",
+        "fr": "File d’analyse · progression, données conservées et vocabulaire de tags."
+      },
+      "doc": "guide-lisez-moi"
+    }
+  ],
+  "limits": {
+    "en": "Windows x64 is tested; the Linux launcher is unvalidated. Semantic search requires separately installed compatible models and the AI engine. Some model licences restrict commercial use. File Tools can rename files or write metadata only when explicitly requested.",
+    "fr": "Windows x64 est testé ; le lanceur Linux n’est pas validé. La recherche sémantique nécessite des modèles compatibles et le moteur IA installés séparément. Certaines licences de modèles restreignent l’usage commercial. Les outils fichiers peuvent renommer ou écrire des métadonnées uniquement sur demande explicite."
+  },
+  "shortName": "AudioLibrary",
+  "repository": "CyTools_AudioLibrary",
+  "private": false,
+  "licence": "GPL-3.0-only",
+  "logo": "assets/showcase/logo.png",
+  "images": {
+    "library": {
+      "file": "assets/showcase/library.webp",
+      "width": 1500,
+      "height": 920,
+      "caption": {
+        "en": "Library workspace · folders, sound list, waveform and analysis.",
+        "fr": "Bibliothèque · dossiers, liste des sons, forme d’onde et analyse."
+      }
+    },
+    "queue": {
+      "file": "assets/showcase/queue.webp",
+      "width": 1500,
+      "height": 920,
+      "caption": {
+        "en": "Analysis queue · progress, analysis stores and taxonomy controls.",
+        "fr": "File d’analyse · progression, données conservées et vocabulaire de tags."
+      }
+    }
+  }
+}
