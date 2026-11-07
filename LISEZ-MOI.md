@@ -1,6 +1,6 @@
 # CyTools_AudioLibrary
 
-[Documentation](https://mrmybal.github.io/CyTools_AudioLibrary/#/fr/overview) · [English](https://mrmybal.github.io/CyTools_AudioLibrary/#/en/overview)
+[Documentation](https://mrmybal.github.io/CyTools_AudioLibrary/#/fr/overview) · [Site web](https://mrmybal.github.io/CyTools_AudioLibrary/?lang=fr) · [English](https://mrmybal.github.io/CyTools_AudioLibrary/#/en/overview)
 
 Bibliothèque audio locale intelligente : gestion, analyse, catégorisation et recherche en langage
 naturel dans de grandes collections de sons. Vos fichiers ne sont jamais déplacés, copiés ni modifiés
