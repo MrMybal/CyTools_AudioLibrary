@@ -15,3 +15,4 @@ av>=12,<16
 sounddevice>=0.4.6,<1
 # Writing tags into audio files (File Tools tab only). GPL-2.0-or-later: see licenses.json.
 mutagen>=1.47,<2
+pywin32==312; sys_platform == "win32"
