@@ -494,6 +494,8 @@ def create_runtime(data_dir, **options):
         runtime.register(identifier, handlers[identifier], estimate=model_estimate if identifier in estimated else None)
     from cytools_core.shared_installation import register_operations
     register_operations(runtime, ROOT)
+    from cytools_core.communication import register_operations as register_communication
+    register_communication(runtime)
     return runtime
 
 

@@ -1,10 +1,8 @@
 # Base of the application: CyToolsCore, Dear ImGui interface, CLI, MCP, library
 # scanning, decoding, waveform cache and playback. No AI framework here: the
 # engine (PyTorch, transformers) is installed separately by setup_backend.py.
-# CyToolsCore 0.10.1, the SDK (MIT), from its public repository at the exact commit this Tool was tested with.
-# The commit is pinned rather than a branch, so an installation never picks up an untested SDK. Needs git.
-cytools-core[mcp] @ git+https://github.com/MrMybal/CyToolsCore.git@a8d200f2d0baaade1633e0683663b4506c595f74
-mcp>=1.30,<2
+cytools-core @ https://github.com/MrMybal/CyToolsCore/releases/download/v0.11.0/cytools_core-0.11.0-py3-none-win_amd64.whl ; sys_platform == "win32"
+cytools-core==0.11.0 ; sys_platform != "win32"
 numpy>=1.26,<3
 scipy>=1.11,<2
 Pillow>=10,<12
