@@ -22,11 +22,7 @@ try {
         & python -m venv $runtime
         if ($LASTEXITCODE -ne 0) { throw 'Cannot create the private runtime' }
     }
-    # CyToolsCore is installed from its public repository at the revision pinned in requirements.txt: pip needs git.
-    if (-not (Get-Command git -ErrorAction SilentlyContinue)) {
-        throw 'git is required to install CyToolsCore from https://github.com/MrMybal/CyToolsCore: https://git-scm.com/download/win'
-    }
-    & $python -m pip --disable-pip-version-check install --keyring-provider disabled --timeout 60 --retries 3 -r (Join-Path $PSScriptRoot 'requirements.txt')
+    & $python -m pip --disable-pip-version-check install --keyring-provider disabled --timeout 60 --retries 3 --find-links (Join-Path $PSScriptRoot 'packages') -r (Join-Path $PSScriptRoot 'requirements.txt')
     if ($LASTEXITCODE -ne 0) { throw 'Base installation failed (CyToolsCore, ImGui, MCP, audio libraries)' }
     # The start-up script lives outside app/ (it is what swaps app/ during an update): install it from its source.
     Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'bootstrap.py') -Destination (Join-Path $root 'runtime\bootstrap.py') -Force

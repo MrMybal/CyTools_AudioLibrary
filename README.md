@@ -12,8 +12,8 @@
     </td>
     <td width="300" align="right" valign="top">
       <p><sub>Application license</sub><br><a href="LICENSE"><strong>GPL-3.0-only</strong></a></p>
-      <p><sub>Application version</sub><br><a href="VERSION.md"><strong>0.1.6</strong></a><br><strong>EXPERIMENTAL</strong></p>
-      <p><a href="https://github.com/MrMybal/CyTools_AudioLibrary/releases/download/v0.1.6/CyTools_AudioLibrary-0.1.6-windows-x64.zip"><strong>Download</strong></a><br><sub>Windows x64 · portable</sub></p>
+      <p><sub>Application version</sub><br><a href="VERSION.md"><strong>0.1.7</strong></a><br><strong>EXPERIMENTAL</strong></p>
+      <p><a href="https://github.com/MrMybal/CyTools_AudioLibrary/releases/download/v0.1.7/CyTools_AudioLibrary-0.1.7-windows-x64.zip"><strong>Download</strong></a><br><sub>Windows x64 · portable</sub></p>
     </td>
   </tr>
 </table>
@@ -25,7 +25,7 @@ Maintained by **Cyberalien**.
 
 Explore your own sound collection with waveforms, tags and natural-language search. Your folders stay where they are. For sound designers, editors and anyone working with a growing collection of audio files.
 
-> **EXPERIMENTAL · 0.1.6**
+> **EXPERIMENTAL · 0.1.7**
 >
 > Published Windows build for evaluation; some engine paths remain unvalidated. Read the [version notes and known limitations](VERSION.md).
 
@@ -69,7 +69,7 @@ Follow each stage in the analysis queue, pause or resume work, and manage model-
 
 The published application build is **Windows x64**. The portable ZIP includes its private Python runtime and base UI/media dependencies. Models and optional heavy engines are separate downloads.
 
-1. [Download CyTools AudioLibrary 0.1.6](https://github.com/MrMybal/CyTools_AudioLibrary/releases/download/v0.1.6/CyTools_AudioLibrary-0.1.6-windows-x64.zip).
+1. [Download CyTools AudioLibrary 0.1.7](https://github.com/MrMybal/CyTools_AudioLibrary/releases/download/v0.1.7/CyTools_AudioLibrary-0.1.7-windows-x64.zip).
 2. Extract the complete ZIP into a writable folder. Keep `app/` and `runtime/` beside the launcher.
 3. Open **CyTools_AudioLibrary.exe**. Use the installation/model workspace for the components you need; review each component licence and any provider access conditions before download.
 
@@ -111,7 +111,7 @@ The exact base requirements are in [app/requirements.txt](app/requirements.txt).
 
 | Library · source | License · terms | Use / scope |
 | --- | --- | --- |
-| [CyToolsCore 0.11.0](https://github.com/MrMybal/CyToolsCore) | [MIT](LICENCES/CyToolsCore-MIT.txt) | SDK/runtime: jobs, sessions, resources, CLI and MCP. |
+| [CyToolsCore 0.12.0](https://github.com/MrMybal/CyToolsCore) | [MIT](LICENCES/CyToolsCore-MIT.txt) | SDK/runtime: jobs, sessions, resources, CLI and MCP. |
 | [CyMCPSDK 0.7.1](https://github.com/MrMybal/CyMCPSDK) | [MIT](LICENCES/CyMCPSDK-MIT.txt) | Native CLI, JSONL, HTTP and MCP. |
 | [CyUI 1.2.0](https://github.com/MrMybal/CyUI) | [MIT](LICENCES/CyUI-MIT.txt) | Selected bundled Python UI modules. |
 | [CyDoc 0.1.0](https://github.com/MrMybal/CyDoc) | [MIT](LICENCES/CyDoc-MIT.txt) | Bundled offline reader; Node/npm are authoring/build tools only. |
@@ -145,6 +145,40 @@ This table indexes the main components; it does not replace their complete trans
 
 ## Native AI communication
 
-CyToolsCore **0.11.0** uses **CyMCPSDK 0.7.1** for native CLI, JSONL, HTTP and MCP. Discover all effective options with `ai_communication_status` (`includeOperations: true`). Export wanted task results before cleanup. This first migration requires the full Windows package; application-only updates are for installations that already have the native runtime.
+CyToolsCore **0.12.0** uses **CyMCPSDK 0.7.1** for native CLI, JSONL, HTTP and MCP. Discover all effective options with `ai_communication_status` (`includeOperations: true`). Export wanted task results before cleanup. This first migration requires the full Windows package; application-only updates are for installations that already have the native runtime.
 
-Source-build dependency: `cytools-core @ https://github.com/MrMybal/CyToolsCore/releases/download/v0.11.0/cytools_core-0.11.0-py3-none-win_amd64.whl`. See [developer instructions](app/README.md) for native builds.
+Source-build dependency: `cytools-core @ https://github.com/MrMybal/CyToolsCore/releases/download/v0.12.0/cytools_core-0.12.0-py3-none-win_amd64.whl`. See [developer instructions](app/README.md) for native builds.
+
+
+## Local MCP access
+
+Core **0.12.0** embeds native CyMCPSDK commit **`34d4bca`**. From the Tool root, start
+the local service explicitly:
+
+```powershell
+runtime/python/Scripts/python.exe app/tool.py --data-dir data/jobs serve --port 8766
+```
+
+Free is the initial profile: connect using only `http://127.0.0.1:8766/mcp`. All exposed
+operations are callable without a token or additional transport approval. Arguments,
+licence acceptance and explicit destructive-action confirmations remain business rules.
+The portable API is at `/v1`; the listener binds only to 127.0.0.1.
+
+Missing choices migrate to Free; explicit profiles are preserved. Use the server option
+`--access-profile free`, `--access-profile local_controlled`, `--access-profile token_only`
+or `--access-profile protected_access`. Local controlled applies host-selected permissions.
+Token only and Protected require a valid token; Protected retains credential permissions.
+With the command above, the choice persists in `data/jobs/communication.json`. Restart
+the service to change the active profile. CLI/embedded and chat-provider permissions
+are unchanged. Use `ai_communication_status` with `includeOperations: true` for discovery.
+
+Install the full Windows package for this native runtime update; app-only updates reject
+the old runtime ABI. For a local source upgrade, install the bundled wheel:
+
+```powershell
+runtime/python/Scripts/python.exe -m pip install --no-deps app/packages/cytools_core-0.12.0-py3-none-win_amd64.whl
+```
+
+Export wanted task files before `cy_finish_task`. Task cleanup preserves original inputs,
+installed models, conversations and persistent project documents. Windows x64 is the
+validated platform for this update; Linux/macOS native builds require target validation.
